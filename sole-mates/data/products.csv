@@ -1,0 +1,92 @@
+ID,Type,SKU,Name,Published,Is featured?,Visibility in catalog,Short description,Description,Tax status,In stock?,Stock,Backorders allowed?,Sold individually?,Allow customer reviews?,Sale price,Regular price,Categories,Tags,Images,Parent,Attribute 1 name,Attribute 1 value(s),Attribute 1 visible,Attribute 1 global,Attribute 2 name,Attribute 2 value(s),Attribute 2 visible,Attribute 2 global
+,variable,SM-BOOT-001,Trailhead Waterproof Hiking Boots,1,0,visible,Waterproof leather hiking boots for rough trails.,"Rugged waterproof hiking boots with grippy lugged soles, ankle support and a cushioned insole for long trails. Material: Full-grain leather, waterproof membrane. Fit: True to size. Wide fit available in-store only — not in this demo catalog. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Boots,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-boot-001.webp,,Size,"7, 8, 9, 10, 11, 12, 13",1,0,Colour,Chestnut Brown,1,0
+,variation,SM-BOOT-001-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-001,Size,7,1,0,Colour,Chestnut Brown,1,0
+,variation,SM-BOOT-001-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-001,Size,8,1,0,Colour,Chestnut Brown,1,0
+,variation,SM-BOOT-001-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-001,Size,9,1,0,Colour,Chestnut Brown,1,0
+,variation,SM-BOOT-001-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-001,Size,10,1,0,Colour,Chestnut Brown,1,0
+,variation,SM-BOOT-001-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-001,Size,11,1,0,Colour,Chestnut Brown,1,0
+,variation,SM-BOOT-001-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-001,Size,12,1,0,Colour,Chestnut Brown,1,0
+,variation,SM-BOOT-001-13,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-001,Size,13,1,0,Colour,Chestnut Brown,1,0
+,variable,SM-BOOT-002,City Chelsea Rain Boots,1,0,visible,"Pull-on black Chelsea boots, rain-ready.","Sleek pull-on Chelsea boots that shrug off rain and puddles, with elastic side panels and a low stacked heel. Material: Rubber upper, textile lining. Fit: True to size. Narrower than the Trailhead boots. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Boots,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-boot-002.webp,,Size,"6, 7, 8, 9, 10, 11",1,0,Colour,Black,1,0
+,variation,SM-BOOT-002-6,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-002,Size,6,1,0,Colour,Black,1,0
+,variation,SM-BOOT-002-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-002,Size,7,1,0,Colour,Black,1,0
+,variation,SM-BOOT-002-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-002,Size,8,1,0,Colour,Black,1,0
+,variation,SM-BOOT-002-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-002,Size,9,1,0,Colour,Black,1,0
+,variation,SM-BOOT-002-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-002,Size,10,1,0,Colour,Black,1,0
+,variation,SM-BOOT-002-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-BOOT-002,Size,11,1,0,Colour,Black,1,0
+,variable,SM-SAND-001,Boardwalk Leather Sandals,1,0,visible,Classic tan leather sandals with a cork footbed.,"Classic two-strap leather sandals with a moulded cork footbed that shapes to your foot. Material: Leather straps, cork footbed. Fit: True to size. Break in over 2–3 wears. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Sandals,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-sand-001.webp,,Size,"6, 7, 8, 9, 10, 11, 12",1,0,Colour,Tan,1,0
+,variation,SM-SAND-001-6,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-001,Size,6,1,0,Colour,Tan,1,0
+,variation,SM-SAND-001-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-001,Size,7,1,0,Colour,Tan,1,0
+,variation,SM-SAND-001-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-001,Size,8,1,0,Colour,Tan,1,0
+,variation,SM-SAND-001-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-001,Size,9,1,0,Colour,Tan,1,0
+,variation,SM-SAND-001-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-001,Size,10,1,0,Colour,Tan,1,0
+,variation,SM-SAND-001-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-001,Size,11,1,0,Colour,Tan,1,0
+,variation,SM-SAND-001-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-001,Size,12,1,0,Colour,Tan,1,0
+,variable,SM-SAND-002,Cloudstep Sport Sandals,1,0,visible,"Lightweight teal sport sandals, adjustable straps.","Lightweight sport sandals with adjustable straps and a soft EVA sole — built for river walks and hot days. Material: Synthetic straps, EVA sole. Fit: Runs slightly large — consider half a size down. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Sandals,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-sand-002.webp,,Size,"7, 8, 9, 10, 11, 12",1,0,Colour,Teal,1,0
+,variation,SM-SAND-002-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-002,Size,7,1,0,Colour,Teal,1,0
+,variation,SM-SAND-002-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-002,Size,8,1,0,Colour,Teal,1,0
+,variation,SM-SAND-002-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-002,Size,9,1,0,Colour,Teal,1,0
+,variation,SM-SAND-002-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-002,Size,10,1,0,Colour,Teal,1,0
+,variation,SM-SAND-002-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-002,Size,11,1,0,Colour,Teal,1,0
+,variation,SM-SAND-002-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SAND-002,Size,12,1,0,Colour,Teal,1,0
+,variable,SM-SNEA-001,Court Classic White Sneakers,1,0,visible,Minimal white leather court sneakers.,"A clean, minimal white court sneaker that goes with everything. Leather upper, padded collar, rubber cupsole. Material: Leather upper, rubber cupsole. Fit: True to size. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Sneakers,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-snea-001.webp,,Size,"6, 7, 8, 9, 9.5, 10, 11, 12",1,0,Colour,White,1,0
+,variation,SM-SNEA-001-6,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,6,1,0,Colour,White,1,0
+,variation,SM-SNEA-001-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,7,1,0,Colour,White,1,0
+,variation,SM-SNEA-001-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,8,1,0,Colour,White,1,0
+,variation,SM-SNEA-001-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,9,1,0,Colour,White,1,0
+,variation,SM-SNEA-001-9.5,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,9.5,1,0,Colour,White,1,0
+,variation,SM-SNEA-001-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,10,1,0,Colour,White,1,0
+,variation,SM-SNEA-001-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,11,1,0,Colour,White,1,0
+,variation,SM-SNEA-001-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-001,Size,12,1,0,Colour,White,1,0
+,variable,SM-SNEA-002,Retro High-Top Sneakers,1,0,visible,Cherry-red canvas high-top sneakers.,"Bold cherry-red high-tops with a retro basketball silhouette, canvas upper and ankle padding. Material: Canvas upper, rubber sole. Fit: True to size. High-top fit — ankle support, less flex. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Sneakers,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-snea-002.webp,,Size,"7, 8, 9, 10, 11, 12, 13",1,0,Colour,Cherry Red,1,0
+,variation,SM-SNEA-002-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-002,Size,7,1,0,Colour,Cherry Red,1,0
+,variation,SM-SNEA-002-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-002,Size,8,1,0,Colour,Cherry Red,1,0
+,variation,SM-SNEA-002-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-002,Size,9,1,0,Colour,Cherry Red,1,0
+,variation,SM-SNEA-002-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-002,Size,10,1,0,Colour,Cherry Red,1,0
+,variation,SM-SNEA-002-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-002,Size,11,1,0,Colour,Cherry Red,1,0
+,variation,SM-SNEA-002-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-002,Size,12,1,0,Colour,Cherry Red,1,0
+,variation,SM-SNEA-002-13,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SNEA-002,Size,13,1,0,Colour,Cherry Red,1,0
+,variable,SM-SLIP-001,Fireside Wool Slippers,1,0,visible,Warm charcoal wool slippers with a suede sole.,"Warm wool-felt house slippers with a suede sole — warm enough for winter mornings, quiet on hard floors. Material: Wool felt upper, suede sole. Fit: True to size. Wool will mould slightly with wear. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Slippers,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-slip-001.webp,,Size,"6, 7, 8, 9, 10, 11, 12",1,0,Colour,Charcoal Grey,1,0
+,variation,SM-SLIP-001-6,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-001,Size,6,1,0,Colour,Charcoal Grey,1,0
+,variation,SM-SLIP-001-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-001,Size,7,1,0,Colour,Charcoal Grey,1,0
+,variation,SM-SLIP-001-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-001,Size,8,1,0,Colour,Charcoal Grey,1,0
+,variation,SM-SLIP-001-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-001,Size,9,1,0,Colour,Charcoal Grey,1,0
+,variation,SM-SLIP-001-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-001,Size,10,1,0,Colour,Charcoal Grey,1,0
+,variation,SM-SLIP-001-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-001,Size,11,1,0,Colour,Charcoal Grey,1,0
+,variation,SM-SLIP-001-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-001,Size,12,1,0,Colour,Charcoal Grey,1,0
+,variable,SM-SLIP-002,Cloud Plush House Slippers,1,0,visible,"Soft navy plush slippers, memory-foam insoles.","Ridiculously soft navy plush slippers with memory-foam insoles and a non-slip rubber sole for indoor/outdoor steps. Material: Plush synthetic upper, rubber sole. Fit: Runs slightly small — consider half a size up. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Slippers,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-slip-002.webp,,Size,"7, 8, 9, 10, 11",1,0,Colour,Navy,1,0
+,variation,SM-SLIP-002-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-002,Size,7,1,0,Colour,Navy,1,0
+,variation,SM-SLIP-002-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-002,Size,8,1,0,Colour,Navy,1,0
+,variation,SM-SLIP-002-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-002,Size,9,1,0,Colour,Navy,1,0
+,variation,SM-SLIP-002-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-002,Size,10,1,0,Colour,Navy,1,0
+,variation,SM-SLIP-002-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-SLIP-002,Size,11,1,0,Colour,Navy,1,0
+,variable,SM-RUN-001,Velocity Road Runners,1,0,visible,"Lightweight blue road runners, EVA cushioning.","Lightweight road runners in electric blue, with breathable engineered mesh and responsive EVA cushioning. The hero demo product: size 9.5 in blue. Material: Engineered mesh, EVA midsole. Fit: True to size. Best for road running and daily training. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Runners,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-run-001.webp,,Size,"7, 8, 9, 9.5, 10, 11, 12",1,0,Colour,Electric Blue,1,0
+,variation,SM-RUN-001-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-001,Size,7,1,0,Colour,Electric Blue,1,0
+,variation,SM-RUN-001-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-001,Size,8,1,0,Colour,Electric Blue,1,0
+,variation,SM-RUN-001-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-001,Size,9,1,0,Colour,Electric Blue,1,0
+,variation,SM-RUN-001-9.5,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-001,Size,9.5,1,0,Colour,Electric Blue,1,0
+,variation,SM-RUN-001-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-001,Size,10,1,0,Colour,Electric Blue,1,0
+,variation,SM-RUN-001-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-001,Size,11,1,0,Colour,Electric Blue,1,0
+,variation,SM-RUN-001-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-001,Size,12,1,0,Colour,Electric Blue,1,0
+,variable,SM-RUN-002,Trailblazer Trail Runners,1,0,visible,Orange trail runners with aggressive tread.,"Trail runners with an aggressive tread, rock plate and ripstop mesh — built for mud, roots and loose gravel. Material: Ripstop mesh, aggressive tread. Fit: True to size. Half a size up if you wear thick trail socks. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Runners,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-run-002.webp,,Size,"8, 9, 10, 11, 12, 13",1,0,Colour,Burnt Orange,1,0
+,variation,SM-RUN-002-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-002,Size,8,1,0,Colour,Burnt Orange,1,0
+,variation,SM-RUN-002-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-002,Size,9,1,0,Colour,Burnt Orange,1,0
+,variation,SM-RUN-002-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-002,Size,10,1,0,Colour,Burnt Orange,1,0
+,variation,SM-RUN-002-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-002,Size,11,1,0,Colour,Burnt Orange,1,0
+,variation,SM-RUN-002-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-002,Size,12,1,0,Colour,Burnt Orange,1,0
+,variation,SM-RUN-002-13,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-002,Size,13,1,0,Colour,Burnt Orange,1,0
+,variable,SM-RUN-003,Marathon Knit Runners,1,0,visible,"Black-and-white knit runners, foam midsole.","Sock-like knit runners in black and white, with a soft foam midsole for long, easy miles. Material: Knit upper, foam midsole. Fit: True to size. Knit upper stretches slightly. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Runners,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-run-003.webp,,Size,"6, 7, 8, 9, 9.5, 10, 11",1,0,Colour,Black / White,1,0
+,variation,SM-RUN-003-6,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-003,Size,6,1,0,Colour,Black / White,1,0
+,variation,SM-RUN-003-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-003,Size,7,1,0,Colour,Black / White,1,0
+,variation,SM-RUN-003-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-003,Size,8,1,0,Colour,Black / White,1,0
+,variation,SM-RUN-003-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-003,Size,9,1,0,Colour,Black / White,1,0
+,variation,SM-RUN-003-9.5,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-003,Size,9.5,1,0,Colour,Black / White,1,0
+,variation,SM-RUN-003-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-003,Size,10,1,0,Colour,Black / White,1,0
+,variation,SM-RUN-003-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-003,Size,11,1,0,Colour,Black / White,1,0
+,variable,SM-RUN-004,Everyday Comfort Runners,1,0,visible,Sage-green comfort runners for all-day wear.,"Easy, cushioned sage-green runners for walking, errands and all-day wear — not a race shoe, a comfort shoe. Material: Mesh upper, cushioned sole. Fit: True to size. Roomy toe box. Returns: 30-day returns, unworn.",taxable,1,,,,1,,1,Runners,"Sole Mates, demo",https://raw.githubusercontent.com/CameronMBrown/sole-mates-storefront/main/assets/images/sm-run-004.webp,,Size,"7, 8, 9, 10, 11, 12",1,0,Colour,Sage Green,1,0
+,variation,SM-RUN-004-7,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-004,Size,7,1,0,Colour,Sage Green,1,0
+,variation,SM-RUN-004-8,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-004,Size,8,1,0,Colour,Sage Green,1,0
+,variation,SM-RUN-004-9,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-004,Size,9,1,0,Colour,Sage Green,1,0
+,variation,SM-RUN-004-10,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-004,Size,10,1,0,Colour,Sage Green,1,0
+,variation,SM-RUN-004-11,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-004,Size,11,1,0,Colour,Sage Green,1,0
+,variation,SM-RUN-004-12,,1,,visible,,,taxable,1,10,,,1,,1,,,,SM-RUN-004,Size,12,1,0,Colour,Sage Green,1,0

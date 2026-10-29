@@ -1,0 +1,13 @@
+# WordPress core, uploads, and local config — this repo is theme + plugin + data only
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+wp-config.php
+.env
+*.sql
+*.log
+.DS_Store
+# LocalWP
+app/sql/

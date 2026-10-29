@@ -1,0 +1,530 @@
+{
+  "store": "Sole Mates",
+  "currency": "CAD",
+  "price_note": "Every product is $1 for the hackathon demo / test phase.",
+  "products": [
+    {
+      "sku": "SM-BOOT-001",
+      "name": "Trailhead Waterproof Hiking Boots",
+      "type": "Boots",
+      "colour": "Chestnut Brown",
+      "material": "Full-grain leather, waterproof membrane",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "desc": "Rugged waterproof hiking boots with grippy lugged soles, ankle support and a cushioned insole for long trails.",
+      "short": "Waterproof leather hiking boots for rough trails.",
+      "fit": "True to size. Wide fit available in-store only \u2014 not in this demo catalog.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Boots",
+      "image": "assets/images/sm-boot-001.webp",
+      "reviews": [
+        {
+          "author": "Maya R.",
+          "date": "2026-09-14",
+          "rating": 5,
+          "text": "Took these on a 12 km hike in the rain and my feet stayed completely dry. True to size, good ankle support, and the grip on wet rock is excellent. They felt stiff for the first two walks, then broke in nicely."
+        },
+        {
+          "author": "Dan K.",
+          "date": "2026-08-28",
+          "rating": 5,
+          "text": "Really solid boots. The leather looks better after a few muddy trails than it did new, and the lugged sole has held up with no sign of wear. Comfortable straight out of the box for a hiking boot."
+        },
+        {
+          "author": "Priya S.",
+          "date": "2026-10-02",
+          "rating": 4,
+          "text": "Great boots, warm and waterproof, but they are a bit heavy for long days. I sized true and the fit is roomy enough for thick socks. Would buy again for winter hikes."
+        }
+      ]
+    },
+    {
+      "sku": "SM-BOOT-002",
+      "name": "City Chelsea Rain Boots",
+      "type": "Boots",
+      "colour": "Black",
+      "material": "Rubber upper, textile lining",
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "desc": "Sleek pull-on Chelsea boots that shrug off rain and puddles, with elastic side panels and a low stacked heel.",
+      "short": "Pull-on black Chelsea boots, rain-ready.",
+      "fit": "True to size. Narrower than the Trailhead boots.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Boots",
+      "image": "assets/images/sm-boot-002.webp",
+      "reviews": [
+        {
+          "author": "Jordan T.",
+          "date": "2026-09-03",
+          "rating": 5,
+          "text": "Perfect rainy-day boot. Pulls on easily, looks smart enough for the office, and puddles are no problem at all. The elastic panels have kept their stretch after a month of daily wear."
+        },
+        {
+          "author": "Elena M.",
+          "date": "2026-09-20",
+          "rating": 4,
+          "text": "Sleek and simple, exactly what I wanted. They run a touch narrow, so if you have wide feet consider going up half a size. Otherwise comfortable, and the sole grips well on wet pavement."
+        },
+        {
+          "author": "Sam O.",
+          "date": "2026-08-15",
+          "rating": 5,
+          "text": "Wore these through a whole wet week in Toronto and stayed dry. Light for a rain boot, easy to clean, and they don't look like rain boots at all."
+        }
+      ]
+    },
+    {
+      "sku": "SM-SAND-001",
+      "name": "Boardwalk Leather Sandals",
+      "type": "Sandals",
+      "colour": "Tan",
+      "material": "Leather straps, cork footbed",
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "desc": "Classic two-strap leather sandals with a moulded cork footbed that shapes to your foot.",
+      "short": "Classic tan leather sandals with a cork footbed.",
+      "fit": "True to size. Break in over 2\u20133 wears.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Sandals",
+      "image": "assets/images/sm-sand-001.webp",
+      "reviews": [
+        {
+          "author": "Alex B.",
+          "date": "2026-08-02",
+          "rating": 5,
+          "text": "The cork footbed moulded to my feet after about three wears and now they're the most comfortable sandals I own. The tan leather looks great with everything, and the straps haven't stretched out."
+        },
+        {
+          "author": "Noor H.",
+          "date": "2026-08-19",
+          "rating": 4,
+          "text": "Lovely sandals, well made. The first couple of wears were a bit stiff, as expected with leather, but they softened up quickly. True to size and very sturdy for the price."
+        },
+        {
+          "author": "Chris L.",
+          "date": "2026-09-11",
+          "rating": 5,
+          "text": "Bought these for a beach holiday and wore them every day. No blisters, good arch support for a sandal, and the leather has aged nicely. Would recommend."
+        }
+      ]
+    },
+    {
+      "sku": "SM-SAND-002",
+      "name": "Cloudstep Sport Sandals",
+      "type": "Sandals",
+      "colour": "Teal",
+      "material": "Synthetic straps, EVA sole",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "desc": "Lightweight sport sandals with adjustable straps and a soft EVA sole \u2014 built for river walks and hot days.",
+      "short": "Lightweight teal sport sandals, adjustable straps.",
+      "fit": "Runs slightly large \u2014 consider half a size down.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Sandals",
+      "image": "assets/images/sm-sand-002.webp",
+      "reviews": [
+        {
+          "author": "Taylor W.",
+          "date": "2026-08-07",
+          "rating": 4,
+          "text": "Light and comfortable, great for river walks. I went half a size down as suggested and the fit is spot on. The straps adjust easily and dry quickly after getting wet."
+        },
+        {
+          "author": "Jamie P.",
+          "date": "2026-08-24",
+          "rating": 5,
+          "text": "Surprisingly supportive for a sport sandal. Wore them on a long hot day with no rubbing, and the EVA sole is soft but not squishy. The teal colour is even nicer in person."
+        },
+        {
+          "author": "Riley D.",
+          "date": "2026-09-05",
+          "rating": 4,
+          "text": "Good sandals, very light. They do run a little large \u2014 my usual size had a bit of extra room at the heel, so half a size down is the right call. Otherwise no complaints."
+        }
+      ]
+    },
+    {
+      "sku": "SM-SNEA-001",
+      "name": "Court Classic White Sneakers",
+      "type": "Sneakers",
+      "colour": "White",
+      "material": "Leather upper, rubber cupsole",
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
+      "desc": "A clean, minimal white court sneaker that goes with everything. Leather upper, padded collar, rubber cupsole.",
+      "short": "Minimal white leather court sneakers.",
+      "fit": "True to size.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Sneakers",
+      "image": "assets/images/sm-snea-001.webp",
+      "reviews": [
+        {
+          "author": "Sofia G.",
+          "date": "2026-09-18",
+          "rating": 5,
+          "text": "The cleanest white sneakers I've owned. The leather is smooth, they go with jeans, dresses, everything, and they're comfortable enough for a full day on my feet. True to size."
+        },
+        {
+          "author": "Ben A.",
+          "date": "2026-08-30",
+          "rating": 5,
+          "text": "Minimal, well made, and the white hasn't yellowed after a month of wear. Padded collar is comfortable, sole has good grip. My go-to everyday shoe now."
+        },
+        {
+          "author": "Hannah C.",
+          "date": "2026-10-05",
+          "rating": 4,
+          "text": "Great-looking sneakers, very versatile. They scuff a little easily because they're white, but they clean up well. Fit is true to size, no break-in needed."
+        }
+      ]
+    },
+    {
+      "sku": "SM-SNEA-002",
+      "name": "Retro High-Top Sneakers",
+      "type": "Sneakers",
+      "colour": "Cherry Red",
+      "material": "Canvas upper, rubber sole",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "desc": "Bold cherry-red high-tops with a retro basketball silhouette, canvas upper and ankle padding.",
+      "short": "Cherry-red canvas high-top sneakers.",
+      "fit": "True to size. High-top fit \u2014 ankle support, less flex.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Sneakers",
+      "image": "assets/images/sm-snea-002.webp",
+      "reviews": [
+        {
+          "author": "Marcus J.",
+          "date": "2026-09-08",
+          "rating": 5,
+          "text": "Bold colour, great retro shape. The high-top gives real ankle support and the canvas feels sturdy. Got compliments the first day I wore them. True to size."
+        },
+        {
+          "author": "Zoe F.",
+          "date": "2026-09-27",
+          "rating": 3,
+          "text": "Love the cherry red \u2014 it's a proper rich red, not orangey. They are a bit stiff around the ankle for the first few wears, then they soften. Fit is true, just a snugger high-top feel than I expected."
+        },
+        {
+          "author": "Liam N.",
+          "date": "2026-08-12",
+          "rating": 5,
+          "text": "Exactly the high-tops I was after. Comfortable, well made, and the colour pops without being too loud. Wore them all day at a festival with no sore feet."
+        }
+      ]
+    },
+    {
+      "sku": "SM-SLIP-001",
+      "name": "Fireside Wool Slippers",
+      "type": "Slippers",
+      "colour": "Charcoal Grey",
+      "material": "Wool felt upper, suede sole",
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "desc": "Warm wool-felt house slippers with a suede sole \u2014 warm enough for winter mornings, quiet on hard floors.",
+      "short": "Warm charcoal wool slippers with a suede sole.",
+      "fit": "True to size. Wool will mould slightly with wear.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Slippers",
+      "image": "assets/images/sm-slip-001.webp",
+      "reviews": [
+        {
+          "author": "Grace E.",
+          "date": "2026-09-22",
+          "rating": 5,
+          "text": "So warm. The wool felt is thick and cosy, and the suede sole is quiet on our wood floors. They've moulded to my feet nicely and feel like they were made for me."
+        },
+        {
+          "author": "Tom H.",
+          "date": "2026-10-01",
+          "rating": 5,
+          "text": "Bought these for cold mornings and they're perfect. Warm without making my feet sweat, and the fit is true to size. Holding up well after weeks of daily wear."
+        },
+        {
+          "author": "Aisha K.",
+          "date": "2026-09-15",
+          "rating": 4,
+          "text": "Lovely slippers, very soft inside. They shed a tiny bit of wool at first, but that stopped after a few days. Warm, comfortable, and they look smart for house shoes."
+        }
+      ]
+    },
+    {
+      "sku": "SM-SLIP-002",
+      "name": "Cloud Plush House Slippers",
+      "type": "Slippers",
+      "colour": "Navy",
+      "material": "Plush synthetic upper, rubber sole",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "desc": "Ridiculously soft navy plush slippers with memory-foam insoles and a non-slip rubber sole for indoor/outdoor steps.",
+      "short": "Soft navy plush slippers, memory-foam insoles.",
+      "fit": "Runs slightly small \u2014 consider half a size up.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Slippers",
+      "image": "assets/images/sm-slip-002.webp",
+      "reviews": [
+        {
+          "author": "Emma D.",
+          "date": "2026-09-29",
+          "rating": 5,
+          "text": "Ridiculously soft, like walking on clouds. I went half a size up as suggested and the fit is perfect. Memory foam insole is a treat after a long day."
+        },
+        {
+          "author": "Noah S.",
+          "date": "2026-08-21",
+          "rating": 4,
+          "text": "Very plush and comfortable, and the rubber sole means I can step outside in them. They do run small \u2014 my usual size was snug, so go up half a size if you're between sizes."
+        },
+        {
+          "author": "Olivia P.",
+          "date": "2026-10-07",
+          "rating": 5,
+          "text": "My favourite slippers ever. Warm, soft, and they haven't flattened out after a month. The navy is a nice deep colour and the non-slip sole actually works."
+        }
+      ]
+    },
+    {
+      "sku": "SM-RUN-001",
+      "name": "Velocity Road Runners",
+      "type": "Runners",
+      "colour": "Electric Blue",
+      "material": "Engineered mesh, EVA midsole",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
+      "desc": "Lightweight road runners in electric blue, with breathable engineered mesh and responsive EVA cushioning. The hero demo product: size 9.5 in blue.",
+      "short": "Lightweight blue road runners, EVA cushioning.",
+      "fit": "True to size. Best for road running and daily training.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Runners",
+      "image": "assets/images/sm-run-001.webp",
+      "reviews": [
+        {
+          "author": "Ethan M.",
+          "date": "2026-09-12",
+          "rating": 5,
+          "text": "Light, fast, and the blue is electric in the best way. The mesh breathes well on long runs and the EVA cushioning is responsive without feeling soft. True to size, no hot spots at all."
+        },
+        {
+          "author": "Chloe V.",
+          "date": "2026-09-25",
+          "rating": 5,
+          "text": "My new daily trainer. Comfortable from the first run, good grip on wet roads, and they look sharp. Size 9.5 fits exactly as expected, with room in the toe box."
+        },
+        {
+          "author": "Ryan B.",
+          "date": "2026-10-03",
+          "rating": 4,
+          "text": "Great road shoe \u2014 light and well cushioned. The laces are a little long for my liking, but that's minor. Fit is true to size and the durability so far has been excellent after 100 km."
+        }
+      ]
+    },
+    {
+      "sku": "SM-RUN-002",
+      "name": "Trailblazer Trail Runners",
+      "type": "Runners",
+      "colour": "Burnt Orange",
+      "material": "Ripstop mesh, aggressive tread",
+      "sizes": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "desc": "Trail runners with an aggressive tread, rock plate and ripstop mesh \u2014 built for mud, roots and loose gravel.",
+      "short": "Orange trail runners with aggressive tread.",
+      "fit": "True to size. Half a size up if you wear thick trail socks.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Runners",
+      "image": "assets/images/sm-run-002.webp",
+      "reviews": [
+        {
+          "author": "Sarah L.",
+          "date": "2026-09-06",
+          "rating": 5,
+          "text": "Brilliant on muddy trails. The tread grips on loose gravel and wet roots, and the rock plate actually works \u2014 no bruised feet on rocky paths. True to size with normal socks."
+        },
+        {
+          "author": "Jake W.",
+          "date": "2026-08-26",
+          "rating": 5,
+          "text": "Tough, comfortable trail shoes. The ripstop mesh has survived brambles and mud without a tear, and they drain well after stream crossings. Highly recommend for trail running."
+        },
+        {
+          "author": "Mia T.",
+          "date": "2026-09-19",
+          "rating": 3,
+          "text": "Great grip and protection, just a firm ride on hard-packed paths \u2014 they're built for trails, not pavement, which is fair. Fit is true, and the orange is a fun, bright colour."
+        }
+      ]
+    },
+    {
+      "sku": "SM-RUN-003",
+      "name": "Marathon Knit Runners",
+      "type": "Runners",
+      "colour": "Black / White",
+      "material": "Knit upper, foam midsole",
+      "sizes": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11"
+      ],
+      "desc": "Sock-like knit runners in black and white, with a soft foam midsole for long, easy miles.",
+      "short": "Black-and-white knit runners, foam midsole.",
+      "fit": "True to size. Knit upper stretches slightly.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Runners",
+      "image": "assets/images/sm-run-003.webp",
+      "reviews": [
+        {
+          "author": "Lucas R.",
+          "date": "2026-09-10",
+          "rating": 5,
+          "text": "Like wearing socks with a sole. The knit upper is soft and stretchy, and the foam midsole is gentle on long easy miles. True to size, and they look great off the run too."
+        },
+        {
+          "author": "Ava M.",
+          "date": "2026-09-28",
+          "rating": 4,
+          "text": "Very comfortable, light knit runners. They stretch a touch with wear, so a snug first fit is right. The black and white colourway goes with everything."
+        },
+        {
+          "author": "Owen C.",
+          "date": "2026-08-17",
+          "rating": 5,
+          "text": "My go-to for easy runs and walking. Soft, breathable, and no blisters even on longer days. The knit has held its shape well after several washes."
+        }
+      ]
+    },
+    {
+      "sku": "SM-RUN-004",
+      "name": "Everyday Comfort Runners",
+      "type": "Runners",
+      "colour": "Sage Green",
+      "material": "Mesh upper, cushioned sole",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "desc": "Easy, cushioned sage-green runners for walking, errands and all-day wear \u2014 not a race shoe, a comfort shoe.",
+      "short": "Sage-green comfort runners for all-day wear.",
+      "fit": "True to size. Roomy toe box.",
+      "returns": "30-day returns, unworn.",
+      "price": 1,
+      "currency": "CAD",
+      "category": "Runners",
+      "image": "assets/images/sm-run-004.webp",
+      "reviews": [
+        {
+          "author": "Isla B.",
+          "date": "2026-09-16",
+          "rating": 5,
+          "text": "The comfiest shoes I own. Roomy toe box, soft cushioning, and the sage green is lovely \u2014 subtle, not bright. Wore them all day sightseeing with no sore feet."
+        },
+        {
+          "author": "Henry G.",
+          "date": "2026-09-30",
+          "rating": 4,
+          "text": "Easy, comfortable runners for walking and errands. They're not a race shoe, and they don't pretend to be \u2014 just soft, well made, and true to size. The sole has good grip in the rain."
+        },
+        {
+          "author": "Freya N.",
+          "date": "2026-08-09",
+          "rating": 5,
+          "text": "Perfect everyday shoe. Light, cushioned, and the colour is even nicer in person. Fit is true to size with plenty of room up front. I've already recommended them to two friends."
+        }
+      ]
+    }
+  ]
+}
