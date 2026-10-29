@@ -20,10 +20,10 @@ Decision 0 is proposed, not decided. See docs/decision-0-and-mapping.md.
 
 ## Dates
 
-Feature freeze: Nov 2, 2026.
-Submissions due: Nov 4, 2026, at 9:00 PM ET. Submit before noon ET Nov 4 as a buffer, from a frozen build.
-Judging: Nov 4 to 8, 2026.
-Finals: Nov 9, 2026.
+- Feature freeze: Nov 2, 2026.
+- Submissions due: Nov 4, 2026, at 9:00 PM ET. Submit before noon ET Nov 4 as a buffer, from a frozen build.
+- Judging: Nov 4 to 8, 2026.
+- Finals: Nov 9, 2026.
 
 ## Honest limits
 
