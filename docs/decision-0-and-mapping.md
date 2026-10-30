@@ -1,33 +1,45 @@
 # OVO Hackathon — Decision 0 and R1–R10 mapping
 
-Status, 2026-10-29: DRAFT, not verified against a fresh PRD read.
-Google Docs is not connected in this chat, so the PRD could not be
-re-read here. The R1–R10 list below is the Oct 28 PRD read plus the
-mini plan carried into this chat. Re-verify it in full once Docs is
-reconnected, before claiming coverage.
+Standing rule, 2026-10-29, from Greg: the PRD is the truth.
+Where the PRD, the earlier architecture, the mini plan, or any
+summary disagree, the PRD governs. No PR-01–PR-22 citation, demo
+shortcut, or summary counts as coverage against the PRD.
+
+Status, 2026-10-29: Decision 0 DECIDED by Greg. R1–R10 VERIFIED
+against a fresh PRD read on 2026-10-29, after Google Docs connected.
+PRD title: "OvO PRD (Draft)". Full text extract saved at
+docs/prd-extract-2026-10-29.txt. The R1–R10 list below matches the
+fresh read. Note: R10 is P2 in the PRD, not P1; R1–R9 are P1.
+Success measures confirmed: task success 80% or higher, enrichment
+accuracy 85% or higher, agent experience 4 or higher out of 5.
+Scope confirmed: WordPress + WooCommerce, Stripe, Meta Muse as
+reference agent, US English. PRD enrichment autonomy tiers run from
+95% or higher (acts alone, merchant rejects by exception) down to
+under 50% (reject); the demo uses merchant approval for all
+publishes, which is stricter than the PRD tiers and stays inside them.
 
 PRD document (from the requesting chat):
 https://docs.google.com/document/d/13lYCQq4D45HTolj9ZexVBKopOHUKN2O_00nWEEMfefI/edit
 
-Repo: https://github.com/gfields-wsi/ovo
-Confirmed public 2026-10-29. Main branch, 2 commits, only README.md
-at that time. Push access still needs to be verified before pushing.
+Repo (verified 2026-10-29 via the WSI corporate GitHub connection):
+https://github.com/gfields-wsi/ovo — public, main branch, skeleton
+pushed at 5cc929def6eecd9f6b36efedff75f6b8d970e2d8, latest main at
+b8a0f39eb5395eef3e51f021b229b34593acb2b8 (README date fix).
+Structure: sole-mates, ovo-plugin, ovo-agent, eval, docs.
 
-## Decision 0 — proposed, not decided
+## Decision 0 — decided 2026-10-29
 
-- Track (proposed): Startup
-- Theme (proposed): Build for Your World
+- Track: Startup
+- Theme: Build for Your World
 - Reason given: OVO is a founder-led venture product for a firsthand
   SMB problem.
-- OVO role (PRD version, to confirm): OVO works behind the scenes.
+- OVO role (PRD version, confirmed): OVO works behind the scenes.
   It does not interact directly with the purchasing agent, and it is
   not involved in purchase rules or limits. Gates live in the store
   and in the agent tools, not in OVO as the buyer.
-- Conflict to settle: the earlier architecture made OVO a concierge
+- Conflict settled: the earlier architecture made OVO a concierge
   that interacts, enforces budgets, and places the order. That version
-  is superseded if the PRD version is confirmed.
-- Needed: Greg's yes/no on track, theme, and the PRD role before
-  building on them.
+  is superseded by the PRD version.
 
 ## Numbering reconciliation
 
@@ -39,8 +51,11 @@ at that time. Push access still needs to be verified before pushing.
 
 ## R1–R10 coverage map (draft)
 
-- R1 — Sole Mates mock store, WordPress + WooCommerce, 30–60 products.
-  Build: sole-mates/. Messy-store ground-truth sheet first.
+- R1 — Sole Mates mock store, WordPress + WooCommerce, 10+ products.
+  Updated 2026-10-29 by Greg, superseding the mini plan's 30–60 figure.
+  Current Sole Mates storefront has 12 products, 79 variations, so it
+  meets the 10+ bar. Build: sole-mates/. Messy-store ground-truth
+  sheet first.
 - R2 — Audit any public storefront from a URL, no login.
   Build: ovo-agent audit from URL alone.
 - R3 — Repeatable readiness score with gaps.
