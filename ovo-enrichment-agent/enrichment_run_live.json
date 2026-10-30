@@ -1,0 +1,125 @@
+{
+  "agent": "OvO Enrichment Agent (live, widened task)",
+  "generated_at_utc": "2026-10-30T16:16:51.100646+00:00",
+  "status": "proposed_only",
+  "published": false,
+  "sources": [
+    "live Store API",
+    "rendered product pages",
+    "Oct 29 ground truth (if present)",
+    "live Spark vision"
+  ],
+  "page_fetch_failures": [],
+  "vision_failures": [],
+  "vision_results": {
+    "14": {
+      "shoe_type": "hiking boot",
+      "dominant_colour": "brown",
+      "material_appearance": "leather",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "23": {
+      "shoe_type": "chelsea boot",
+      "dominant_colour": "black",
+      "material_appearance": "rubber",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "31": {
+      "shoe_type": "two-strap slide sandal",
+      "dominant_colour": "tan",
+      "material_appearance": "leather",
+      "confidence_percent": 85,
+      "raw": "{\"shoe_type\": \"two-strap slide sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "40": {
+      "shoe_type": "sandal",
+      "dominant_colour": "teal",
+      "material_appearance": "fabric",
+      "confidence_percent": 85,
+      "raw": "{\"shoe_type\": \"sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"fabric\", \"confidence_percent\": 85}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "48": {
+      "shoe_type": "sneaker",
+      "dominant_colour": "white",
+      "material_appearance": "leather",
+      "confidence_percent": 90,
+      "raw": "{\"shoe_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 90}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "58": {
+      "shoe_type": "high-top sneaker",
+      "dominant_colour": "red",
+      "material_appearance": "canvas",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "67": {
+      "shoe_type": "slipper",
+      "dominant_colour": "dark grey",
+      "material_appearance": "wool felt",
+      "confidence_percent": 85,
+      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"dark grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 85}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "76": {
+      "shoe_type": "slipper",
+      "dominant_colour": "navy blue",
+      "material_appearance": "faux fur",
+      "confidence_percent": 95,
+      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"navy blue\", \"material_appearance\": \"faux fur\", \"confidence_percent\": 95}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "83": {
+      "shoe_type": "running sneaker",
+      "dominant_colour": "blue",
+      "material_appearance": "engineered mesh",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "92": {
+      "shoe_type": "trail running shoe",
+      "dominant_colour": "burnt orange",
+      "material_appearance": "engineered mesh with synthetic overlays",
+      "confidence_percent": 88,
+      "raw": "{\"shoe_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"engineered mesh with synthetic overlays\", \"confidence_percent\": 88}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "100": {
+      "shoe_type": "slip-on sneaker",
+      "dominant_colour": "black",
+      "material_appearance": "knit textile",
+      "confidence_percent": 95,
+      "raw": "{\"shoe_type\": \"slip-on sneaker\", \"dominant_colour\": \"black\", \"material_appearance\": \"knit textile\", \"confidence_percent\": 95}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "110": {
+      "shoe_type": "running sneaker",
+      "dominant_colour": "sage green",
+      "material_appearance": "engineered mesh knit",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"engineered mesh knit\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    }
+  },
+  "notes": [],
+  "counts": {
+    "products": 12,
+    "enrichment_rows": 62,
+    "preservation_rows": 12,
+    "held_fields": 17,
+    "total_csv_rows": 91,
+    "by_band": {
+      "95% or greater": 50,
+      "80-94%": 12,
+      "50-79%": 0
+    }
+  }
+}

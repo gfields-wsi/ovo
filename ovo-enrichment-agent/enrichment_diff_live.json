@@ -1,0 +1,998 @@
+{
+  "format": "ovo-enrichment-diff",
+  "version": "2.0-live",
+  "status": "proposed_only_awaiting_merchant_approval",
+  "published": false,
+  "generated_at_utc": "2026-10-30T16:16:51.100646+00:00",
+  "generated_from": "live Store API + rendered product pages + Oct 29 ground truth + live Spark vision",
+  "product_count": 12,
+  "proposal_count": 62,
+  "preservation_count": 12,
+  "held_count": 17,
+  "proposals": [
+    {
+      "product_id": "14",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Full-grain leather, waterproof membrane",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "14",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "14",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "14",
+      "field": "_ovo_availability_note",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Wide fit available in-store only \u2014 not in this demo catalog",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "14",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "7, 8, 9, 10, 11, 12, 13",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "14",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Trailhead Waterproof Hiking Boots, Chestnut Brown, Boots",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "23",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Rubber upper, textile lining",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "23",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "23",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "23",
+      "field": "_ovo_fit_note",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Narrower than the Trailhead boots",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "23",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "6, 7, 8, 9, 10, 11",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "23",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "City Chelsea Rain Boots, Black, Boots",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "31",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Leather straps, cork footbed",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "31",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "31",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size. Break in over 2\u20133 wears",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "31",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "6, 7, 8, 9, 10, 11, 12",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "31",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Boardwalk Leather Sandals, Tan, Sandals",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "40",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Synthetic straps, EVA sole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "40",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "40",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Runs slightly large \u2014 consider half a size down",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "40",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "7, 8, 9, 10, 11, 12",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "40",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Cloudstep Sport Sandals, Teal, Sandals",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "48",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Leather upper, rubber cupsole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "48",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "48",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "48",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "6, 7, 8, 9, 9.5, 10, 11, 12",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "48",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Court Classic White Sneakers, White, Sneakers",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "58",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Canvas upper, rubber sole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "58",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "58",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size. High-top fit \u2014 ankle support, less flex",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "58",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "7, 8, 9, 10, 11, 12, 13",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "58",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Retro High-Top Sneakers, Cherry Red, Sneakers",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "67",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Wool felt upper, suede sole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "67",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "67",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size. Wool will mould slightly with wear",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "67",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "6, 7, 8, 9, 10, 11, 12",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "67",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Fireside Wool Slippers, Charcoal Grey, Slippers",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "76",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Plush synthetic upper, rubber sole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "76",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "76",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Runs slightly small \u2014 consider half a size up",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "76",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "7, 8, 9, 10, 11",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "76",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Cloud Plush House Slippers, Navy, Slippers",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "83",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Engineered mesh, EVA midsole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "83",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "83",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size. Best for road running and daily training",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "83",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "7, 8, 9, 9.5, 10, 11, 12",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "83",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Velocity Road Runners, Electric Blue, Runners",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "92",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Ripstop mesh, aggressive tread",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "92",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "92",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size. Half a size up if you wear thick trail socks",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "92",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "8, 9, 10, 11, 12, 13",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "92",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Trailblazer Trail Runners, Burnt Orange, Runners",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "100",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Knit upper, foam midsole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "100",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "100",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size. Knit upper stretches slightly",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "100",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "6, 7, 8, 9, 9.5, 10, 11",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "100",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Marathon Knit Runners, Black / White, Runners",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    },
+    {
+      "product_id": "110",
+      "field": "_ovo_material",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "Mesh upper, cushioned sole",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "110",
+      "field": "_ovo_returns_summary",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "30-day returns, unworn",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "110",
+      "field": "_ovo_fit_guidance",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "True to size. Roomy toe box",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "110",
+      "field": "_ovo_sizes_available",
+      "old_value": "none \u2014 new OVO field",
+      "new_value": "7, 8, 9, 10, 11, 12",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Acts alone - merchant rejects by exception",
+      "presented_to_merchant": "YES - reject by exception list",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "110",
+      "field": "_ovo_image_alt",
+      "old_value": "none \u2014 new OVO field; native image alt is empty",
+      "new_value": "Everyday Comfort Runners, Sage Green, Runners",
+      "source_label": "modelled",
+      "prd_accuracy_band": "80-94%",
+      "prd_human_check": "Tacit suggestion - merchant approves by exception",
+      "presented_to_merchant": "YES - approve by exception list",
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+    }
+  ],
+  "preservation": [
+    {
+      "product_id": "14",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Rugged waterproof hiking boots with grippy lugged soles, ankle support and a cushioned insole for long trails. Material: Full-grain leather, waterproof membrane Fit: True to size. Wide fit available in-store only \u2014 not in this demo catalog. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "23",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Sleek pull-on Chelsea boots that shrug off rain and puddles, with elastic side panels and a low stacked heel. Material: Rubber upper, textile lining Fit: True to size. Narrower than the Trailhead boots. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "31",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Classic two-strap leather sandals with a moulded cork footbed that shapes to your foot. Material: Leather straps, cork footbed Fit: True to size. Break in over 2\u20133 wears. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "40",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Lightweight sport sandals with adjustable straps and a soft EVA sole \u2014 built for river walks and hot days. Material: Synthetic straps, EVA sole Fit: Runs slightly large \u2014 consider half a size down. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "48",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "A clean, minimal white court sneaker that goes with everything. Leather upper, padded collar, rubber cupsole. Material: Leather upper, rubber cupsole Fit: True to size. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "58",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Bold cherry-red high-tops with a retro basketball silhouette, canvas upper and ankle padding. Material: Canvas upper, rubber sole Fit: True to size. High-top fit \u2014 ankle support, less flex. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "67",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Warm wool-felt house slippers with a suede sole \u2014 warm enough for winter mornings, quiet on hard floors. Material: Wool felt upper, suede sole Fit: True to size. Wool will mould slightly with wear. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "76",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Ridiculously soft navy plush slippers with memory-foam insoles and a non-slip rubber sole for indoor/outdoor steps. Material: Plush synthetic upper, rubber sole Fit: Runs slightly small \u2014 consider half a size up. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "83",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Lightweight road runners in electric blue, with breathable engineered mesh and responsive EVA cushioning. The hero demo product: size 9.5 in blue. Material: Engineered mesh, EVA midsole Fit: True to size. Best for road running and daily training. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "92",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Trail runners with an aggressive tread, rock plate and ripstop mesh \u2014 built for mud, roots and loose gravel. Material: Ripstop mesh, aggressive tread Fit: True to size. Half a size up if you wear thick trail socks. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "100",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Sock-like knit runners in black and white, with a soft foam midsole for long, easy miles. Material: Knit upper, foam midsole Fit: True to size. Knit upper stretches slightly. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    },
+    {
+      "product_id": "110",
+      "field": "_ovo_original_description",
+      "old_value": "native field unchanged",
+      "new_value": "Easy, cushioned sage-green runners for walking, errands and all-day wear \u2014 not a race shoe, a comfort shoe. Material: Mesh upper, cushioned sole Fit: True to size. Roomy toe box. Returns: 30-day returns, unworn.",
+      "source_label": "merchant-provided",
+      "prd_accuracy_band": "95% or greater",
+      "prd_human_check": "Not a proposal - stored automatically with an approved batch",
+      "presented_to_merchant": "NO - preservation only, not a proposal",
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+    }
+  ],
+  "held_fields_audit_only": [
+    {
+      "field": "width",
+      "reason": "No width value in any store source; relative comparisons are not measurements."
+    },
+    {
+      "field": "weight",
+      "reason": "Weight is empty in the Store API for all products."
+    },
+    {
+      "field": "dimensions",
+      "reason": "Length, width, and height are empty in the Store API for all products."
+    },
+    {
+      "field": "stock_quantity_per_size",
+      "reason": "Stock is a boolean in-stock flag only; no per-size quantity exists."
+    },
+    {
+      "field": "gtin",
+      "reason": "No GTIN exists in any store source."
+    },
+    {
+      "field": "brand",
+      "reason": "Brands are empty in the Store API for all products."
+    },
+    {
+      "field": "care_instructions",
+      "reason": "No care instructions in any store source."
+    },
+    {
+      "field": "closure_type",
+      "reason": "No closure type field in any store source."
+    },
+    {
+      "field": "size_guide",
+      "reason": "No size guide in any store source."
+    },
+    {
+      "field": "shipping_cost",
+      "reason": "No shipping cost in any store source."
+    },
+    {
+      "field": "delivery_time",
+      "reason": "No delivery time in any store source."
+    },
+    {
+      "field": "tax_class",
+      "reason": "Tax class must not be modelled."
+    },
+    {
+      "field": "shipping_class",
+      "reason": "Shipping class must not be modelled."
+    },
+    {
+      "field": "size_system",
+      "reason": "No size system (men's/women's/US/UK) is stated in any store source."
+    },
+    {
+      "field": "store_wide_legal_policy",
+      "reason": "Returns are copied per product only; no store-wide legal policy is claimed."
+    },
+    {
+      "field": "safety_or_compatibility_claim",
+      "reason": "Safety and compatibility claims must not be modelled."
+    },
+    {
+      "field": "price_or_discount_change",
+      "reason": "Price is $1.00 CAD in the store and is never enriched."
+    }
+  ],
+  "vision_results": {
+    "14": {
+      "shoe_type": "hiking boot",
+      "dominant_colour": "brown",
+      "material_appearance": "leather",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "23": {
+      "shoe_type": "chelsea boot",
+      "dominant_colour": "black",
+      "material_appearance": "rubber",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "31": {
+      "shoe_type": "two-strap slide sandal",
+      "dominant_colour": "tan",
+      "material_appearance": "leather",
+      "confidence_percent": 85,
+      "raw": "{\"shoe_type\": \"two-strap slide sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "40": {
+      "shoe_type": "sandal",
+      "dominant_colour": "teal",
+      "material_appearance": "fabric",
+      "confidence_percent": 85,
+      "raw": "{\"shoe_type\": \"sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"fabric\", \"confidence_percent\": 85}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "48": {
+      "shoe_type": "sneaker",
+      "dominant_colour": "white",
+      "material_appearance": "leather",
+      "confidence_percent": 90,
+      "raw": "{\"shoe_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 90}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "58": {
+      "shoe_type": "high-top sneaker",
+      "dominant_colour": "red",
+      "material_appearance": "canvas",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "67": {
+      "shoe_type": "slipper",
+      "dominant_colour": "dark grey",
+      "material_appearance": "wool felt",
+      "confidence_percent": 85,
+      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"dark grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 85}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "76": {
+      "shoe_type": "slipper",
+      "dominant_colour": "navy blue",
+      "material_appearance": "faux fur",
+      "confidence_percent": 95,
+      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"navy blue\", \"material_appearance\": \"faux fur\", \"confidence_percent\": 95}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "83": {
+      "shoe_type": "running sneaker",
+      "dominant_colour": "blue",
+      "material_appearance": "engineered mesh",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "92": {
+      "shoe_type": "trail running shoe",
+      "dominant_colour": "burnt orange",
+      "material_appearance": "engineered mesh with synthetic overlays",
+      "confidence_percent": 88,
+      "raw": "{\"shoe_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"engineered mesh with synthetic overlays\", \"confidence_percent\": 88}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "100": {
+      "shoe_type": "slip-on sneaker",
+      "dominant_colour": "black",
+      "material_appearance": "knit textile",
+      "confidence_percent": 95,
+      "raw": "{\"shoe_type\": \"slip-on sneaker\", \"dominant_colour\": \"black\", \"material_appearance\": \"knit textile\", \"confidence_percent\": 95}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    },
+    "110": {
+      "shoe_type": "running sneaker",
+      "dominant_colour": "sage green",
+      "material_appearance": "engineered mesh knit",
+      "confidence_percent": 92,
+      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"engineered mesh knit\", \"confidence_percent\": 92}",
+      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+    }
+  }
+}
