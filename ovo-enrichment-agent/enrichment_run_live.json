@@ -1,7 +1,7 @@
 {
-  "agent": "OvO Enrichment Agent (live, any WooCommerce store, v4)",
-  "generated_at_utc": "2026-10-31T02:51:32.812577+00:00",
-  "batch_id": "solemates-20261031-025132UTC",
+  "agent": "OvO Enrichment Agent (live, any WooCommerce store, v5)",
+  "generated_at_utc": "2026-10-31T09:20:27.541092+00:00",
+  "batch_id": "solemates-20261031-092027UTC",
   "merchant": "solemates",
   "store_url": "https://wsiventures.com/solemates",
   "status": "proposed_only",
@@ -17,6 +17,20 @@
   "untrusted_flags": [],
   "language_out_of_scope": [],
   "vision_results": {
+    "14:15": {
+      "product_type": "hiking boot",
+      "shoe_type": "hiking boot",
+      "dominant_colour": "brown",
+      "material_appearance": "leather",
+      "confidence_percent": 95,
+      "raw": "{\"product_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 161,
+        "total_tokens": 3390
+      }
+    },
     "14": {
       "product_type": "hiking boot",
       "shoe_type": "hiking boot",
@@ -24,7 +38,26 @@
       "material_appearance": "leather",
       "confidence_percent": 95,
       "raw": "{\"product_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3"
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 161,
+        "total_tokens": 3390
+      }
+    },
+    "23:24": {
+      "product_type": "chelsea boot",
+      "shoe_type": "chelsea boot",
+      "dominant_colour": "black",
+      "material_appearance": "rubber",
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 134,
+        "total_tokens": 3363
+      }
     },
     "23": {
       "product_type": "chelsea boot",
@@ -33,7 +66,26 @@
       "material_appearance": "rubber",
       "confidence_percent": 92,
       "raw": "{\"product_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 92}",
-      "model": "muse-spark-1.3"
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 134,
+        "total_tokens": 3363
+      }
+    },
+    "31:32": {
+      "product_type": "sandal",
+      "shoe_type": "sandal",
+      "dominant_colour": "tan",
+      "material_appearance": "leather",
+      "confidence_percent": 85,
+      "raw": "{\"product_type\": \"sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 131,
+        "total_tokens": 3360
+      }
     },
     "31": {
       "product_type": "sandal",
@@ -42,43 +94,138 @@
       "material_appearance": "leather",
       "confidence_percent": 85,
       "raw": "{\"product_type\": \"sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
-      "model": "muse-spark-1.3"
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 131,
+        "total_tokens": 3360
+      }
+    },
+    "40:41": {
+      "product_type": "sandal",
+      "shoe_type": "sandal",
+      "dominant_colour": "teal",
+      "material_appearance": "woven textile",
+      "confidence_percent": 85,
+      "raw": "{\"product_type\": \"sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"woven textile\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 178,
+        "total_tokens": 3407
+      }
     },
     "40": {
-      "product_type": "sport sandal",
-      "shoe_type": "sport sandal",
+      "product_type": "sandal",
+      "shoe_type": "sandal",
       "dominant_colour": "teal",
-      "material_appearance": "woven synthetic fabric",
-      "confidence_percent": 88,
-      "raw": "{\"product_type\": \"sport sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"woven synthetic fabric\", \"confidence_percent\": 88}",
-      "model": "muse-spark-1.3"
+      "material_appearance": "woven textile",
+      "confidence_percent": 85,
+      "raw": "{\"product_type\": \"sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"woven textile\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 178,
+        "total_tokens": 3407
+      }
+    },
+    "48:49": {
+      "product_type": "sneaker",
+      "shoe_type": "sneaker",
+      "dominant_colour": "white",
+      "material_appearance": "leather",
+      "confidence_percent": 90,
+      "raw": "{\"product_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 90}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 180,
+        "total_tokens": 3409
+      }
     },
     "48": {
       "product_type": "sneaker",
       "shoe_type": "sneaker",
       "dominant_colour": "white",
       "material_appearance": "leather",
-      "confidence_percent": 92,
-      "raw": "{\"product_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 92}",
-      "model": "muse-spark-1.3"
+      "confidence_percent": 90,
+      "raw": "{\"product_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 90}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 180,
+        "total_tokens": 3409
+      }
+    },
+    "58:59": {
+      "product_type": "high-top sneaker",
+      "shoe_type": "high-top sneaker",
+      "dominant_colour": "red",
+      "material_appearance": "canvas",
+      "confidence_percent": 90,
+      "raw": "{\"product_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 90}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 180,
+        "total_tokens": 3409
+      }
     },
     "58": {
       "product_type": "high-top sneaker",
       "shoe_type": "high-top sneaker",
       "dominant_colour": "red",
       "material_appearance": "canvas",
-      "confidence_percent": 95,
-      "raw": "{\"product_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3"
+      "confidence_percent": 90,
+      "raw": "{\"product_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 90}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 180,
+        "total_tokens": 3409
+      }
+    },
+    "67:68": {
+      "product_type": "slipper",
+      "shoe_type": "slipper",
+      "dominant_colour": "dark grey",
+      "material_appearance": "wool felt",
+      "confidence_percent": 85,
+      "raw": "{\"product_type\": \"slipper\", \"dominant_colour\": \"dark grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 201,
+        "total_tokens": 3430
+      }
     },
     "67": {
       "product_type": "slipper",
       "shoe_type": "slipper",
-      "dominant_colour": "charcoal grey",
+      "dominant_colour": "dark grey",
       "material_appearance": "wool felt",
-      "confidence_percent": 92,
-      "raw": "{\"product_type\": \"slipper\", \"dominant_colour\": \"charcoal grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 92}",
-      "model": "muse-spark-1.3"
+      "confidence_percent": 85,
+      "raw": "{\"product_type\": \"slipper\", \"dominant_colour\": \"dark grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 201,
+        "total_tokens": 3430
+      }
+    },
+    "76:77": {
+      "product_type": "slipper",
+      "shoe_type": "slipper",
+      "dominant_colour": "navy blue",
+      "material_appearance": "faux fur",
+      "confidence_percent": 95,
+      "raw": "{\"product_type\": \"slipper\", \"dominant_colour\": \"navy blue\", \"material_appearance\": \"faux fur\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 173,
+        "total_tokens": 3402
+      }
     },
     "76": {
       "product_type": "slipper",
@@ -87,49 +234,136 @@
       "material_appearance": "faux fur",
       "confidence_percent": 95,
       "raw": "{\"product_type\": \"slipper\", \"dominant_colour\": \"navy blue\", \"material_appearance\": \"faux fur\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3"
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 173,
+        "total_tokens": 3402
+      }
+    },
+    "83:84": {
+      "product_type": "running shoe",
+      "shoe_type": "running shoe",
+      "dominant_colour": "blue",
+      "material_appearance": "engineered mesh fabric",
+      "confidence_percent": 95,
+      "raw": "{\"product_type\": \"running shoe\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh fabric\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 176,
+        "total_tokens": 3405
+      }
     },
     "83": {
       "product_type": "running shoe",
       "shoe_type": "running shoe",
       "dominant_colour": "blue",
-      "material_appearance": "engineered mesh",
+      "material_appearance": "engineered mesh fabric",
       "confidence_percent": 95,
-      "raw": "{\"product_type\": \"running shoe\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3"
+      "raw": "{\"product_type\": \"running shoe\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh fabric\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 176,
+        "total_tokens": 3405
+      }
+    },
+    "92:93": {
+      "product_type": "trail running shoe",
+      "shoe_type": "trail running shoe",
+      "dominant_colour": "burnt orange",
+      "material_appearance": "synthetic textile mesh with synthetic overlays",
+      "confidence_percent": 85,
+      "raw": "{\"product_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"synthetic textile mesh with synthetic overlays\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 223,
+        "total_tokens": 3452
+      }
     },
     "92": {
       "product_type": "trail running shoe",
       "shoe_type": "trail running shoe",
       "dominant_colour": "burnt orange",
-      "material_appearance": "synthetic mesh textile",
-      "confidence_percent": 90,
-      "raw": "{\"product_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"synthetic mesh textile\", \"confidence_percent\": 90}",
-      "model": "muse-spark-1.3"
+      "material_appearance": "synthetic textile mesh with synthetic overlays",
+      "confidence_percent": 85,
+      "raw": "{\"product_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"synthetic textile mesh with synthetic overlays\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 223,
+        "total_tokens": 3452
+      }
+    },
+    "100:102": {
+      "product_type": "slip-on sneaker",
+      "shoe_type": "slip-on sneaker",
+      "dominant_colour": "black",
+      "material_appearance": "knit fabric",
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"slip-on sneaker\", \"dominant_colour\": \"black\", \"material_appearance\": \"knit fabric\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 179,
+        "total_tokens": 3408
+      }
     },
     "100": {
       "product_type": "slip-on sneaker",
       "shoe_type": "slip-on sneaker",
-      "dominant_colour": "black and white",
+      "dominant_colour": "black",
       "material_appearance": "knit fabric",
-      "confidence_percent": 95,
-      "raw": "{\"product_type\": \"slip-on sneaker\", \"dominant_colour\": \"black and white\", \"material_appearance\": \"knit fabric\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3"
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"slip-on sneaker\", \"dominant_colour\": \"black\", \"material_appearance\": \"knit fabric\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 179,
+        "total_tokens": 3408
+      }
+    },
+    "110:112": {
+      "product_type": "running shoe",
+      "shoe_type": "running shoe",
+      "dominant_colour": "sage green",
+      "material_appearance": "engineered mesh knit",
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"running shoe\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"engineered mesh knit\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 164,
+        "total_tokens": 3393
+      }
     },
     "110": {
-      "product_type": "running sneaker",
-      "shoe_type": "running sneaker",
+      "product_type": "running shoe",
+      "shoe_type": "running shoe",
       "dominant_colour": "sage green",
-      "material_appearance": "breathable engineered mesh knit",
-      "confidence_percent": 95,
-      "raw": "{\"product_type\": \"running sneaker\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"breathable engineered mesh knit\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3"
+      "material_appearance": "engineered mesh knit",
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"running shoe\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"engineered mesh knit\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 164,
+        "total_tokens": 3393
+      }
     }
   },
   "notes": [],
   "endpoint_form": "rest_route",
   "ground_truth_file": "/home/hatch/workspace/ovo-hackathon/ovo-enrichment/live-agent/merchant/solemates/ground-truth.md",
-  "previous_batch": "solemates-20261031-024918UTC",
+  "previous_batch": "solemates-20261031-090408UTC",
+  "vision_metrics": {
+    "vision_calls": 0,
+    "vision_cache_hits": 12,
+    "vision_total_tokens": 0,
+    "vision_attempts": 12
+  },
   "refresh": {
     "unchanged_count": 62,
     "new_count": 0,
@@ -139,7 +373,7 @@
     "changed_rows": [],
     "stale_rows": []
   },
-  "merchant_file": "merchant/solemates/solemates-20261031-025132UTC.json",
+  "merchant_file": "merchant/solemates/solemates-20261031-092027UTC.json",
   "counts": {
     "products": 12,
     "enrichment_rows": 62,
@@ -154,6 +388,17 @@
       "95% or greater": 50,
       "80-94%": 12,
       "50-79%": 0
-    }
+    },
+    "metrics": {
+      "duration_seconds": 9.39,
+      "seconds_per_product": 0.783,
+      "vision_attempts": 12,
+      "vision_calls": 0,
+      "vision_cache_hits": 12,
+      "vision_total_tokens": 0,
+      "vision_calls_per_product": 0.0,
+      "vision_workers": 4
+    },
+    "store_currency": "CAD"
   }
 }

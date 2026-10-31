@@ -1,6 +1,37 @@
 #!/usr/bin/env python3
 """
-OvO Enrichment Agent — live, any WordPress/WooCommerce store, v4.
+OvO Enrichment Agent — live, any WordPress/WooCommerce store, v5.
+
+Given a store URL, enrich that store only. Never use another
+store's data. Never publish. Never change the live store. Never
+approve on the merchant's behalf.
+
+Usage:
+    python3 agent.py --store-url https://example.com/shop
+    python3 agent.py --store-url https://example.com/shop --merchant my-shop
+    python3 agent.py --store-url https://example.com/shop --rollback --batch <batch_id>
+    python3 agent.py   (defaults to Sole Mates, for backward compatibility)
+
+What v5 adds over v4, per the five independent public-launch items:
+1.  Scale, speed, cost: per-run metrics (duration, seconds per
+    product, vision calls, cache hits, tokens when the API
+    returns them), vision caching per merchant, and parallel
+    vision checks with a worker count the caller can set.
+2.  Multi-photo vision: every photo is vision-checked, not just
+    the first. Additional photos are no longer capped without a
+    check.
+3.  Audit log and rollback: an append-only audit log per
+    merchant, and a rollback that restores a named batch as the
+    merchant's current proposed diff, with a tenant check.
+    Rollback changes Enrichment's proposed state only. It never
+    changes the live store and never publishes.
+4.  Merchant-facing status: a status file per run, plus a
+    current status file, with counts, bands, failures, and
+    unproposed fields with next actions.
+5.  Size system and currency from store sources only: a size
+    system is proposed only when the store states it verbatim,
+    and store currency is recorded as context, never as a price
+    proposal. Price is still never enriched.
 
 Given a store URL, enrich that store only. Never use another
 store's data. Never publish. Never change the live store. Never
@@ -53,15 +84,18 @@ Task definition: AGENT.md in this folder. Publishing belongs to
 the Plug stream. Approval belongs to the Merchant Approval Agent.
 """
 import argparse
+import concurrent.futures
 import csv
 import html
 import json
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -409,14 +443,146 @@ def vision_check(image_url, product_name):
         if not isinstance(conf, (int, float)):
             return {"error": "vision returned no confidence number", "raw": content}
         ptype = str(parsed.get("product_type") or parsed.get("shoe_type") or "")
-        return {
+        usage = out.get("usage") or {}
+        result = {
             "product_type": ptype, "shoe_type": ptype,
             "dominant_colour": str(parsed.get("dominant_colour", "")),
             "material_appearance": str(parsed.get("material_appearance", "")),
             "confidence_percent": conf, "raw": content, "model": "muse-spark-1.3",
         }
+        if isinstance(usage, dict) and usage:
+            result["usage"] = {k: usage[k] for k in ("prompt_tokens", "completion_tokens", "total_tokens") if k in usage}
+        return result
     except Exception as exc:
         return {"error": f"vision call failed: {exc}"}
+
+
+def load_vision_cache(merchant_dir):
+    path = merchant_dir / "vision-cache.json"
+    if path.exists():
+        try:
+            data = json.loads(path.read_text())
+            return data if isinstance(data, dict) else {}
+        except Exception:
+            return {}
+    return {}
+
+
+def save_vision_cache(merchant_dir, cache):
+    (merchant_dir / "vision-cache.json").write_text(json.dumps(cache, indent=2))
+
+
+def get_vision(image_url, cache, metrics, use_cache=True):
+    """Return (vision, cache_hit). Successful results are cached per
+    merchant by exact image URL. Failures are never cached, so a
+    later run can retry them. Metrics are updated in place."""
+    if use_cache and image_url in cache:
+        metrics["vision_cache_hits"] = metrics.get("vision_cache_hits", 0) + 1
+        return cache[image_url], True
+    metrics["vision_calls"] = metrics.get("vision_calls", 0) + 1
+    vis = vision_check(image_url, "")
+    if "error" not in vis:
+        cache[image_url] = vis
+        usage = vis.get("usage") or {}
+        if isinstance(usage.get("total_tokens"), int):
+            metrics["vision_total_tokens"] = metrics.get("vision_total_tokens", 0) + usage["total_tokens"]
+    return vis, False
+
+
+def fetch_all_products_with_pages(template, first_page=None, first_headers=None):
+    products, total_pages = fetch_all_products(template, first_page, first_headers)
+    pages = 1
+    if total_pages is not None:
+        pages = total_pages
+    elif len(products) >= 100:
+        pages = (len(products) + 99) // 100
+    return products, total_pages, pages
+
+
+def most_common_currency(products):
+    codes = []
+    for p in products:
+        code = ((p.get("prices") or {}).get("currency_code") or "").strip()
+        if code:
+            codes.append(code)
+    if not codes:
+        return None
+    return Counter(codes).most_common(1)[0][0]
+
+
+def band_from_sources_word(value, sources):
+    """Word-boundary band, for short tokens such as a size system.
+    Substring matching would falsely match 'US' inside 'unused'."""
+    pattern = re.compile(r"\b" + re.escape(value.lower()) + r"\b")
+    hits = [name for name, text in sources if pattern.search(text)]
+    if len(hits) >= 3:
+        return "95% or greater", "Word-for-word agreement across 3 store sources, as a whole word"
+    if len(hits) == 2:
+        return "80-94%", f"Agreement across 2 store sources, as a whole word: {', '.join(hits)}"
+    if len(hits) == 1:
+        return "50-79%", f"Value appears in one store source only, as a whole word: {hits[0]}"
+    return "under 50%", "No store source for this value as a whole word; never proposed"
+
+
+def detect_size_system(product, desc):
+    """Return (value, evidence) or None. Only a size system the
+    store states verbatim, in a description segment or an
+    attribute name. Never inferred from a product name alone."""
+    seg = segment(desc, "Size system", ["Material", "Fit", "Returns"])
+    if seg:
+        return seg, f"Size system: {seg}"
+    for label, value in discover_segments(desc):
+        if label.lower() in ("sizes", "size"):
+            m = re.search(r"\b(US|UK|EU)\b", value, re.I)
+            if m:
+                return m.group(1).upper(), f"{label}: {value}"
+            if re.search(r"\bmen'?s\b", value, re.I):
+                return "men's", f"{label}: {value}"
+            if re.search(r"\bwomen'?s\b", value, re.I):
+                return "women's", f"{label}: {value}"
+    for attr in product.get("attributes", []) or []:
+        m = re.search(r"\((US|UK|EU)\)", attr.get("name", ""), re.I)
+        if m:
+            return m.group(1).upper(), f"attribute: {attr['name']}"
+    return None
+
+
+def append_audit_log(merchant_dir, entry):
+    path = merchant_dir / "audit-log.jsonl"
+    with open(path, "a") as fh:
+        fh.write(json.dumps(entry) + "\n")
+    return path
+
+
+def do_rollback(merchant_dir, merchant, base_url, batch_id):
+    """Restore a named batch as the merchant's current proposed
+    diff. Tenant-checked: the batch must belong to this merchant
+    and this store. Changes Enrichment state only, never the
+    live store, never a publish."""
+    batch_path = merchant_dir / f"{batch_id}.json"
+    if not batch_path.exists():
+        raise FileNotFoundError(f"No batch file for {batch_id} for merchant {merchant}")
+    diff = json.loads(batch_path.read_text())
+    if diff.get("merchant") != merchant or diff.get("store_url") != base_url:
+        raise ValueError(f"Batch {batch_id} does not belong to merchant {merchant} at {base_url}")
+    previous_path = merchant_dir / "latest.json"
+    previous_batch = None
+    if previous_path.exists():
+        try:
+            previous_batch = json.loads(previous_path.read_text()).get("batch_id")
+        except Exception:
+            previous_batch = None
+    restored = dict(diff)
+    restored["rollback_from_batch"] = previous_batch
+    restored["rollback_to_batch"] = batch_id
+    restored["rollback_at_utc"] = datetime.now(timezone.utc).isoformat()
+    previous_path.write_text(json.dumps(restored, indent=2))
+    append_audit_log(merchant_dir, {
+        "type": "rollback", "merchant": merchant, "store_url": base_url,
+        "at_utc": restored["rollback_at_utc"], "from_batch": previous_batch,
+        "to_batch": batch_id, "proposal_count": diff.get("proposal_count"),
+    })
+    return restored
 
 
 def colour_match(colour, dominant):
@@ -480,15 +646,36 @@ def main(argv=None):
     parser.add_argument("--merchant", default=None, help="Override merchant slug")
     parser.add_argument("--ground-truth", default=None,
                         help="Per-merchant ground-truth file for this store only")
+    parser.add_argument("--vision-workers", type=int, default=4,
+                        help="Parallel vision workers (default 4, max 8)")
+    parser.add_argument("--no-cache", action="store_true",
+                        help="Ignore the per-merchant vision cache")
+    parser.add_argument("--rollback", action="store_true",
+                        help="Restore a named batch as the current proposed diff")
+    parser.add_argument("--batch", default=None, help="Batch ID for --rollback")
     args = parser.parse_args(argv)
     base_url = normalize_base_url(args.store_url)
     merchant = merchant_slug_from_url(base_url, args.merchant)
     merchant_dir = HERE / "merchant" / merchant
     merchant_dir.mkdir(parents=True, exist_ok=True)
+    if args.rollback:
+        if not args.batch:
+            print("Rollback needs --batch <batch_id>.", file=sys.stderr)
+            sys.exit(2)
+        try:
+            restored = do_rollback(merchant_dir, merchant, base_url, args.batch)
+        except Exception as exc:
+            print(f"Rollback FAILED: {exc}", file=sys.stderr)
+            print("No diff changed. Live store unchanged. No publish.")
+            sys.exit(1)
+        print(f"Rollback done: current proposed diff is now batch {args.batch}.")
+        print(f"Previous batch was {restored.get('rollback_from_batch')}.")
+        print("Live store unchanged. No publish. Status: proposed only.")
+        return
     run_start = datetime.now(timezone.utc)
     batch_id = f"{merchant}-{run_start.strftime('%Y%m%d-%H%M%S')}UTC"
     run = {
-        "agent": "OvO Enrichment Agent (live, any WooCommerce store, v4)",
+        "agent": "OvO Enrichment Agent (live, any WooCommerce store, v5)",
         "generated_at_utc": run_start.isoformat(), "batch_id": batch_id,
         "merchant": merchant, "store_url": base_url, "status": "proposed_only",
         "published": False,
@@ -533,6 +720,46 @@ def main(argv=None):
     rows, preservation = [], []
     variations_checked = 0
     supplied_unproposed = set()
+    # Vision batch, v5: collect every photo that needs a check,
+    # check unique URLs in parallel, cache successful results per
+    # merchant. The product loop below uses these results only,
+    # so parallel order never changes the diff.
+    vision_metrics = {"vision_calls": 0, "vision_cache_hits": 0, "vision_total_tokens": 0}
+    vision_cache = load_vision_cache(merchant_dir)
+    vision_by_url = {}
+    vision_urls = []
+    for prod in products:
+        colours = colour_terms(prod)
+        cats = [c.get("name", "") for c in prod.get("categories", []) if c.get("name")]
+        if not (colours and cats):
+            continue
+        for image in prod.get("images") or []:
+            src = image.get("src")
+            if src and src not in vision_urls:
+                vision_urls.append(src)
+    vision_metrics["vision_attempts"] = len(vision_urls)
+    workers = max(1, min(8, args.vision_workers))
+    if vision_urls:
+        if workers == 1:
+            for src in vision_urls:
+                vision_by_url[src], _hit = get_vision(src, vision_cache, vision_metrics,
+                                                      use_cache=not args.no_cache)
+        else:
+            # Per-URL metrics first, then summed, so parallel
+            # counting is exact and never loses an increment.
+            def _check(src):
+                local = {"vision_calls": 0, "vision_cache_hits": 0, "vision_total_tokens": 0}
+                vis, _hit = get_vision(src, vision_cache, local, use_cache=not args.no_cache)
+                return src, vis, local
+            with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
+                for src, vis, local in pool.map(_check, vision_urls):
+                    vision_by_url[src] = vis
+                    vision_metrics["vision_calls"] += local["vision_calls"]
+                    vision_metrics["vision_cache_hits"] += local["vision_cache_hits"]
+                    vision_metrics["vision_total_tokens"] += local["vision_total_tokens"]
+        if not args.no_cache:
+            save_vision_cache(merchant_dir, vision_cache)
+    run["vision_metrics"] = vision_metrics
 
     for prod in products:
         pid = prod["id"]
@@ -583,9 +810,14 @@ def main(argv=None):
                 return False
             return True
 
-        material = segment(desc, "Material", ["Fit", "Returns"])
-        fit_full = segment(desc, "Fit", ["Returns"])
-        returns = segment(desc, "Returns", [])
+        # Segment boundaries are discovered from this store's own
+        # description, so a segment ends at the next label in order,
+        # whatever that label is. This stops Returns from swallowing
+        # a following Size system, Care, or Shipping segment.
+        labels_in_order = [label for label, _value in discover_segments(desc)]
+        material = segment(desc, "Material", [l for l in labels_in_order if l.lower() != "material"])
+        fit_full = segment(desc, "Fit", [l for l in labels_in_order if l.lower() != "fit"])
+        returns = segment(desc, "Returns", [l for l in labels_in_order if l.lower() != "returns"])
         if guarded("_ovo_material", material, "Material"):
             band, basis = band_from_sources(material, sources)
             add("_ovo_material", material, "merchant-provided", band, basis,
@@ -615,8 +847,9 @@ def main(argv=None):
                 add("_ovo_fit_guidance", fit_full, "merchant-provided", band, basis,
                     f"Fit: {fit_full}", "description")
         # Generic segments discovered from this store's own description.
-        # Material/Fit/Returns are handled above, so they are skipped here.
-        handled = {"material", "fit", "returns"}
+        # Material/Fit/Returns/Size system are handled above, so they
+        # are skipped here, to avoid a duplicate size system row.
+        handled = {"material", "fit", "returns", "size system"}
         for label, value in discover_segments(desc):
             low = label.lower()
             if low in handled or low in BLOCKED_LABELS:
@@ -631,6 +864,25 @@ def main(argv=None):
                 supplied_unproposed.add(SEGMENT_SUPPLIES[low])
             if slug == "care_instructions":
                 supplied_unproposed.add("care_instructions")
+        # Size system, v5: only when the store states it verbatim.
+        size_sys = detect_size_system(prod, desc)
+        if size_sys:
+            sys_value, sys_evidence = size_sys
+            if guarded("_ovo_size_system", sys_value, "Size system"):
+                if sys_evidence.startswith("attribute:"):
+                    # Attribute names are not description text, so
+                    # description-based band sources do not apply.
+                    # One source is the Store API record itself.
+                    if re.search(r"\b" + re.escape(sys_value.lower()) + r"\b", page_norm):
+                        band, basis = ("80-94%", "Value appears in Store API attribute name and on the product page, as a whole word")
+                    else:
+                        band, basis = ("50-79%", "Value appears in Store API attribute name only, as a whole word")
+                else:
+                    band, basis = band_from_sources_word(sys_value, sources)
+                add("_ovo_size_system", sys_value, "merchant-provided", band, basis,
+                    sys_evidence, "description or attributes")
+                if band != "under 50%":
+                    supplied_unproposed.add("size_system")
         # Variant choices, any product: every attribute the store marks
         # as having variations, one row per attribute, typed list value.
         for attr in variation_attributes(prod):
@@ -671,7 +923,7 @@ def main(argv=None):
             "source_url": prod["permalink"], "source_urls": [prod["permalink"], base_url],
             "fetched_at_utc": fetched_at,
         })
-        # Photo rows: one per image, not only the first.
+        # Photo rows: one per image, each vision-checked in v5.
         colours = colour_terms(prod)
         cats = [c.get("name", "") for c in prod.get("categories", []) if c.get("name")]
         images = prod.get("images") or []
@@ -682,17 +934,14 @@ def main(argv=None):
             if colours and cats:
                 alt = f"{name}, {colours[0]}, {cats[0]}"
                 field = "_ovo_image_alt" if idx == 0 else f"_ovo_image_alt_{idx + 1}"
+                vis = vision_by_url.get(image["src"], {"error": "no vision result for this photo"})
                 if idx == 0:
-                    vis_first = vision_check(image["src"], name)
-                    vis = vis_first
+                    vis_first = vis
+                run["vision_results"][f"{pid}:{image.get('id', idx)}"] = vis
+                if idx == 0:
                     run["vision_results"][str(pid)] = vis
-                else:
-                    # Additional images are not vision-checked individually
-                    # in this run; their alt rows are capped at 50-79%.
-                    vis = {"error": "additional image not vision-checked in this run"}
                 if "error" in vis:
-                    if idx == 0:
-                        run["vision_failures"].append({"product_id": pid, "error": vis["error"]})
+                    run["vision_failures"].append({"product_id": pid, "image_id": image.get("id"), "error": vis["error"]})
                     add(field, alt, "modelled", "50-79%",
                         "Text parts match store sources; live vision check did not "
                         "corroborate this photo, so band is capped at 50-79%.",
@@ -756,7 +1005,7 @@ def main(argv=None):
     all_rows.sort(key=sort_key)
 
     diff = {
-        "format": "ovo-enrichment-diff", "version": "4.0-live",
+        "format": "ovo-enrichment-diff", "version": "5.0-live",
         "status": "proposed_only_awaiting_merchant_approval", "published": False,
         "generated_at_utc": run["generated_at_utc"], "batch_id": batch_id,
         "merchant": merchant, "store_url": base_url, "endpoint_form": endpoint_form,
@@ -764,6 +1013,7 @@ def main(argv=None):
         "product_count": len(products), "proposal_count": len(enrichment_rows),
         "preservation_count": len(preservation),
         "unproposed_count": len(unproposed_list),
+        "store_currency": most_common_currency(products),
         "visual_only_count": sum(1 for r in enrichment_rows if r["source_label"] == "observed_visual"),
         "proposals": enrichment_rows, "preservation": preservation,
         "unproposed_fields_audit_only": unproposed_list,
@@ -790,6 +1040,55 @@ def main(argv=None):
     merchant_file.write_text(json.dumps(diff, indent=2))
     (merchant_dir / "latest.json").write_text(json.dumps(diff, indent=2))
     run["merchant_file"] = str(merchant_file.relative_to(HERE))
+    duration = time.time() - run_start.timestamp()
+    metrics = {
+        "duration_seconds": round(duration, 2),
+        "seconds_per_product": round(duration / len(products), 3) if products else 0,
+        "vision_attempts": vision_metrics["vision_attempts"],
+        "vision_calls": vision_metrics["vision_calls"],
+        "vision_cache_hits": vision_metrics["vision_cache_hits"],
+        "vision_total_tokens": vision_metrics["vision_total_tokens"],
+        "vision_calls_per_product": round(vision_metrics["vision_calls"] / len(products), 3) if products else 0,
+        "vision_workers": workers,
+    }
+    diff["metrics"] = metrics
+    # Rewrite the merchant files with metrics included.
+    merchant_file.write_text(json.dumps(diff, indent=2))
+    (merchant_dir / "latest.json").write_text(json.dumps(diff, indent=2))
+    status = {
+        "merchant": merchant, "store_url": base_url, "batch_id": batch_id,
+        "generated_at_utc": run["generated_at_utc"], "status": "proposed_only",
+        "published": False, "store_currency": diff["store_currency"],
+        "products_processed": len(products), "enrichment_rows": len(enrichment_rows),
+        "preservation_rows": len(preservation),
+        "unproposed_fields": unproposed_list,
+        "by_band": {b: sum(1 for r in enrichment_rows if r["prd_accuracy_band"] == b)
+                    for b in ["95% or greater", "80-94%", "50-79%"]},
+        "failures": {
+            "page_fetch_failures": run["page_fetch_failures"],
+            "vision_failures": run["vision_failures"],
+            "untrusted_flags": run["untrusted_flags"],
+            "language_out_of_scope": run["language_out_of_scope"],
+        },
+        "metrics": metrics,
+        "refresh": refresh,
+        "next_actions": [
+            "Review 95% or greater rows by exception.",
+            "Approve 80-94% and 50-79% rows individually, as the PRD requires.",
+            "Supply a value for each unproposed field, or leave it unproposed.",
+        ],
+    }
+    (merchant_dir / f"{batch_id}-status.json").write_text(json.dumps(status, indent=2))
+    (merchant_dir / "status.json").write_text(json.dumps(status, indent=2))
+    append_audit_log(merchant_dir, {
+        "type": "enrichment_run", "merchant": merchant, "store_url": base_url,
+        "batch_id": batch_id, "at_utc": run["generated_at_utc"],
+        "products": len(products), "proposal_count": len(enrichment_rows),
+        "by_band": status["by_band"], "metrics": metrics, "refresh": refresh,
+        "untrusted_flags": len(run["untrusted_flags"]),
+        "page_fetch_failures": len(run["page_fetch_failures"]),
+        "vision_failures": len(run["vision_failures"]),
+    })
     run["counts"] = {
         "products": len(products), "enrichment_rows": len(enrichment_rows),
         "preservation_rows": len(preservation), "unproposed_fields": len(unproposed_list),
@@ -799,11 +1098,16 @@ def main(argv=None):
         "variations_checked": variations_checked,
         "by_band": {b: sum(1 for r in enrichment_rows if r["prd_accuracy_band"] == b)
                     for b in ["95% or greater", "80-94%", "50-79%"]},
+        "metrics": metrics,
+        "store_currency": diff["store_currency"],
     }
     (HERE / "enrichment_run_live.json").write_text(json.dumps(run, indent=2))
     print(json.dumps(run["counts"], indent=2))
     print(f"Store: {base_url}  Merchant: {merchant}  Endpoint: {endpoint_form}")
     print(f"Merchant file: {run['merchant_file']}")
+    print(f"Status file: merchant/{merchant}/{batch_id}-status.json")
+    print(f"Metrics: {metrics['duration_seconds']}s total, {metrics['seconds_per_product']}s per product, "
+          f"vision calls {metrics['vision_calls']}, cache hits {metrics['vision_cache_hits']}")
     print(f"Refresh: unchanged={refresh['unchanged_count']} new={refresh['new_count']} "
           f"changed={refresh['changed_count']} stale={refresh['stale_count']}")
     print("No store change. No publish. Status: proposed only.")

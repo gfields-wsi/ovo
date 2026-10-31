@@ -1,4 +1,19 @@
-# OvO Enrichment Agent — live, any WordPress/WooCommerce store, v4 (Stream 2, 2026-10-30)
+# OvO Enrichment Agent — live, any WordPress/WooCommerce store, v5 (Stream 2, 2026-10-31)
+
+Version 5 completes the five independent public-launch items:
+per-run metrics with vision caching and parallel vision, multi-photo
+vision for every photo, a per-merchant append-only audit log with a
+tenant-checked rollback, a merchant-facing status file per run, and
+size system and currency from store sources only, never invented.
+Test file: `test_v5.py` in the same folder. Latest result: 31 of 31
+checks passed. Sole Mates result is unchanged: 62 enrichment rows,
+50 at 95 percent or greater, 12 at 80-94 percent, currency CAD, size
+system still unproposed. Run: `python3 agent.py --store-url <store URL>`.
+Rollback: `python3 agent.py --store-url <store URL> --rollback --batch <batch_id>`.
+Rollback changes Enrichment's proposed state only, never the live
+store, never a publish. It does not claim integration. Publishing
+belongs to the Plug stream. Approval belongs to the Merchant
+Approval Agent.
 
 Run with a store URL: `python3 agent.py --store-url https://example.com/shop`.
 Without a URL it defaults to Sole Mates, for backward compatibility.

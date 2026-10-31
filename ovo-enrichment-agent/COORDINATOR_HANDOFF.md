@@ -5,6 +5,18 @@ to the organizer by this stream. Integration is for the organizer
 to confirm. Nothing here claims a publish, an approval, or
 integration as done.
 
+## What was built, 2026-10-31 — v5, independent public-launch items
+
+v5, added 2026-10-31: the five independent items are built into
+the live agent. Per-run metrics with vision caching and parallel
+vision, multi-photo vision for every photo, a per-merchant audit
+log with tenant-checked rollback, a merchant-facing status file,
+and size system and currency from store sources only. Test file:
+`test_v5.py` in the same folder. Latest result: 31 of 31 checks
+passed. Sole Mates is unchanged at 62 rows, and a cached second
+run takes about 9 seconds with zero vision calls, versus about
+34 seconds with 12 calls on the first run.
+
 ## What was built, 2026-10-30 — v4, any WooCommerce store
 
 v4, added 2026-10-30: the 14 any-store requirements are built

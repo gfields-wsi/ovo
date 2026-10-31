@@ -1,0 +1,151 @@
+{
+  "merchant": "solemates",
+  "store_url": "https://wsiventures.com/solemates",
+  "batch_id": "solemates-20261031-092027UTC",
+  "generated_at_utc": "2026-10-31T09:20:27.541092+00:00",
+  "status": "proposed_only",
+  "published": false,
+  "store_currency": "CAD",
+  "products_processed": 12,
+  "enrichment_rows": 62,
+  "preservation_rows": 12,
+  "unproposed_fields": [
+    {
+      "field": "width",
+      "reason": "No width value in any store source; relative comparisons are not measurements.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "weight",
+      "reason": "Weight is empty in the Store API for all products.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "dimensions",
+      "reason": "Length, width, and height are empty in the Store API for all products.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "stock_quantity_per_size",
+      "reason": "Stock is a boolean in-stock flag only; no per-size quantity exists.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
+    },
+    {
+      "field": "gtin",
+      "reason": "No GTIN exists in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "brand",
+      "reason": "Brands are empty in the Store API for all products.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "care_instructions",
+      "reason": "No care instructions in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "closure_type",
+      "reason": "No closure type field in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "size_guide",
+      "reason": "No size guide in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "shipping_cost",
+      "reason": "No shipping cost in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "delivery_time",
+      "reason": "No delivery time in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "tax_class",
+      "reason": "Tax class must not be modelled.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
+    },
+    {
+      "field": "shipping_class",
+      "reason": "Shipping class must not be modelled.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
+    },
+    {
+      "field": "size_system",
+      "reason": "No size system (men's/women's/US/UK) is stated in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
+    },
+    {
+      "field": "store_wide_legal_policy",
+      "reason": "Returns are copied per product only; no store-wide legal policy is claimed.",
+      "reason_code": "blocked_policy",
+      "next_action": "never_propose"
+    },
+    {
+      "field": "safety_or_compatibility_claim",
+      "reason": "Safety and compatibility claims must not be modelled.",
+      "reason_code": "blocked_policy",
+      "next_action": "never_propose"
+    },
+    {
+      "field": "price_or_discount_change",
+      "reason": "Price in the store is never enriched.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
+    }
+  ],
+  "by_band": {
+    "95% or greater": 50,
+    "80-94%": 12,
+    "50-79%": 0
+  },
+  "failures": {
+    "page_fetch_failures": [],
+    "vision_failures": [],
+    "untrusted_flags": [],
+    "language_out_of_scope": []
+  },
+  "metrics": {
+    "duration_seconds": 9.39,
+    "seconds_per_product": 0.783,
+    "vision_attempts": 12,
+    "vision_calls": 0,
+    "vision_cache_hits": 12,
+    "vision_total_tokens": 0,
+    "vision_calls_per_product": 0.0,
+    "vision_workers": 4
+  },
+  "refresh": {
+    "unchanged_count": 62,
+    "new_count": 0,
+    "changed_count": 0,
+    "stale_count": 0,
+    "new_rows": [],
+    "changed_rows": [],
+    "stale_rows": []
+  },
+  "next_actions": [
+    "Review 95% or greater rows by exception.",
+    "Approve 80-94% and 50-79% rows individually, as the PRD requires.",
+    "Supply a value for each unproposed field, or leave it unproposed."
+  ]
+}
