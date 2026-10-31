@@ -1,0 +1,991 @@
+{
+  "format": "ovo-approval-packet",
+  "version": "1.0",
+  "status": "awaiting_merchant_decision",
+  "published": false,
+  "merchant_id": null,
+  "store_id": "https://wsiventures.com/solemates",
+  "tenant_status": "store_only_no_merchant_id",
+  "tenant_note": "Store ID comes from the audit store URL. Merchant ID is not supplied in the live inputs, so a decision for this packet still needs a session with a store ID that matches the packet.",
+  "open_questions": [],
+  "diff_fingerprint": "f60359d09240fdd3ca987f6661bc6cc5347c15be92139117d5ae9a044fb8d6c4",
+  "diff_source": "stream2-enrichment:enrichment_diff.json ovo-enrichment-diff 1.0-proposed",
+  "accuracy_source": "accuracy:accuracy_scorecard.json ovo-accuracy-scorecard 1.0",
+  "accuracy_note": "Accuracy values are taken as given. This agent does not re-check enrichment values, and it does not recompute accuracy.",
+  "raci": {
+    "responsible_enrichment_and_accuracy": "OvO Enrichment Agent",
+    "accountable_enrichment_output": "OvO Coordinating Agent",
+    "merchant_approval_agent": "Records merchant decisions only. Not responsible or accountable for enrichment accuracy."
+  },
+  "product_count": 12,
+  "total_gaps": 124,
+  "proposed_count": 36,
+  "presented_count": 36,
+  "excluded_under_50_count": 0,
+  "ungrouped_count": 0,
+  "held_count": 88,
+  "scores_as_given": {
+    "native_store_core_score": "120/180 = 66.7%",
+    "projected_core_score_if_proposals_approved": "156/180 = 86.7%",
+    "note": "Projected only, as given in the diff. Nothing is published until the merchant approves and Augment runs."
+  },
+  "gate_checks": [
+    {
+      "check": "diff_format",
+      "passed": true,
+      "detail": "ovo-enrichment-diff 1.0-proposed"
+    },
+    {
+      "check": "diff_not_published",
+      "passed": true,
+      "detail": "published=False status=proposed_only_awaiting_merchant_approval"
+    },
+    {
+      "check": "diff_count_matches",
+      "passed": true,
+      "detail": "claimed 36, actual 36"
+    },
+    {
+      "check": "proposed_fields_allowed",
+      "passed": true,
+      "detail": "material, fit, returns only"
+    },
+    {
+      "check": "proposed_rows_require_approval",
+      "passed": true,
+      "detail": "all proposed rows require approval"
+    },
+    {
+      "check": "scorecard_format",
+      "passed": true,
+      "detail": "ovo-accuracy-scorecard 1.0"
+    },
+    {
+      "check": "scorecard_not_published",
+      "passed": true,
+      "detail": "published=False"
+    },
+    {
+      "check": "tenant_ids_do_not_conflict",
+      "passed": true,
+      "detail": "no tenant conflict in inputs"
+    },
+    {
+      "check": "coordinator_not_published",
+      "passed": true,
+      "detail": "coordinator published=False status=paused_awaiting_merchant_decision"
+    }
+  ],
+  "groups": [
+    {
+      "band": "95_plus",
+      "label": "95 percent or better",
+      "action": "reject_by_exception",
+      "rule": "In a submitted group review, rows the merchant does not reject are approved.",
+      "presented_count": 36,
+      "rows": [
+        {
+          "product_id": 14,
+          "product_name": "Trailhead Waterproof Hiking Boots",
+          "sku": "SM-BOOT-001",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Full-grain leather, waterproof membrane",
+          "evidence": "Description prose says 'Full-grain leather, waterproof membrane' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 14,
+          "product_name": "Trailhead Waterproof Hiking Boots",
+          "sku": "SM-BOOT-001",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Wide fit available in-store only \u2014 not in this demo catalog",
+          "evidence": "Description prose says 'True to size. Wide fit available in-store only \u2014 not in this demo catalog' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 14,
+          "product_name": "Trailhead Waterproof Hiking Boots",
+          "sku": "SM-BOOT-001",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 23,
+          "product_name": "City Chelsea Rain Boots",
+          "sku": "SM-BOOT-002",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Rubber upper, textile lining",
+          "evidence": "Description prose says 'Rubber upper, textile lining' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 23,
+          "product_name": "City Chelsea Rain Boots",
+          "sku": "SM-BOOT-002",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Narrower than the Trailhead boots",
+          "evidence": "Description prose says 'True to size. Narrower than the Trailhead boots' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 23,
+          "product_name": "City Chelsea Rain Boots",
+          "sku": "SM-BOOT-002",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 31,
+          "product_name": "Boardwalk Leather Sandals",
+          "sku": "SM-SAND-001",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Leather straps, cork footbed",
+          "evidence": "Description prose says 'Leather straps, cork footbed' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 31,
+          "product_name": "Boardwalk Leather Sandals",
+          "sku": "SM-SAND-001",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Break in over 2\u20133 wears",
+          "evidence": "Description prose says 'True to size. Break in over 2\u20133 wears' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 31,
+          "product_name": "Boardwalk Leather Sandals",
+          "sku": "SM-SAND-001",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 40,
+          "product_name": "Cloudstep Sport Sandals",
+          "sku": "SM-SAND-002",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Synthetic straps, EVA sole",
+          "evidence": "Description prose says 'Synthetic straps, EVA sole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 40,
+          "product_name": "Cloudstep Sport Sandals",
+          "sku": "SM-SAND-002",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "Runs slightly large \u2014 consider half a size down",
+          "evidence": "Description prose says 'Runs slightly large \u2014 consider half a size down' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 40,
+          "product_name": "Cloudstep Sport Sandals",
+          "sku": "SM-SAND-002",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 48,
+          "product_name": "Court Classic White Sneakers",
+          "sku": "SM-SNEA-001",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Leather upper, rubber cupsole",
+          "evidence": "Description prose says 'Leather upper, rubber cupsole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 48,
+          "product_name": "Court Classic White Sneakers",
+          "sku": "SM-SNEA-001",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size",
+          "evidence": "Description prose says 'True to size' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 48,
+          "product_name": "Court Classic White Sneakers",
+          "sku": "SM-SNEA-001",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 58,
+          "product_name": "Retro High-Top Sneakers",
+          "sku": "SM-SNEA-002",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Canvas upper, rubber sole",
+          "evidence": "Description prose says 'Canvas upper, rubber sole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 58,
+          "product_name": "Retro High-Top Sneakers",
+          "sku": "SM-SNEA-002",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. High-top fit \u2014 ankle support, less flex",
+          "evidence": "Description prose says 'True to size. High-top fit \u2014 ankle support, less flex' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 58,
+          "product_name": "Retro High-Top Sneakers",
+          "sku": "SM-SNEA-002",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 67,
+          "product_name": "Fireside Wool Slippers",
+          "sku": "SM-SLIP-001",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Wool felt upper, suede sole",
+          "evidence": "Description prose says 'Wool felt upper, suede sole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 67,
+          "product_name": "Fireside Wool Slippers",
+          "sku": "SM-SLIP-001",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Wool will mould slightly with wear",
+          "evidence": "Description prose says 'True to size. Wool will mould slightly with wear' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 67,
+          "product_name": "Fireside Wool Slippers",
+          "sku": "SM-SLIP-001",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 76,
+          "product_name": "Cloud Plush House Slippers",
+          "sku": "SM-SLIP-002",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Plush synthetic upper, rubber sole",
+          "evidence": "Description prose says 'Plush synthetic upper, rubber sole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 76,
+          "product_name": "Cloud Plush House Slippers",
+          "sku": "SM-SLIP-002",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "Runs slightly small \u2014 consider half a size up",
+          "evidence": "Description prose says 'Runs slightly small \u2014 consider half a size up' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 76,
+          "product_name": "Cloud Plush House Slippers",
+          "sku": "SM-SLIP-002",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 83,
+          "product_name": "Velocity Road Runners",
+          "sku": "SM-RUN-001",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Engineered mesh, EVA midsole",
+          "evidence": "Description prose says 'Engineered mesh, EVA midsole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 83,
+          "product_name": "Velocity Road Runners",
+          "sku": "SM-RUN-001",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Best for road running and daily training",
+          "evidence": "Description prose says 'True to size. Best for road running and daily training' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 83,
+          "product_name": "Velocity Road Runners",
+          "sku": "SM-RUN-001",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 92,
+          "product_name": "Trailblazer Trail Runners",
+          "sku": "SM-RUN-002",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Ripstop mesh, aggressive tread",
+          "evidence": "Description prose says 'Ripstop mesh, aggressive tread' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 92,
+          "product_name": "Trailblazer Trail Runners",
+          "sku": "SM-RUN-002",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Half a size up if you wear thick trail socks",
+          "evidence": "Description prose says 'True to size. Half a size up if you wear thick trail socks' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 92,
+          "product_name": "Trailblazer Trail Runners",
+          "sku": "SM-RUN-002",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 100,
+          "product_name": "Marathon Knit Runners",
+          "sku": "SM-RUN-003",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Knit upper, foam midsole",
+          "evidence": "Description prose says 'Knit upper, foam midsole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 100,
+          "product_name": "Marathon Knit Runners",
+          "sku": "SM-RUN-003",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Knit upper stretches slightly",
+          "evidence": "Description prose says 'True to size. Knit upper stretches slightly' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 100,
+          "product_name": "Marathon Knit Runners",
+          "sku": "SM-RUN-003",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 110,
+          "product_name": "Everyday Comfort Runners",
+          "sku": "SM-RUN-004",
+          "field": "material_structured",
+          "current_value": null,
+          "proposed_value": "Mesh upper, cushioned sole",
+          "evidence": "Description prose says 'Mesh upper, cushioned sole' but no material attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 110,
+          "product_name": "Everyday Comfort Runners",
+          "sku": "SM-RUN-004",
+          "field": "fit_structured",
+          "current_value": null,
+          "proposed_value": "True to size. Roomy toe box",
+          "evidence": "Description prose says 'True to size. Roomy toe box' but no fit attribute or field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        },
+        {
+          "product_id": 110,
+          "product_name": "Everyday Comfort Runners",
+          "sku": "SM-RUN-004",
+          "field": "returns_structured",
+          "current_value": null,
+          "proposed_value": "30-day returns, unworn",
+          "evidence": "Description prose says '30-day returns, unworn' but no returns field is in the Store API.",
+          "source_label": "store_api:product.description + store_api:product.attributes",
+          "accuracy_percent": 100.0,
+          "band": "95_plus"
+        }
+      ]
+    },
+    {
+      "band": "80_94",
+      "label": "80 to 94 percent",
+      "action": "approve_individual",
+      "rule": "The merchant approves each row they want. Rows not explicitly approved are not approved.",
+      "presented_count": 0,
+      "rows": []
+    },
+    {
+      "band": "50_79",
+      "label": "50 to 79 percent",
+      "action": "approve_individual",
+      "rule": "The merchant approves each row they want. Rows not explicitly approved are not approved.",
+      "presented_count": 0,
+      "rows": []
+    }
+  ],
+  "excluded_under_50": [],
+  "ungrouped_no_accuracy": [],
+  "held_rows": [
+    {
+      "product_id": 14,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 14,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 14,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 14,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 14,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 14,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 14,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 14,
+      "field": "mentioned_option_not_selectable",
+      "status": "no_action_flagged_for_merchant_review"
+    },
+    {
+      "product_id": 23,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 23,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 23,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 23,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 23,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 23,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 23,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 31,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 31,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 31,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 31,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 31,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 31,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 31,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 40,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 40,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 40,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 40,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 40,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 40,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 40,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 48,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 48,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 48,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 48,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 48,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 48,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 48,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 58,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 58,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 58,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 58,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 58,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 58,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 58,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 67,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 67,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 67,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 67,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 67,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 67,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 67,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 76,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 76,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 76,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 76,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 76,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 76,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 76,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 83,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 83,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 83,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 83,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 83,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 83,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 83,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 92,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 92,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 92,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 92,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 92,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 92,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 92,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 100,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 100,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 100,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 100,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 100,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 100,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 100,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 110,
+      "field": "weight_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 110,
+      "field": "dimensions_present",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 110,
+      "field": "image_alt",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 110,
+      "field": "tags",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 110,
+      "field": "brand",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 110,
+      "field": "stock_quantity",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": 110,
+      "field": "gtin",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": null,
+      "field": "shipping_info",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": null,
+      "field": "tax_info",
+      "status": "needs_merchant_input"
+    },
+    {
+      "product_id": null,
+      "field": "json_ld_product_schema",
+      "status": "unverified"
+    }
+  ],
+  "not_claimed": [
+    "full MCP, ACP, or UCP compliance",
+    "consumer Muse discovery",
+    "live payment",
+    "production plugin compatibility",
+    "any published store change",
+    "any merchant decision made by an agent",
+    "responsibility or accountability for enrichment accuracy"
+  ]
+}
