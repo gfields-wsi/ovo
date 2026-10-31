@@ -1,14 +1,17 @@
 {
   "format": "ovo-enrichment-diff",
-  "version": "2.0-live",
+  "version": "3.0-live",
   "status": "proposed_only_awaiting_merchant_approval",
   "published": false,
-  "generated_at_utc": "2026-10-30T16:16:51.100646+00:00",
+  "generated_at_utc": "2026-10-31T02:03:16.088639+00:00",
+  "batch_id": "sole-mates-20261031-020316UTC",
+  "merchant": "sole-mates",
   "generated_from": "live Store API + rendered product pages + Oct 29 ground truth + live Spark vision",
   "product_count": 12,
   "proposal_count": 62,
   "preservation_count": 12,
-  "held_count": 17,
+  "unproposed_count": 17,
+  "visual_only_count": 0,
   "proposals": [
     {
       "product_id": "14",
@@ -19,7 +22,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Full-grain leather, waterproof membrane",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:16.737623+00:00"
     },
     {
       "product_id": "14",
@@ -30,7 +41,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:16.737623+00:00"
     },
     {
       "product_id": "14",
@@ -41,7 +60,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:16.737623+00:00"
     },
     {
       "product_id": "14",
@@ -52,18 +79,42 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: Wide fit available in-store only \u2014 not in this demo catalog",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:16.737623+00:00"
     },
     {
       "product_id": "14",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "7, 8, 9, 10, 11, 12, 13",
+      "new_value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 7, 8, 9, 10, 11, 12, 13",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:16.737623+00:00"
     },
     {
       "product_id": "14",
@@ -74,7 +125,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Trailhead Waterproof Hiking Boots; Colour: Chestnut Brown; Category: Boots",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:16.737623+00:00"
     },
     {
       "product_id": "23",
@@ -85,7 +144,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Rubber upper, textile lining",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:19.807962+00:00"
     },
     {
       "product_id": "23",
@@ -96,7 +163,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:19.807962+00:00"
     },
     {
       "product_id": "23",
@@ -107,7 +182,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:19.807962+00:00"
     },
     {
       "product_id": "23",
@@ -118,18 +201,41 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: Narrower than the Trailhead boots",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:19.807962+00:00"
     },
     {
       "product_id": "23",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "6, 7, 8, 9, 10, 11",
+      "new_value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 6, 7, 8, 9, 10, 11",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:19.807962+00:00"
     },
     {
       "product_id": "23",
@@ -140,7 +246,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: City Chelsea Rain Boots; Colour: Black; Category: Boots",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:19.807962+00:00"
     },
     {
       "product_id": "31",
@@ -151,7 +265,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Leather straps, cork footbed",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:23.360888+00:00"
     },
     {
       "product_id": "31",
@@ -162,7 +284,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:23.360888+00:00"
     },
     {
       "product_id": "31",
@@ -173,18 +303,42 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size. Break in over 2\u20133 wears",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:23.360888+00:00"
     },
     {
       "product_id": "31",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "6, 7, 8, 9, 10, 11, 12",
+      "new_value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 6, 7, 8, 9, 10, 11, 12",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:23.360888+00:00"
     },
     {
       "product_id": "31",
@@ -195,7 +349,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Boardwalk Leather Sandals; Colour: Tan; Category: Sandals",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:23.360888+00:00"
     },
     {
       "product_id": "40",
@@ -206,7 +368,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Synthetic straps, EVA sole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:27.336011+00:00"
     },
     {
       "product_id": "40",
@@ -217,7 +387,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:27.336011+00:00"
     },
     {
       "product_id": "40",
@@ -228,18 +406,41 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: Runs slightly large \u2014 consider half a size down",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:27.336011+00:00"
     },
     {
       "product_id": "40",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "7, 8, 9, 10, 11, 12",
+      "new_value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 7, 8, 9, 10, 11, 12",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:27.336011+00:00"
     },
     {
       "product_id": "40",
@@ -250,7 +451,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Cloudstep Sport Sandals; Colour: Teal; Category: Sandals",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:27.336011+00:00"
     },
     {
       "product_id": "48",
@@ -261,7 +470,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Leather upper, rubber cupsole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:31.114645+00:00"
     },
     {
       "product_id": "48",
@@ -272,7 +489,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:31.114645+00:00"
     },
     {
       "product_id": "48",
@@ -283,18 +508,43 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:31.114645+00:00"
     },
     {
       "product_id": "48",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "6, 7, 8, 9, 9.5, 10, 11, 12",
+      "new_value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 6, 7, 8, 9, 9.5, 10, 11, 12",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:31.114645+00:00"
     },
     {
       "product_id": "48",
@@ -305,7 +555,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Court Classic White Sneakers; Colour: White; Category: Sneakers",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:31.114645+00:00"
     },
     {
       "product_id": "58",
@@ -316,7 +574,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Canvas upper, rubber sole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:34.502169+00:00"
     },
     {
       "product_id": "58",
@@ -327,7 +593,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:34.502169+00:00"
     },
     {
       "product_id": "58",
@@ -338,18 +612,42 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size. High-top fit \u2014 ankle support, less flex",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:34.502169+00:00"
     },
     {
       "product_id": "58",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "7, 8, 9, 10, 11, 12, 13",
+      "new_value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 7, 8, 9, 10, 11, 12, 13",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:34.502169+00:00"
     },
     {
       "product_id": "58",
@@ -360,7 +658,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Retro High-Top Sneakers; Colour: Cherry Red; Category: Sneakers",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:34.502169+00:00"
     },
     {
       "product_id": "67",
@@ -371,7 +677,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Wool felt upper, suede sole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:38.228517+00:00"
     },
     {
       "product_id": "67",
@@ -382,7 +696,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:38.228517+00:00"
     },
     {
       "product_id": "67",
@@ -393,18 +715,42 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size. Wool will mould slightly with wear",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:38.228517+00:00"
     },
     {
       "product_id": "67",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "6, 7, 8, 9, 10, 11, 12",
+      "new_value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 6, 7, 8, 9, 10, 11, 12",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:38.228517+00:00"
     },
     {
       "product_id": "67",
@@ -415,7 +761,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Fireside Wool Slippers; Colour: Charcoal Grey; Category: Slippers",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:38.228517+00:00"
     },
     {
       "product_id": "76",
@@ -426,7 +780,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Plush synthetic upper, rubber sole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:41.769391+00:00"
     },
     {
       "product_id": "76",
@@ -437,7 +799,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:41.769391+00:00"
     },
     {
       "product_id": "76",
@@ -448,18 +818,40 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: Runs slightly small \u2014 consider half a size up",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:41.769391+00:00"
     },
     {
       "product_id": "76",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "7, 8, 9, 10, 11",
+      "new_value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 7, 8, 9, 10, 11",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:41.769391+00:00"
     },
     {
       "product_id": "76",
@@ -470,7 +862,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Cloud Plush House Slippers; Colour: Navy; Category: Slippers",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:41.769391+00:00"
     },
     {
       "product_id": "83",
@@ -481,7 +881,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Engineered mesh, EVA midsole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=velocity-road-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=velocity-road-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:45.301230+00:00"
     },
     {
       "product_id": "83",
@@ -492,7 +900,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=velocity-road-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=velocity-road-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:45.301230+00:00"
     },
     {
       "product_id": "83",
@@ -503,18 +919,42 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size. Best for road running and daily training",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=velocity-road-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=velocity-road-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:45.301230+00:00"
     },
     {
       "product_id": "83",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "7, 8, 9, 9.5, 10, 11, 12",
+      "new_value": [
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 7, 8, 9, 9.5, 10, 11, 12",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=velocity-road-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=velocity-road-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:45.301230+00:00"
     },
     {
       "product_id": "83",
@@ -525,7 +965,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Velocity Road Runners; Colour: Electric Blue; Category: Runners",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=velocity-road-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=velocity-road-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:45.301230+00:00"
     },
     {
       "product_id": "92",
@@ -536,7 +984,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Ripstop mesh, aggressive tread",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:48.388449+00:00"
     },
     {
       "product_id": "92",
@@ -547,7 +1003,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:48.388449+00:00"
     },
     {
       "product_id": "92",
@@ -558,18 +1022,41 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size. Half a size up if you wear thick trail socks",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:48.388449+00:00"
     },
     {
       "product_id": "92",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "8, 9, 10, 11, 12, 13",
+      "new_value": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 8, 9, 10, 11, 12, 13",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:48.388449+00:00"
     },
     {
       "product_id": "92",
@@ -580,7 +1067,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Trailblazer Trail Runners; Colour: Burnt Orange; Category: Runners",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:48.388449+00:00"
     },
     {
       "product_id": "100",
@@ -591,7 +1086,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Knit upper, foam midsole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:51.701642+00:00"
     },
     {
       "product_id": "100",
@@ -602,7 +1105,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:51.701642+00:00"
     },
     {
       "product_id": "100",
@@ -613,18 +1124,42 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size. Knit upper stretches slightly",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:51.701642+00:00"
     },
     {
       "product_id": "100",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "6, 7, 8, 9, 9.5, 10, 11",
+      "new_value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 6, 7, 8, 9, 9.5, 10, 11",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:51.701642+00:00"
     },
     {
       "product_id": "100",
@@ -635,7 +1170,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Marathon Knit Runners; Colour: Black / White; Category: Runners",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:51.701642+00:00"
     },
     {
       "product_id": "110",
@@ -646,7 +1189,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Material: Mesh upper, cushioned sole",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:55.950291+00:00"
     },
     {
       "product_id": "110",
@@ -657,7 +1208,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Returns: 30-day returns, unworn",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:55.950291+00:00"
     },
     {
       "product_id": "110",
@@ -668,18 +1227,41 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Fit: True to size. Roomy toe box",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:55.950291+00:00"
     },
     {
       "product_id": "110",
       "field": "_ovo_sizes_available",
       "old_value": "none \u2014 new OVO field",
-      "new_value": "7, 8, 9, 10, 11, 12",
+      "new_value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
       "source_label": "merchant-provided",
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Acts alone - merchant rejects by exception",
       "presented_to_merchant": "YES - reject by exception list",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Size: 7, 8, 9, 10, 11, 12",
+      "source_field": "attributes.Size + variations",
+      "source_url": "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:55.950291+00:00"
     },
     {
       "product_id": "110",
@@ -690,7 +1272,15 @@
       "prd_accuracy_band": "80-94%",
       "prd_human_check": "Tacit suggestion - merchant approves by exception",
       "presented_to_merchant": "YES - approve by exception list",
-      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, not a word-for-word copy, so band is capped below 95%."
+      "accuracy_basis": "Text parts match Store API, product page and Oct 29 ground truth; photo type and dominant colour match in live vision check, but colour shade is a visual judgement, so band is capped below 95%.",
+      "evidence": "Name: Everyday Comfort Runners; Colour: Sage Green; Category: Runners",
+      "source_field": "name + attributes.Colour + categories",
+      "source_url": "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:55.950291+00:00"
     }
   ],
   "preservation": [
@@ -703,7 +1293,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Rugged waterproof hiking boots with grippy lugged soles, ankle support and a cushioned insole for long trails. Material: Full-grain leather, waterproof membrane Fit: True to size. Wide fit available in-store only \u2014 not in this demo catalog. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailhead-waterproof-hiking-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:16.737623+00:00"
     },
     {
       "product_id": "23",
@@ -714,7 +1312,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Sleek pull-on Chelsea boots that shrug off rain and puddles, with elastic side panels and a low stacked heel. Material: Rubber upper, textile lining Fit: True to size. Narrower than the Trailhead boots. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=city-chelsea-rain-boots",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:19.807962+00:00"
     },
     {
       "product_id": "31",
@@ -725,7 +1331,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Classic two-strap leather sandals with a moulded cork footbed that shapes to your foot. Material: Leather straps, cork footbed Fit: True to size. Break in over 2\u20133 wears. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=boardwalk-leather-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:23.360888+00:00"
     },
     {
       "product_id": "40",
@@ -736,7 +1350,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Lightweight sport sandals with adjustable straps and a soft EVA sole \u2014 built for river walks and hot days. Material: Synthetic straps, EVA sole Fit: Runs slightly large \u2014 consider half a size down. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloudstep-sport-sandals",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:27.336011+00:00"
     },
     {
       "product_id": "48",
@@ -747,7 +1369,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "A clean, minimal white court sneaker that goes with everything. Leather upper, padded collar, rubber cupsole. Material: Leather upper, rubber cupsole Fit: True to size. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=court-classic-white-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:31.114645+00:00"
     },
     {
       "product_id": "58",
@@ -758,7 +1388,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Bold cherry-red high-tops with a retro basketball silhouette, canvas upper and ankle padding. Material: Canvas upper, rubber sole Fit: True to size. High-top fit \u2014 ankle support, less flex. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=retro-high-top-sneakers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:34.502169+00:00"
     },
     {
       "product_id": "67",
@@ -769,7 +1407,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Warm wool-felt house slippers with a suede sole \u2014 warm enough for winter mornings, quiet on hard floors. Material: Wool felt upper, suede sole Fit: True to size. Wool will mould slightly with wear. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=fireside-wool-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:38.228517+00:00"
     },
     {
       "product_id": "76",
@@ -780,7 +1426,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Ridiculously soft navy plush slippers with memory-foam insoles and a non-slip rubber sole for indoor/outdoor steps. Material: Plush synthetic upper, rubber sole Fit: Runs slightly small \u2014 consider half a size up. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=cloud-plush-house-slippers",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:41.769391+00:00"
     },
     {
       "product_id": "83",
@@ -791,7 +1445,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Lightweight road runners in electric blue, with breathable engineered mesh and responsive EVA cushioning. The hero demo product: size 9.5 in blue. Material: Engineered mesh, EVA midsole Fit: True to size. Best for road running and daily training. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=velocity-road-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=velocity-road-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:45.301230+00:00"
     },
     {
       "product_id": "92",
@@ -802,7 +1464,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Trail runners with an aggressive tread, rock plate and ripstop mesh \u2014 built for mud, roots and loose gravel. Material: Ripstop mesh, aggressive tread Fit: True to size. Half a size up if you wear thick trail socks. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=trailblazer-trail-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:48.388449+00:00"
     },
     {
       "product_id": "100",
@@ -813,7 +1483,15 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Sock-like knit runners in black and white, with a soft foam midsole for long, easy miles. Material: Knit upper, foam midsole Fit: True to size. Knit upper stretches slightly. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=marathon-knit-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:51.701642+00:00"
     },
     {
       "product_id": "110",
@@ -824,77 +1502,119 @@
       "prd_accuracy_band": "95% or greater",
       "prd_human_check": "Not a proposal - stored automatically with an approved batch",
       "presented_to_merchant": "NO - preservation only, not a proposal",
-      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth"
+      "accuracy_basis": "Word-for-word agreement across 3 store sources: Store API, rendered product page, and Oct 29 ground truth",
+      "evidence": "Easy, cushioned sage-green runners for walking, errands and all-day wear \u2014 not a race shoe, a comfort shoe. Material: Mesh upper, cushioned sole Fit: True to size. Roomy toe box. Returns: 30-day returns, unworn.",
+      "source_field": "description",
+      "source_url": "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+      "source_urls": [
+        "https://wsiventures.com/solemates/?product=everyday-comfort-runners",
+        "https://wsiventures.com/solemates/?rest_route=/wc/store/v1/products&per_page=100"
+      ],
+      "fetched_at_utc": "2026-10-31T02:03:55.950291+00:00"
     }
   ],
-  "held_fields_audit_only": [
+  "unproposed_fields_audit_only": [
     {
       "field": "width",
-      "reason": "No width value in any store source; relative comparisons are not measurements."
+      "reason": "No width value in any store source; relative comparisons are not measurements.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "weight",
-      "reason": "Weight is empty in the Store API for all products."
+      "reason": "Weight is empty in the Store API for all products.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "dimensions",
-      "reason": "Length, width, and height are empty in the Store API for all products."
+      "reason": "Length, width, and height are empty in the Store API for all products.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "stock_quantity_per_size",
-      "reason": "Stock is a boolean in-stock flag only; no per-size quantity exists."
+      "reason": "Stock is a boolean in-stock flag only; no per-size quantity exists.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
     },
     {
       "field": "gtin",
-      "reason": "No GTIN exists in any store source."
+      "reason": "No GTIN exists in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "brand",
-      "reason": "Brands are empty in the Store API for all products."
+      "reason": "Brands are empty in the Store API for all products.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "care_instructions",
-      "reason": "No care instructions in any store source."
+      "reason": "No care instructions in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "closure_type",
-      "reason": "No closure type field in any store source."
+      "reason": "No closure type field in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "size_guide",
-      "reason": "No size guide in any store source."
+      "reason": "No size guide in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "shipping_cost",
-      "reason": "No shipping cost in any store source."
+      "reason": "No shipping cost in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "delivery_time",
-      "reason": "No delivery time in any store source."
+      "reason": "No delivery time in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "tax_class",
-      "reason": "Tax class must not be modelled."
+      "reason": "Tax class must not be modelled.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
     },
     {
       "field": "shipping_class",
-      "reason": "Shipping class must not be modelled."
+      "reason": "Shipping class must not be modelled.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
     },
     {
       "field": "size_system",
-      "reason": "No size system (men's/women's/US/UK) is stated in any store source."
+      "reason": "No size system (men's/women's/US/UK) is stated in any store source.",
+      "reason_code": "no_source",
+      "next_action": "merchant_input_needed"
     },
     {
       "field": "store_wide_legal_policy",
-      "reason": "Returns are copied per product only; no store-wide legal policy is claimed."
+      "reason": "Returns are copied per product only; no store-wide legal policy is claimed.",
+      "reason_code": "blocked_policy",
+      "next_action": "never_propose"
     },
     {
       "field": "safety_or_compatibility_claim",
-      "reason": "Safety and compatibility claims must not be modelled."
+      "reason": "Safety and compatibility claims must not be modelled.",
+      "reason_code": "blocked_policy",
+      "next_action": "never_propose"
     },
     {
       "field": "price_or_discount_change",
-      "reason": "Price is $1.00 CAD in the store and is never enriched."
+      "reason": "Price is $1.00 CAD in the store and is never enriched.",
+      "reason_code": "blocked_critical",
+      "next_action": "never_propose"
     }
   ],
   "vision_results": {
@@ -902,32 +1622,36 @@
       "shoe_type": "hiking boot",
       "dominant_colour": "brown",
       "material_appearance": "leather",
-      "confidence_percent": 92,
-      "raw": "{\"shoe_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 92}",
+      "confidence_percent": 95,
+      "raw": "{\"shoe_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "23": {
       "shoe_type": "chelsea boot",
       "dominant_colour": "black",
       "material_appearance": "rubber",
-      "confidence_percent": 92,
-      "raw": "{\"shoe_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 92}",
+      "confidence_percent": 90,
+      "raw": "{\"shoe_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 90}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "31": {
-      "shoe_type": "two-strap slide sandal",
+      "shoe_type": "sandal",
       "dominant_colour": "tan",
       "material_appearance": "leather",
       "confidence_percent": 85,
-      "raw": "{\"shoe_type\": \"two-strap slide sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
+      "raw": "{\"shoe_type\": \"sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "40": {
       "shoe_type": "sandal",
       "dominant_colour": "teal",
-      "material_appearance": "fabric",
+      "material_appearance": "synthetic fabric",
       "confidence_percent": 85,
-      "raw": "{\"shoe_type\": \"sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"fabric\", \"confidence_percent\": 85}",
+      "raw": "{\"shoe_type\": \"sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"synthetic fabric\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "48": {
@@ -936,22 +1660,25 @@
       "material_appearance": "leather",
       "confidence_percent": 90,
       "raw": "{\"shoe_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 90}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "58": {
       "shoe_type": "high-top sneaker",
       "dominant_colour": "red",
       "material_appearance": "canvas",
-      "confidence_percent": 92,
-      "raw": "{\"shoe_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 92}",
+      "confidence_percent": 95,
+      "raw": "{\"shoe_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "67": {
       "shoe_type": "slipper",
       "dominant_colour": "dark grey",
       "material_appearance": "wool felt",
-      "confidence_percent": 85,
-      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"dark grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 85}",
+      "confidence_percent": 88,
+      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"dark grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 88}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "76": {
@@ -960,39 +1687,54 @@
       "material_appearance": "faux fur",
       "confidence_percent": 95,
       "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"navy blue\", \"material_appearance\": \"faux fur\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "83": {
       "shoe_type": "running sneaker",
       "dominant_colour": "blue",
-      "material_appearance": "engineered mesh",
+      "material_appearance": "engineered mesh knit",
       "confidence_percent": 92,
-      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh\", \"confidence_percent\": 92}",
+      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh knit\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "92": {
       "shoe_type": "trail running shoe",
       "dominant_colour": "burnt orange",
-      "material_appearance": "engineered mesh with synthetic overlays",
-      "confidence_percent": 88,
-      "raw": "{\"shoe_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"engineered mesh with synthetic overlays\", \"confidence_percent\": 88}",
+      "material_appearance": "synthetic mesh with synthetic overlays",
+      "confidence_percent": 85,
+      "raw": "{\"shoe_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"synthetic mesh with synthetic overlays\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "100": {
       "shoe_type": "slip-on sneaker",
       "dominant_colour": "black",
       "material_appearance": "knit textile",
-      "confidence_percent": 95,
-      "raw": "{\"shoe_type\": \"slip-on sneaker\", \"dominant_colour\": \"black\", \"material_appearance\": \"knit textile\", \"confidence_percent\": 95}",
+      "confidence_percent": 94,
+      "raw": "{\"shoe_type\": \"slip-on sneaker\", \"dominant_colour\": \"black\", \"material_appearance\": \"knit textile\", \"confidence_percent\": 94}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     },
     "110": {
       "shoe_type": "running sneaker",
       "dominant_colour": "sage green",
-      "material_appearance": "engineered mesh knit",
-      "confidence_percent": 92,
-      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"engineered mesh knit\", \"confidence_percent\": 92}",
+      "material_appearance": "engineered mesh",
+      "confidence_percent": 95,
+      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"engineered mesh\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3",
       "material_appearance_vs_text": "vision material appearance logged only; text material stands"
     }
-  }
+  },
+  "refresh": {
+    "unchanged_count": 62,
+    "new_count": 0,
+    "changed_count": 0,
+    "stale_count": 0,
+    "new_rows": [],
+    "changed_rows": [],
+    "stale_rows": []
+  },
+  "variations_checked": 79
 }

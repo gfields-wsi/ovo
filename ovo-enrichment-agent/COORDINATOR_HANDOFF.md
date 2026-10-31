@@ -7,6 +7,15 @@ integration as done.
 
 ## What was built, 2026-10-30
 
+Widened task definition, v3: the 8 remaining work items are built
+into the live agent — per-row evidence, variant choices for any
+product, unproposed reasons with codes and next actions, an
+untrusted-text guard, refresh comparison, a merchant batch file,
+typed list values, and a visual-only path with recorded confidence.
+Test file: `test_live_agent.py` in the same folder. It checks every
+Pass criterion in the 8-item list and must report 100 percent pass
+before any push.
+
 Widened task definition:
 `~/workspace/ovo-hackathon/ovo-enrichment/live-agent/AGENT.md`
 
@@ -20,7 +29,7 @@ live store and never publishes.
 ## Live run result, verified 2026-10-30
 
 - 12 products, 62 enrichment rows, 12 preservation rows,
-  17 held fields, 91 CSV rows in total.
+  17 unproposed fields, 91 CSV rows in total.
 - Bands: 50 enrichment rows at 95 percent or greater, 12 rows
   at 80-94 percent, 0 rows at 50-79 percent.
 - Vision: all 12 photos checked live with Muse Spark 1.3.
