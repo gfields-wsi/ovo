@@ -5,7 +5,20 @@ to the organizer by this stream. Integration is for the organizer
 to confirm. Nothing here claims a publish, an approval, or
 integration as done.
 
-## What was built, 2026-10-30
+## What was built, 2026-10-30 — v4, any WooCommerce store
+
+v4, added 2026-10-30: the 14 any-store requirements are built
+into the live agent. Run it with a store URL:
+`python3 agent.py --store-url https://example.com/shop`.
+The merchant is derived from that URL, the Store API is found
+with both endpoint forms, the full catalog is fetched with
+paging, fields are discovered from that store itself, photo
+checks are product-type agnostic, bands use that store's
+sources only, refresh and tenant records are per merchant,
+and failures are fail-closed with no previous diff overwritten.
+Test file: `test_any_store.py` in the same folder. It runs the
+agent against local mock stores and must report 100 percent
+pass before any push. Latest result: 37 of 37 checks passed.
 
 Widened task definition, v3: the 8 remaining work items are built
 into the live agent — per-row evidence, variant choices for any

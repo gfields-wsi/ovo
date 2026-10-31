@@ -1,10 +1,22 @@
-# OvO Enrichment Agent — live, widened task, v3 (Stream 2, 2026-10-30)
+# OvO Enrichment Agent — live, any WordPress/WooCommerce store, v4 (Stream 2, 2026-10-30)
 
-Step 1 of Greg's two steps, 2026-10-30, updated to complete the
-8 remaining work items. This is the widened task definition the
-Coordinator can task. It does not claim integration. The organizer
-locks the diff format. Publishing belongs to the Plug stream.
-Approval belongs to the Merchant Approval Agent.
+Run with a store URL: `python3 agent.py --store-url https://example.com/shop`.
+Without a URL it defaults to Sole Mates, for backward compatibility.
+v4 completes the 14 any-store requirements: URL-derived merchant,
+API discovery with both endpoint forms, full paging, any product
+structure, fields discovered from the store itself, attribute names
+by variation flag, product-type agnostic photos, bands from that
+store's sources only, per-product unproposed reasons, verbatim
+policies only, per-merchant refresh, per-merchant tenant records,
+fail-closed errors, and US English scope with no translation.
+It does not claim integration. Publishing belongs to the Plug
+stream. Approval belongs to the Merchant Approval Agent.
+
+Per-merchant ground truth: a ground-truth file is used only if it
+lives in that merchant's own folder, `merchant/<slug>/ground-truth.md`.
+Sole Mates has one, copied from its own Oct 29 snapshot. No other
+store gets Sole Mates data, and a store with no such file has its
+text rows capped below 95 percent.
 
 ## Job
 

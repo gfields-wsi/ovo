@@ -1,131 +1,135 @@
 {
-  "agent": "OvO Enrichment Agent (live, widened task, v3)",
-  "generated_at_utc": "2026-10-31T02:03:16.088639+00:00",
-  "batch_id": "sole-mates-20261031-020316UTC",
-  "merchant": "sole-mates",
+  "agent": "OvO Enrichment Agent (live, any WooCommerce store, v4)",
+  "generated_at_utc": "2026-10-31T02:51:32.812577+00:00",
+  "batch_id": "solemates-20261031-025132UTC",
+  "merchant": "solemates",
+  "store_url": "https://wsiventures.com/solemates",
   "status": "proposed_only",
   "published": false,
   "sources": [
-    "live Store API",
+    "live Store API for the given store",
     "rendered product pages",
-    "Oct 29 ground truth (if present)",
+    "per-merchant ground truth (if present)",
     "live Spark vision"
   ],
   "page_fetch_failures": [],
   "vision_failures": [],
   "untrusted_flags": [],
+  "language_out_of_scope": [],
   "vision_results": {
     "14": {
+      "product_type": "hiking boot",
       "shoe_type": "hiking boot",
       "dominant_colour": "brown",
       "material_appearance": "leather",
       "confidence_percent": 95,
-      "raw": "{\"shoe_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "raw": "{\"product_type\": \"hiking boot\", \"dominant_colour\": \"brown\", \"material_appearance\": \"leather\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3"
     },
     "23": {
+      "product_type": "chelsea boot",
       "shoe_type": "chelsea boot",
       "dominant_colour": "black",
       "material_appearance": "rubber",
-      "confidence_percent": 90,
-      "raw": "{\"shoe_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 90}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"chelsea boot\", \"dominant_colour\": \"black\", \"material_appearance\": \"rubber\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3"
     },
     "31": {
+      "product_type": "sandal",
       "shoe_type": "sandal",
       "dominant_colour": "tan",
       "material_appearance": "leather",
       "confidence_percent": 85,
-      "raw": "{\"shoe_type\": \"sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "raw": "{\"product_type\": \"sandal\", \"dominant_colour\": \"tan\", \"material_appearance\": \"leather\", \"confidence_percent\": 85}",
+      "model": "muse-spark-1.3"
     },
     "40": {
-      "shoe_type": "sandal",
+      "product_type": "sport sandal",
+      "shoe_type": "sport sandal",
       "dominant_colour": "teal",
-      "material_appearance": "synthetic fabric",
-      "confidence_percent": 85,
-      "raw": "{\"shoe_type\": \"sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"synthetic fabric\", \"confidence_percent\": 85}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "material_appearance": "woven synthetic fabric",
+      "confidence_percent": 88,
+      "raw": "{\"product_type\": \"sport sandal\", \"dominant_colour\": \"teal\", \"material_appearance\": \"woven synthetic fabric\", \"confidence_percent\": 88}",
+      "model": "muse-spark-1.3"
     },
     "48": {
+      "product_type": "sneaker",
       "shoe_type": "sneaker",
       "dominant_colour": "white",
       "material_appearance": "leather",
-      "confidence_percent": 90,
-      "raw": "{\"shoe_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 90}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"sneaker\", \"dominant_colour\": \"white\", \"material_appearance\": \"leather\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3"
     },
     "58": {
+      "product_type": "high-top sneaker",
       "shoe_type": "high-top sneaker",
       "dominant_colour": "red",
       "material_appearance": "canvas",
       "confidence_percent": 95,
-      "raw": "{\"shoe_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "raw": "{\"product_type\": \"high-top sneaker\", \"dominant_colour\": \"red\", \"material_appearance\": \"canvas\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3"
     },
     "67": {
+      "product_type": "slipper",
       "shoe_type": "slipper",
-      "dominant_colour": "dark grey",
+      "dominant_colour": "charcoal grey",
       "material_appearance": "wool felt",
-      "confidence_percent": 88,
-      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"dark grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 88}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "confidence_percent": 92,
+      "raw": "{\"product_type\": \"slipper\", \"dominant_colour\": \"charcoal grey\", \"material_appearance\": \"wool felt\", \"confidence_percent\": 92}",
+      "model": "muse-spark-1.3"
     },
     "76": {
+      "product_type": "slipper",
       "shoe_type": "slipper",
       "dominant_colour": "navy blue",
       "material_appearance": "faux fur",
       "confidence_percent": 95,
-      "raw": "{\"shoe_type\": \"slipper\", \"dominant_colour\": \"navy blue\", \"material_appearance\": \"faux fur\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "raw": "{\"product_type\": \"slipper\", \"dominant_colour\": \"navy blue\", \"material_appearance\": \"faux fur\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3"
     },
     "83": {
-      "shoe_type": "running sneaker",
+      "product_type": "running shoe",
+      "shoe_type": "running shoe",
       "dominant_colour": "blue",
-      "material_appearance": "engineered mesh knit",
-      "confidence_percent": 92,
-      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh knit\", \"confidence_percent\": 92}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
-    },
-    "92": {
-      "shoe_type": "trail running shoe",
-      "dominant_colour": "burnt orange",
-      "material_appearance": "synthetic mesh with synthetic overlays",
-      "confidence_percent": 85,
-      "raw": "{\"shoe_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"synthetic mesh with synthetic overlays\", \"confidence_percent\": 85}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
-    },
-    "100": {
-      "shoe_type": "slip-on sneaker",
-      "dominant_colour": "black",
-      "material_appearance": "knit textile",
-      "confidence_percent": 94,
-      "raw": "{\"shoe_type\": \"slip-on sneaker\", \"dominant_colour\": \"black\", \"material_appearance\": \"knit textile\", \"confidence_percent\": 94}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
-    },
-    "110": {
-      "shoe_type": "running sneaker",
-      "dominant_colour": "sage green",
       "material_appearance": "engineered mesh",
       "confidence_percent": 95,
-      "raw": "{\"shoe_type\": \"running sneaker\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"engineered mesh\", \"confidence_percent\": 95}",
-      "model": "muse-spark-1.3",
-      "material_appearance_vs_text": "vision material appearance logged only; text material stands"
+      "raw": "{\"product_type\": \"running shoe\", \"dominant_colour\": \"blue\", \"material_appearance\": \"engineered mesh\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3"
+    },
+    "92": {
+      "product_type": "trail running shoe",
+      "shoe_type": "trail running shoe",
+      "dominant_colour": "burnt orange",
+      "material_appearance": "synthetic mesh textile",
+      "confidence_percent": 90,
+      "raw": "{\"product_type\": \"trail running shoe\", \"dominant_colour\": \"burnt orange\", \"material_appearance\": \"synthetic mesh textile\", \"confidence_percent\": 90}",
+      "model": "muse-spark-1.3"
+    },
+    "100": {
+      "product_type": "slip-on sneaker",
+      "shoe_type": "slip-on sneaker",
+      "dominant_colour": "black and white",
+      "material_appearance": "knit fabric",
+      "confidence_percent": 95,
+      "raw": "{\"product_type\": \"slip-on sneaker\", \"dominant_colour\": \"black and white\", \"material_appearance\": \"knit fabric\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3"
+    },
+    "110": {
+      "product_type": "running sneaker",
+      "shoe_type": "running sneaker",
+      "dominant_colour": "sage green",
+      "material_appearance": "breathable engineered mesh knit",
+      "confidence_percent": 95,
+      "raw": "{\"product_type\": \"running sneaker\", \"dominant_colour\": \"sage green\", \"material_appearance\": \"breathable engineered mesh knit\", \"confidence_percent\": 95}",
+      "model": "muse-spark-1.3"
     }
   },
   "notes": [],
-  "previous_batch": "sole-mates-20261031-020228UTC",
+  "endpoint_form": "rest_route",
+  "ground_truth_file": "/home/hatch/workspace/ovo-hackathon/ovo-enrichment/live-agent/merchant/solemates/ground-truth.md",
+  "previous_batch": "solemates-20261031-024918UTC",
   "refresh": {
     "unchanged_count": 62,
     "new_count": 0,
@@ -135,7 +139,7 @@
     "changed_rows": [],
     "stale_rows": []
   },
-  "merchant_file": "merchant/sole-mates/sole-mates-20261031-020316UTC.json",
+  "merchant_file": "merchant/solemates/solemates-20261031-025132UTC.json",
   "counts": {
     "products": 12,
     "enrichment_rows": 62,
@@ -144,6 +148,7 @@
     "total_csv_rows": 91,
     "visual_only_count": 0,
     "untrusted_flags": 0,
+    "language_out_of_scope": 0,
     "variations_checked": 79,
     "by_band": {
       "95% or greater": 50,
