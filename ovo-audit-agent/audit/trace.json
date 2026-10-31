@@ -1,0 +1,2687 @@
+{
+  "format": "ovo-audit-trace",
+  "version": "1.0",
+  "generated_at_utc": "2026-10-31T01:37:44.578204+00:00",
+  "store_url": "https://wsiventures.com/solemates",
+  "trace_count": 240,
+  "traces": [
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "name",
+      "passed": true,
+      "value": "Trailhead Waterproof Hiking Boots",
+      "evidence": "Trailhead Waterproof Hiking Boots",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-BOOT-001",
+      "evidence": "SM-BOOT-001",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "evidence": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Chestnut Brown"
+      ],
+      "evidence": [
+        "Chestnut Brown"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Boots"
+      ],
+      "evidence": [
+        "Boots"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "short_description",
+      "passed": true,
+      "value": "Waterproof leather hiking boots for rough trails.",
+      "evidence": "Waterproof leather hiking boots for rough trails.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "long_description",
+      "passed": true,
+      "value": "Rugged waterproof hiking boots with grippy lugged soles, ankle support and a cushioned insole for long trails. Material: Full-grain leather, waterproof membrane Fit: True to size. Wide fit available i",
+      "evidence": "Rugged waterproof hiking boots with grippy lugged soles, ankle support and a cushioned insole for long trails. Material: Full-grain leather, waterproof membrane Fit: True to size. Wide fit available i",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-boot-001.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-boot-001.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Full-grain leather, waterproof membrane",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Wide fit available in-store only \u2014 not in this demo catalog",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "name",
+      "passed": true,
+      "value": "City Chelsea Rain Boots",
+      "evidence": "City Chelsea Rain Boots",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-BOOT-002",
+      "evidence": "SM-BOOT-002",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "evidence": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Black"
+      ],
+      "evidence": [
+        "Black"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Boots"
+      ],
+      "evidence": [
+        "Boots"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "short_description",
+      "passed": true,
+      "value": "Pull-on black Chelsea boots, rain-ready.",
+      "evidence": "Pull-on black Chelsea boots, rain-ready.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "long_description",
+      "passed": true,
+      "value": "Sleek pull-on Chelsea boots that shrug off rain and puddles, with elastic side panels and a low stacked heel. Material: Rubber upper, textile lining Fit: True to size. Narrower than the Trailhead boot",
+      "evidence": "Sleek pull-on Chelsea boots that shrug off rain and puddles, with elastic side panels and a low stacked heel. Material: Rubber upper, textile lining Fit: True to size. Narrower than the Trailhead boot",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-boot-002.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-boot-002.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Rubber upper, textile lining",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Narrower than the Trailhead boots",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "name",
+      "passed": true,
+      "value": "Boardwalk Leather Sandals",
+      "evidence": "Boardwalk Leather Sandals",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-SAND-001",
+      "evidence": "SM-SAND-001",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "evidence": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Tan"
+      ],
+      "evidence": [
+        "Tan"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Sandals"
+      ],
+      "evidence": [
+        "Sandals"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "short_description",
+      "passed": true,
+      "value": "Classic tan leather sandals with a cork footbed.",
+      "evidence": "Classic tan leather sandals with a cork footbed.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "long_description",
+      "passed": true,
+      "value": "Classic two-strap leather sandals with a moulded cork footbed that shapes to your foot. Material: Leather straps, cork footbed Fit: True to size. Break in over 2\u20133 wears. Returns: 30-day returns, unwo",
+      "evidence": "Classic two-strap leather sandals with a moulded cork footbed that shapes to your foot. Material: Leather straps, cork footbed Fit: True to size. Break in over 2\u20133 wears. Returns: 30-day returns, unwo",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-sand-001.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-sand-001.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Leather straps, cork footbed",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Break in over 2\u20133 wears",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "name",
+      "passed": true,
+      "value": "Cloudstep Sport Sandals",
+      "evidence": "Cloudstep Sport Sandals",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-SAND-002",
+      "evidence": "SM-SAND-002",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "evidence": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Teal"
+      ],
+      "evidence": [
+        "Teal"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Sandals"
+      ],
+      "evidence": [
+        "Sandals"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "short_description",
+      "passed": true,
+      "value": "Lightweight teal sport sandals, adjustable straps.",
+      "evidence": "Lightweight teal sport sandals, adjustable straps.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "long_description",
+      "passed": true,
+      "value": "Lightweight sport sandals with adjustable straps and a soft EVA sole \u2014 built for river walks and hot days. Material: Synthetic straps, EVA sole Fit: Runs slightly large \u2014 consider half a size down. Re",
+      "evidence": "Lightweight sport sandals with adjustable straps and a soft EVA sole \u2014 built for river walks and hot days. Material: Synthetic straps, EVA sole Fit: Runs slightly large \u2014 consider half a size down. Re",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-sand-002.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-sand-002.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Synthetic straps, EVA sole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Runs slightly large \u2014 consider half a size down",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "name",
+      "passed": true,
+      "value": "Court Classic White Sneakers",
+      "evidence": "Court Classic White Sneakers",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-SNEA-001",
+      "evidence": "SM-SNEA-001",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
+      "evidence": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "White"
+      ],
+      "evidence": [
+        "White"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Sneakers"
+      ],
+      "evidence": [
+        "Sneakers"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "short_description",
+      "passed": true,
+      "value": "Minimal white leather court sneakers.",
+      "evidence": "Minimal white leather court sneakers.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "long_description",
+      "passed": true,
+      "value": "A clean, minimal white court sneaker that goes with everything. Leather upper, padded collar, rubber cupsole. Material: Leather upper, rubber cupsole Fit: True to size. Returns: 30-day returns, unworn",
+      "evidence": "A clean, minimal white court sneaker that goes with everything. Leather upper, padded collar, rubber cupsole. Material: Leather upper, rubber cupsole Fit: True to size. Returns: 30-day returns, unworn",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-snea-001.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-snea-001.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Leather upper, rubber cupsole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "name",
+      "passed": true,
+      "value": "Retro High-Top Sneakers",
+      "evidence": "Retro High-Top Sneakers",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-SNEA-002",
+      "evidence": "SM-SNEA-002",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "evidence": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Cherry Red"
+      ],
+      "evidence": [
+        "Cherry Red"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Sneakers"
+      ],
+      "evidence": [
+        "Sneakers"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "short_description",
+      "passed": true,
+      "value": "Cherry-red canvas high-top sneakers.",
+      "evidence": "Cherry-red canvas high-top sneakers.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "long_description",
+      "passed": true,
+      "value": "Bold cherry-red high-tops with a retro basketball silhouette, canvas upper and ankle padding. Material: Canvas upper, rubber sole Fit: True to size. High-top fit \u2014 ankle support, less flex. Returns: 3",
+      "evidence": "Bold cherry-red high-tops with a retro basketball silhouette, canvas upper and ankle padding. Material: Canvas upper, rubber sole Fit: True to size. High-top fit \u2014 ankle support, less flex. Returns: 3",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-snea-002.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-snea-002.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Canvas upper, rubber sole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. High-top fit \u2014 ankle support, less flex",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "name",
+      "passed": true,
+      "value": "Fireside Wool Slippers",
+      "evidence": "Fireside Wool Slippers",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-SLIP-001",
+      "evidence": "SM-SLIP-001",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "evidence": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Charcoal Grey"
+      ],
+      "evidence": [
+        "Charcoal Grey"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Slippers"
+      ],
+      "evidence": [
+        "Slippers"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "short_description",
+      "passed": true,
+      "value": "Warm charcoal wool slippers with a suede sole.",
+      "evidence": "Warm charcoal wool slippers with a suede sole.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "long_description",
+      "passed": true,
+      "value": "Warm wool-felt house slippers with a suede sole \u2014 warm enough for winter mornings, quiet on hard floors. Material: Wool felt upper, suede sole Fit: True to size. Wool will mould slightly with wear. Re",
+      "evidence": "Warm wool-felt house slippers with a suede sole \u2014 warm enough for winter mornings, quiet on hard floors. Material: Wool felt upper, suede sole Fit: True to size. Wool will mould slightly with wear. Re",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-slip-001.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-slip-001.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Wool felt upper, suede sole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Wool will mould slightly with wear",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "name",
+      "passed": true,
+      "value": "Cloud Plush House Slippers",
+      "evidence": "Cloud Plush House Slippers",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-SLIP-002",
+      "evidence": "SM-SLIP-002",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "evidence": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Navy"
+      ],
+      "evidence": [
+        "Navy"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Slippers"
+      ],
+      "evidence": [
+        "Slippers"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "short_description",
+      "passed": true,
+      "value": "Soft navy plush slippers, memory-foam insoles.",
+      "evidence": "Soft navy plush slippers, memory-foam insoles.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "long_description",
+      "passed": true,
+      "value": "Ridiculously soft navy plush slippers with memory-foam insoles and a non-slip rubber sole for indoor/outdoor steps. Material: Plush synthetic upper, rubber sole Fit: Runs slightly small \u2014 consider hal",
+      "evidence": "Ridiculously soft navy plush slippers with memory-foam insoles and a non-slip rubber sole for indoor/outdoor steps. Material: Plush synthetic upper, rubber sole Fit: Runs slightly small \u2014 consider hal",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-slip-002.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-slip-002.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Plush synthetic upper, rubber sole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Runs slightly small \u2014 consider half a size up",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "name",
+      "passed": true,
+      "value": "Velocity Road Runners",
+      "evidence": "Velocity Road Runners",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-RUN-001",
+      "evidence": "SM-RUN-001",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
+      "evidence": [
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11",
+        "12"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Electric Blue"
+      ],
+      "evidence": [
+        "Electric Blue"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Runners"
+      ],
+      "evidence": [
+        "Runners"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "short_description",
+      "passed": true,
+      "value": "Lightweight blue road runners, EVA cushioning.",
+      "evidence": "Lightweight blue road runners, EVA cushioning.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "long_description",
+      "passed": true,
+      "value": "Lightweight road runners in electric blue, with breathable engineered mesh and responsive EVA cushioning. The hero demo product: size 9.5 in blue. Material: Engineered mesh, EVA midsole Fit: True to s",
+      "evidence": "Lightweight road runners in electric blue, with breathable engineered mesh and responsive EVA cushioning. The hero demo product: size 9.5 in blue. Material: Engineered mesh, EVA midsole Fit: True to s",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-001.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-001.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Engineered mesh, EVA midsole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Best for road running and daily training",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "name",
+      "passed": true,
+      "value": "Trailblazer Trail Runners",
+      "evidence": "Trailblazer Trail Runners",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-RUN-002",
+      "evidence": "SM-RUN-002",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "evidence": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Burnt Orange"
+      ],
+      "evidence": [
+        "Burnt Orange"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Runners"
+      ],
+      "evidence": [
+        "Runners"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "short_description",
+      "passed": true,
+      "value": "Orange trail runners with aggressive tread.",
+      "evidence": "Orange trail runners with aggressive tread.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "long_description",
+      "passed": true,
+      "value": "Trail runners with an aggressive tread, rock plate and ripstop mesh \u2014 built for mud, roots and loose gravel. Material: Ripstop mesh, aggressive tread Fit: True to size. Half a size up if you wear thic",
+      "evidence": "Trail runners with an aggressive tread, rock plate and ripstop mesh \u2014 built for mud, roots and loose gravel. Material: Ripstop mesh, aggressive tread Fit: True to size. Half a size up if you wear thic",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-002.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-002.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Ripstop mesh, aggressive tread",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Half a size up if you wear thick trail socks",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "name",
+      "passed": true,
+      "value": "Marathon Knit Runners",
+      "evidence": "Marathon Knit Runners",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-RUN-003",
+      "evidence": "SM-RUN-003",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11"
+      ],
+      "evidence": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "9.5",
+        "10",
+        "11"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Black / White"
+      ],
+      "evidence": [
+        "Black / White"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Runners"
+      ],
+      "evidence": [
+        "Runners"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "short_description",
+      "passed": true,
+      "value": "Black-and-white knit runners, foam midsole.",
+      "evidence": "Black-and-white knit runners, foam midsole.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "long_description",
+      "passed": true,
+      "value": "Sock-like knit runners in black and white, with a soft foam midsole for long, easy miles. Material: Knit upper, foam midsole Fit: True to size. Knit upper stretches slightly. Returns: 30-day returns, ",
+      "evidence": "Sock-like knit runners in black and white, with a soft foam midsole for long, easy miles. Material: Knit upper, foam midsole Fit: True to size. Knit upper stretches slightly. Returns: 30-day returns, ",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-003-1.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-003-1.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Knit upper, foam midsole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Knit upper stretches slightly",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "name",
+      "passed": true,
+      "value": "Everyday Comfort Runners",
+      "evidence": "Everyday Comfort Runners",
+      "source_label": "store_api:product.name"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "sku",
+      "passed": true,
+      "value": "SM-RUN-004",
+      "evidence": "SM-RUN-004",
+      "source_label": "store_api:product.sku"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "price_currency",
+      "passed": true,
+      "value": "1.00 CAD",
+      "evidence": "1.00 CAD",
+      "source_label": "store_api:product.prices"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "stock_boolean",
+      "passed": true,
+      "value": true,
+      "evidence": true,
+      "source_label": "store_api:product.is_in_stock"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "size_variations",
+      "passed": true,
+      "value": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "evidence": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "source_label": "store_api:product.variations + store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "colour",
+      "passed": true,
+      "value": [
+        "Sage Green"
+      ],
+      "evidence": [
+        "Sage Green"
+      ],
+      "source_label": "store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "category",
+      "passed": true,
+      "value": [
+        "Runners"
+      ],
+      "evidence": [
+        "Runners"
+      ],
+      "source_label": "store_api:product.categories"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "short_description",
+      "passed": true,
+      "value": "Sage-green comfort runners for all-day wear.",
+      "evidence": "Sage-green comfort runners for all-day wear.",
+      "source_label": "store_api:product.short_description"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "long_description",
+      "passed": true,
+      "value": "Easy, cushioned sage-green runners for walking, errands and all-day wear \u2014 not a race shoe, a comfort shoe. Material: Mesh upper, cushioned sole Fit: True to size. Roomy toe box. Returns: 30-day retur",
+      "evidence": "Easy, cushioned sage-green runners for walking, errands and all-day wear \u2014 not a race shoe, a comfort shoe. Material: Mesh upper, cushioned sole Fit: True to size. Roomy toe box. Returns: 30-day retur",
+      "source_label": "store_api:product.description"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "image_present",
+      "passed": true,
+      "value": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-004-1.webp",
+      "evidence": "https://wsiventures.com/solemates/wp-content/uploads/2026/10/sm-run-004-1.webp",
+      "source_label": "store_api:product.images"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "material_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "Mesh upper, cushioned sole",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "fit_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "True to size. Roomy toe box",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "returns_structured",
+      "passed": false,
+      "value": null,
+      "evidence": "30-day returns, unworn",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "weight_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "dimensions_present",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "image_alt",
+      "passed": false,
+      "value": "",
+      "evidence": "",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "tags",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "brand",
+      "passed": false,
+      "value": [],
+      "evidence": [],
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "stock_quantity",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "gtin",
+      "passed": false,
+      "value": null,
+      "evidence": null,
+      "source_label": "store_api:product (full record)"
+    }
+  ]
+}

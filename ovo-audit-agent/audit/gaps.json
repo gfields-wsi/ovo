@@ -1,7 +1,7 @@
 {
   "format": "ovo-gap-list",
   "version": "1.0",
-  "generated_at_utc": "2026-10-30T15:40:54.701110+00:00",
+  "generated_at_utc": "2026-10-31T01:37:44.578204+00:00",
   "store_url": "https://wsiventures.com/solemates",
   "source": "live Store API ?rest_route=/wc/store/v1/products&per_page=100",
   "audit_stream": "OvO Agent - Audit (Stream 1)",

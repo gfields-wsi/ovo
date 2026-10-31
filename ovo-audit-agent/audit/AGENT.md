@@ -22,7 +22,11 @@ Default store, when no URL is given, is Sole Mates at https://wsiventures.com/so
 
 gaps.json, format ovo-gap-list v1.0. Each gap has product_id, field, current_value or missing, gap_type, evidence, and source_label. Store level gaps use product_id null. This format is for the organizer to lock. Stream 1 will not change it unilaterally after that lock.
 
-scorecard.md is the short human scorecard. agent_run.json is the audit log.
+scorecard.json, format ovo-audit-scorecard 1.0. This is the scorecard data fields and json payload, generated on every audit run from the same live data as gaps.json. See SCORECARD_DESIGN_CONTRACT.md for the field list. Visual card design is Greg's job to deliver, and no design is invented here.
+
+trace.json, format ovo-audit-trace 1.0. One trace per checked field, per product, passed or missing, with value, evidence, and source_label.
+
+scorecard.md is the short human scorecard. agent_run.json is the audit log, with scorecard and trace samples included.
 
 ## Scores
 

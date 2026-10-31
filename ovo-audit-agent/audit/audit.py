@@ -110,6 +110,7 @@ def main(store_url=DEFAULT_STORE_URL):
     store_gaps = []
     untrusted_flags = []
     per_product = []
+    traces = []
 
     def add(product, field, current, gap_type, evidence, source_label,
             fixable, requires_merchant):
@@ -240,6 +241,47 @@ def main(store_url=DEFAULT_STORE_URL):
                     "source_label": "store_api:product.description",
                 })
 
+        # Source trace: one entry per checked field, passed or missing.
+        # This is the R10 trace in miniature. A passed field shows its
+        # value and its source. A missing field shows null and the
+        # same evidence the gap list uses. No value is invented here.
+        field_values = {
+            "name": (p.get("name"), "store_api:product.name"),
+            "sku": (p.get("sku"), "store_api:product.sku"),
+            "price_currency": ((f"{int(prices.get('price')) / 100:.2f} {prices.get('currency_code')}" if prices.get("price") and str(prices.get("price")).isdigit() else (f"{prices.get('price')} {prices.get('currency_code')}" if prices.get("price") else None)), "store_api:product.prices"),
+            "stock_boolean": (p.get("is_in_stock"), "store_api:product.is_in_stock"),
+            "size_variations": (variation_sizes, "store_api:product.variations + store_api:product.attributes"),
+            "colour": (colour_terms, "store_api:product.attributes"),
+            "category": ([c.get("name") for c in (p.get("categories") or [])], "store_api:product.categories"),
+            "short_description": (short, "store_api:product.short_description"),
+            "long_description": (desc[:200], "store_api:product.description"),
+            "image_present": ((images[0].get("src") if images else None), "store_api:product.images"),
+            "material_structured": (None, "store_api:product.description + store_api:product.attributes"),
+            "fit_structured": (None, "store_api:product.description + store_api:product.attributes"),
+            "returns_structured": (None, "store_api:product.description + store_api:product.attributes"),
+            "weight_present": (p.get("weight") or None, "store_api:product.weight"),
+            "dimensions_present": ((dims if any(dims.values()) else None), "store_api:product.dimensions"),
+            "image_alt": (alt, "store_api:product.images[0].alt"),
+            "tags": (p.get("tags"), "store_api:product.tags"),
+            "brand": (p.get("brands"), "store_api:product.brands"),
+            "stock_quantity": (None, "store_api:product.is_in_stock + store_api:product.low_stock_remaining"),
+            "gtin": (None, "store_api:product (full record)"),
+        }
+        for field_name, (value, source_label) in field_values.items():
+            passed = field_name in checks and checks[field_name] if field_name in CORE_FIELDS else bool(value) if field_name not in ("image_alt",) else bool(value and value.strip())
+            if field_name in ("material_structured", "fit_structured", "returns_structured"):
+                passed = checks[field_name]
+                evidence = {"material_structured": material_prose, "fit_structured": fit_prose, "returns_structured": returns_prose}[field_name]
+            elif field_name == "long_description":
+                evidence = desc[:200]
+            else:
+                evidence = value
+            traces.append({
+                "product_id": p["id"], "product_name": p["name"], "sku": p.get("sku"),
+                "field": field_name, "passed": bool(passed),
+                "value": value, "evidence": evidence, "source_label": source_label,
+            })
+
         core_pass = sum(1 for f in CORE_FIELDS if checks[f])
         post_pass = core_pass + sum(1 for f in ["material_structured", "fit_structured", "returns_structured"] if not checks[f])
         per_product.append({
@@ -322,6 +364,68 @@ def main(store_url=DEFAULT_STORE_URL):
             "any numeric stock quantity, weight, dimension, tax, or shipping value",
         ],
     }
+    # Scorecard data fields and json payload. This file is the
+    # machine-readable scorecard. It is generated on every audit run,
+    # from the same live data as gaps.json, so the two files cannot
+    # drift apart. The visual card design is not in this file.
+    # Card design is Greg's job to deliver, and no design is invented
+    # here. Card design status is therefore pending_greg_design.
+    import collections
+    scorecard_per_product = []
+    for pp in per_product:
+        pid = pp["product_id"]
+        scorecard_per_product.append({
+            **pp,
+            "gap_count": sum(1 for g in all_gaps if g.get("product_id") == pid),
+            "field_gap_count": sum(1 for g in all_gaps if g.get("product_id") == pid and g["field"] in CORE_FIELDS + EXTRA_FIELDS),
+        })
+    scorecard = {
+        "format": "ovo-audit-scorecard",
+        "version": "1.0",
+        "generated_at_utc": out["generated_at_utc"],
+        "store_url": store_url,
+        "source": out["source"],
+        "product_count": n_products,
+        "core_pass": core_pass_total,
+        "core_total": core_total,
+        "core_score_pct": round(100 * core_pass_total / core_total, 1) if core_total else 0,
+        "core_score": out["scores"]["native_store_core_score"],
+        "full_pass": full_pass,
+        "full_total": full_total,
+        "full_score_pct": round(100 * full_pass / full_total, 1) if full_total else 0,
+        "full_score": out["scores"]["native_store_full_field_coverage"],
+        "post_ovo_core_pass_projected": post_total,
+        "post_ovo_core_score": out["scores"]["post_ovo_core_score_projected"],
+        "post_ovo_full_pass_projected": post_full_pass,
+        "post_ovo_full_score_projected": out["scores"]["post_ovo_full_field_coverage_projected"],
+        "gap_count_total": len(all_gaps),
+        "gap_count_per_product_fields": field_gap_count,
+        "gap_count_store_level": len(store_gaps),
+        "gap_counts_by_field": dict(collections.Counter(g["field"] for g in all_gaps)),
+        "gap_counts_by_type": dict(collections.Counter(g["gap_type"] for g in all_gaps)),
+        "untrusted_flags_count": len(untrusted_flags),
+        "agentic_commerce_ready_native": bool(core_pass_total == core_total and full_pass == full_total),
+        "agentic_commerce_ready_projected": bool(post_total == core_total and post_full_pass == full_total),
+        "per_product": scorecard_per_product,
+        "data_fields": ["store_url", "product_count", "core_pass", "core_total", "core_score_pct",
+                        "full_pass", "full_total", "full_score_pct", "post_ovo_core_pass_projected",
+                        "post_ovo_full_pass_projected", "gap_count_total", "gap_counts_by_field",
+                        "gap_counts_by_type", "untrusted_flags_count", "agentic_commerce_ready_native",
+                        "per_product"],
+        "card_design_status": "pending_greg_design",
+        "card_design_note": "Visual card design is Greg's job to deliver. No design is invented in this file. This json payload is the data the card design will use.",
+        "not_claimed": out["not_claimed"],
+    }
+    (HERE / "scorecard.json").write_text(json.dumps(scorecard, indent=2))
+    trace_out = {
+        "format": "ovo-audit-trace",
+        "version": "1.0",
+        "generated_at_utc": out["generated_at_utc"],
+        "store_url": store_url,
+        "trace_count": len(traces),
+        "traces": traces,
+    }
+    (HERE / "trace.json").write_text(json.dumps(trace_out, indent=2))
     (HERE / "gaps.json").write_text(json.dumps(out, indent=2))
     (HERE / "raw-products-latest.json").write_text(json.dumps(products, indent=2))
     print(f"Products: {n_products}")
