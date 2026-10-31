@@ -1,8 +1,9 @@
 {
   "format": "ovo-audit-scorecard",
   "version": "1.0",
-  "generated_at_utc": "2026-10-31T01:37:44.578204+00:00",
+  "generated_at_utc": "2026-10-31T09:05:42.505797+00:00",
   "store_url": "https://wsiventures.com/solemates",
+  "store_key": "wsiventures.com/solemates",
   "source": "live Store API ?rest_route=/wc/store/v1/products&per_page=100",
   "product_count": 12,
   "core_pass": 120,

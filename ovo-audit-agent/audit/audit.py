@@ -37,8 +37,21 @@ DEFAULT_STORE_URL = "https://wsiventures.com/solemates"
 HERE = Path(__file__).resolve().parent
 
 
-def api_url_for(store_url):
-    return store_url.rstrip("/") + "/?rest_route=/wc/store/v1/products&per_page=100"
+def api_url_for(store_url, page=1):
+    return store_url.rstrip("/") + f"/?rest_route=/wc/store/v1/products&per_page=100&page={page}"
+
+
+def pretty_url_for(store_url, page=1):
+    return store_url.rstrip("/") + f"/wp-json/wc/store/v1/products?per_page=100&page={page}"
+
+
+def store_key_for(store_url):
+    # Human readable store identifier, from the store address only.
+    # No merchant login, no tenant secret, and no data from another store.
+    from urllib.parse import urlparse
+    parsed = urlparse(store_url)
+    key = (parsed.netloc + parsed.path).strip("/")
+    return key or store_url
 
 # Core scoring checks: 15 fields an agent needs to compare a product.
 # A product passes a check only when the structured field is present.
@@ -84,25 +97,72 @@ def segment(desc, label, next_labels):
             cut = min(cut, n.start())
     return clean(rest[:cut].strip().rstrip(".")) or None
 
-def fetch_products(api_url):
-    # The live host sometimes cuts a chunked response short. Retry, then
-    # fall back to curl, which handled the same endpoint cleanly.
+def _fetch_page(api_url):
+    # One page, with the live host retry and curl fallback from before.
     import subprocess
     last = None
+    total_pages = None
     for _ in range(3):
         try:
             req = urllib.request.Request(api_url, headers={"User-Agent": "OvO-Audit/1.0"})
             with urllib.request.urlopen(req, timeout=30) as resp:
+                total_pages = resp.headers.get("X-WP-TotalPages")
                 data = json.load(resp)
-            break
+            return data, total_pages
         except Exception as e:
             last = e
             data = None
-    if data is None:
-        raw = subprocess.run(["curl", "-s", api_url], capture_output=True, text=True, timeout=60)
-        data = json.loads(raw.stdout)
-    assert isinstance(data, list), f"Store API did not return a product list: {last}"
-    return data
+    raw = subprocess.run(["curl", "-s", api_url], capture_output=True, text=True, timeout=60)
+    if raw.returncode != 0 or not raw.stdout.strip().startswith("["):
+        raise ValueError(f"Store API did not return a product list at {api_url}: {last}")
+    return json.loads(raw.stdout), total_pages
+
+
+def fetch_products(api_url):
+    # Pagination: follow pages until an empty page, or until the
+    # total pages header says the last page is reached. This works
+    # for stores with more than 100 products, and for stores whose
+    # first page is smaller than 100 products.
+    # Pretty link fallback: if the rest_route form fails, try the
+    # pretty wp-json form once, before giving a clean error. No
+    # partial score is written by this function, because it raises
+    # before any output file is written.
+    for base_url in (api_url, None):
+        if base_url is None:
+            # Derive the pretty form from the rest_route form.
+            # api_url ends with ?rest_route=/wc/store/v1/products&per_page=100&page=1
+            store_url = api_url.split("/?rest_route=")[0]
+            base_url = pretty_url_for(store_url, 1)
+        products = []
+        try:
+            page = 1
+            while True:
+                if "rest_route=" in base_url:
+                    url = api_url_for(base_url.split("/?rest_route=")[0], page)
+                else:
+                    url = pretty_url_for(base_url.split("/wp-json/")[0], page)
+                data, total_pages = _fetch_page(url)
+                if not isinstance(data, list):
+                    raise ValueError(f"Store API did not return a product list at {url}")
+                if not data:
+                    break
+                products.extend(data)
+                if total_pages is not None and page >= int(total_pages):
+                    break
+                page += 1
+                if page > 1000:
+                    raise ValueError("Store API pagination exceeded 1000 pages")
+            if not products:
+                raise ValueError("Store API returned no products for this store")
+            return products
+        except Exception as e:
+            last_error = e
+            # If this was the rest_route form, try the pretty form next.
+            # If this was the pretty form, give up with a clean error.
+            if "rest_route=" in base_url:
+                continue
+            raise ValueError(f"Audit failed: {e}") from e
+    raise ValueError(f"Audit failed: {last_error}")
 
 def main(store_url=DEFAULT_STORE_URL):
     products = fetch_products(api_url_for(store_url))
@@ -131,8 +191,17 @@ def main(store_url=DEFAULT_STORE_URL):
         desc = clean(p.get("description"))
         short = clean(p.get("short_description"))
         attrs = {a.get("name"): a for a in (p.get("attributes") or [])}
-        size_terms = [t.get("name") for t in attrs.get("Size", {}).get("terms", [])]
-        colour_terms = [t.get("name") for t in attrs.get("Colour", {}).get("terms", [])]
+        # Attribute names vary by store: Size, Shoe Size, Colour, Color.
+        # Lookup is case-insensitive, and synonyms are accepted, so a
+        # store that spells Colour as Color is not scored as missing.
+        def terms_for(names):
+            out = []
+            for a in (p.get("attributes") or []):
+                if a.get("name", "").strip().lower() in names:
+                    out.extend(t.get("name") for t in a.get("terms", []))
+            return out
+        size_terms = terms_for({"size", "sizes", "shoe size"})
+        colour_terms = terms_for({"colour", "color", "colours", "colors"})
         variation_sizes = [v.get("attributes", [{}])[0].get("value")
                            for v in (p.get("variations") or [])
                            if v.get("attributes")]
@@ -384,6 +453,7 @@ def main(store_url=DEFAULT_STORE_URL):
         "version": "1.0",
         "generated_at_utc": out["generated_at_utc"],
         "store_url": store_url,
+        "store_key": store_key_for(store_url),
         "source": out["source"],
         "product_count": n_products,
         "core_pass": core_pass_total,
@@ -422,9 +492,37 @@ def main(store_url=DEFAULT_STORE_URL):
         "version": "1.0",
         "generated_at_utc": out["generated_at_utc"],
         "store_url": store_url,
+        "store_key": store_key_for(store_url),
         "trace_count": len(traces),
         "traces": traces,
     }
+    # Merchant guidance: one plain guidance entry per gap, from
+    # guidance.json. Guidance is static text per field, never a
+    # value from a store, and never an invented store value.
+    guidance_by_field = {}
+    try:
+        guidance_by_field = json.loads((HERE / "guidance.json").read_text())["guidance_by_field"]
+    except Exception:
+        guidance_by_field = {}
+    merchant_guidance = {
+        "format": "ovo-merchant-guidance",
+        "version": "1.0",
+        "generated_at_utc": out["generated_at_utc"],
+        "store_url": store_url,
+        "store_key": store_key_for(store_url),
+        "gap_count": len(all_gaps),
+        "guidance": [
+            {
+                "product_id": g.get("product_id"), "product_name": g.get("product_name"),
+                "sku": g.get("sku"), "field": g["field"],
+                **guidance_by_field.get(g["field"], {"what_is_missing": "See gap list.", "why_it_matters": "See gap list.", "merchant_action": "See gap list."}),
+                "source_label": g.get("source_label"),
+            }
+            for g in all_gaps
+        ],
+    }
+    scorecard["merchant_guidance_file"] = "merchant_guidance.json"
+    (HERE / "merchant_guidance.json").write_text(json.dumps(merchant_guidance, indent=2))
     (HERE / "trace.json").write_text(json.dumps(trace_out, indent=2))
     (HERE / "gaps.json").write_text(json.dumps(out, indent=2))
     (HERE / "raw-products-latest.json").write_text(json.dumps(products, indent=2))
@@ -438,7 +536,23 @@ def main(store_url=DEFAULT_STORE_URL):
 
 if __name__ == "__main__":
     import argparse
+    import sys
     parser = argparse.ArgumentParser(description="OvO Audit Agent deterministic audit")
     parser.add_argument("--store-url", default=DEFAULT_STORE_URL,
                         help="Public store URL, e.g. https://wsiventures.com/solemates")
-    main(parser.parse_args().store_url)
+    store_url = parser.parse_args().store_url
+    try:
+        main(store_url)
+    except Exception as e:
+        # Clean error, no partial score. Previous scorecard files are
+        # left untouched, so they cannot be mistaken for this run.
+        # This run is recorded only in audit_error.json.
+        err = {
+            "format": "ovo-audit-error", "version": "1.0",
+            "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+            "store_url": store_url, "store_key": store_key_for(store_url),
+            "error": str(e)[:500], "scorecard_written": False,
+        }
+        (HERE / "audit_error.json").write_text(json.dumps(err, indent=2))
+        print(f"Audit failed: {e}", file=sys.stderr)
+        sys.exit(1)

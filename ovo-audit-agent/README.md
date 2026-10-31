@@ -15,6 +15,8 @@ Default store, when no URL is given, is Sole Mates at https://wsiventures.com/so
 gaps.json, format ovo-gap-list 1.0, pending organizer lock.
 scorecard.json, format ovo-audit-scorecard 1.0, generated on every run.
 trace.json, format ovo-audit-trace 1.0, one trace per checked field.
+merchant_guidance.json, format ovo-merchant-guidance 1.0, one plain guidance entry per gap.
+acceptance.py must pass 26 of 26 checks before a push.
 Audit tracks gaps only. It does not fill gaps, and it does not publish.
 Visual card design is Greg's job to deliver, and no design is invented here.
 

@@ -26,6 +26,14 @@ scorecard.json, format ovo-audit-scorecard 1.0. This is the scorecard data field
 
 trace.json, format ovo-audit-trace 1.0. One trace per checked field, per product, passed or missing, with value, evidence, and source_label.
 
+merchant_guidance.json, format ovo-merchant-guidance 1.0. One plain guidance entry per gap, from guidance.json. Guidance is static text per field, never a store value.
+
+acceptance.py is the acceptance test suite. It must pass 26 of 26 checks before a push. It covers guidance coverage, merchant separation, Spark modes, bad stores, pagination, pretty link fallback, attribute synonyms, repeatability, and format versioning.
+
+VERSIONING.md states the version rule. Gaps, scorecard, trace, and guidance formats are frozen at 1.0.
+
+Spark modes: --skip-spark runs deterministic only, --spark-sample N checks only the first N products, no flag checks all products. Gaps are never changed by Spark, in any mode. Timing is logged in agent_run.json.
+
 scorecard.md is the short human scorecard. agent_run.json is the audit log, with scorecard and trace samples included.
 
 ## Scores
