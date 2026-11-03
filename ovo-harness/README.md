@@ -1,78 +1,16 @@
-# OvO Harness
+# OvO Harness — cPanel version (wired, Codex files + fixes)
 
-Thin, live proof screen for OVO. One page. Test mode only.
+Files in this folder:
+- index.html — single three-pane layout: left nav, middle actions, right Info / Trace / Timeline / Diff / Logs. Locked task: City Chelsea Rain Boots, black, size 10, $1 CAD, product 23, variation 29, store https://wsiventures.com/solemates
+- meta.php — Meta-only proxy, Muse Spark 1.3. Key only from host settings (META_API_KEY / META_MODEL_API_KEY) or a private file outside public_html. Accepts both: ~/ovo-meta-key and /home/wsiventuresoutbo/.ovoharness_meta_key (one line, key only). Never put a key in index.html, meta.php, or any file in ovoharness. If no key is set, Meta calls fail plainly (503) and deterministic stages are kept. No call is simulated.
+- assets/ovo_green.png, ovo_white.png, ovo_black.png — same icons, unchanged.
 
-## What it proves, in order
+Stages, in order: Before (store only, stop reason stated, funnel Searched), During (Audit deterministic, Enrichment proposals only, Approval by group, Publish dry-run only with blocker stated), After (store plus OVO fields, $1.00 CAD total re-checked, test order recorded from merchant checkout confirmation only).
 
-1. Before: the agent reads the store only. Material, Fit, and Returns
-   are missing as structured fields. The run stops with this reason:
-   the agent will not pay unless it can verify material, fit,
-   returns, stock, and the exact total from structured fields.
-   A fact in description prose alone does not count.
-2. During: Audit, then Enrichment, then Merchant Approval, then
-   Publish to Plug-in. The harness itself does no audit,
-   enrichment, approval, or publish work. It calls live store
-   fetches, shows the diff, records a judge approval, and runs a
-   dry-run publish mapping.
-3. After: the agent reads the store plus the OVO fields. The same
-   fields are now present as structured data. The exact total is
-   re-checked from live cart data: $1.00 CAD for City Chelsea
-   Rain Boots, black, size 10, product 23, variation 29.
+Payment: pass-through only, test mode only. Agent-only payment bridge is blocked. Never mark paid without a judge-entered test order number from a merchant Stripe test checkout.
 
-## Honest limits, shown on screen
+Hosting: upload the zip to public_html/ovoharness and Extract there. Open https://wsiventures.com/ovoharness/index.html?v=5 directly — the plain directory URL and plain index.html URL can serve a stale server-cached copy even after a correct upload. Browser cache clearing does not fix server cache. Verify with curl: size, Last-Modified, and that "What should the agent do" is present, for the directory URL, index.html, and a query URL. Purge NGINX / server cache in cPanel if the plain URL stays stale.
 
-- Live publish is blocked. The plugin runner is dry-run only,
-  and token auth on WordPress is untested. This run never claims
-  a dry run as live. The live OVO fields already on the store
-  came from the 2026-11-02 published batch, not from a fresh run.
-- Agent-only payment is blocked. The payment bridge is not proven.
-  The pass-through route is the merchant checkout in test mode,
-  with a Stripe test card. A test order is recorded only from the
-  order number on the merchant checkout confirmation page.
-- Row set used: framework-style proposals, live count in the run.
-  The framework file from 2026-10-31 gave 36 rows; a live check
-  today gives 35, because product 92 now shows no Returns value
-  in prose. Canonical row set stays open: framework-style rows
-  or version 5 with 62 rows. This harness states its choice and
-  its reason, and does not pick it in silence.
-- Approval on this page is a demo merchant role for the judged
-  run only. It does not prove merchant sign-in.
+Run logs: browser localStorage only in this version. A shared link on another device will not show that run's logs. Export run JSON from Logs for another device.
 
-## Run it
-
-```
-python3 server.py 8000
-```
-
-Open http://localhost:8000
-
-No key is in code, logs, or this folder. On a host, set
-META_API_KEY in host settings only.
-
-## Host it on Render
-
-See render.yaml. The service runs `python3 server.py $PORT`.
-Set META_API_KEY in the Render dashboard. Do not put it in
-render.yaml, code, or logs. Render is the first host choice
-from the runner notes, because a long run and lasting run logs
-fit a worker better than a short web request host.
-
-## Judge path
-
-No WordPress admin access and no plug-in activation is needed
-from the judge. Press Run Before, then Run OVO, then Run After,
-in that order. Submit the approval group, then use the merchant
-checkout in test mode and record the test order number.
-
-## Files
-
-- server.py: live store fetches, cart re-check, Meta calls,
-  approval gate, dry-run publish mapping, run logs.
-- static/index.html: one page, top bar, stepper, buyer view,
-  stage output, trace, tabs, funnel, limits footer.
-- assets/ovo_green.png, ovo_white.png, ovo_black.png: icons
-  supplied by Greg, copied unchanged, 1050 by 450, not recoloured,
-  stretched, cropped, or given effects. Green is used in the
-  header on a light background, at 32 pixels high.
-- runs/: one file per run. Reset starts a new run and never
-  deletes old runs.
+GitHub: source of truth is repo gfields-wsi/ovo, branch ovo-harness, folder ovo-harness/ — push only with Greg's exact approval for that branch and folder. Do not merge to main.
