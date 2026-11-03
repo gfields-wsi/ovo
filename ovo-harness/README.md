@@ -14,3 +14,10 @@ Hosting: upload the zip to public_html/ovoharness and Extract there. Open https:
 Run logs: browser localStorage only in this version. A shared link on another device will not show that run's logs. Export run JSON from Logs for another device.
 
 GitHub: source of truth is repo gfields-wsi/ovo, branch ovo-harness, folder ovo-harness/ — push only with Greg's exact approval for that branch and folder. Do not merge to main.
+
+## Update 2026-11-03, demo only
+- Run Before button is green (On), Run OVO is off (black text, transparent), Run After unchanged.
+- Left nav Trace/Timeline/Diff/Logs now show a "No run yet" pane before any run, instead of always showing Info. Sidebar is sticky, footer stays above the fold.
+- Publish is live, via publish.php, demo store only: approval-gated, product 23 only, additional_property only, token held on host only (OVO_TOKEN in host settings, or ~/ovo-token outside public_html), never in browser or code. If no token is set, Publish fails plainly with that reason, no write confirmed.
+- After is agent-to-agent, API only, on behalf of a human: quote from live cart, bridge manifest check, Link spend approval per purchase, bridge checkout with a single-use Link token. No browser checkout is the primary path. If the bridge is not installed, After fails closed with the exact missing inputs, and a judge-entered browser test order is a fallback record only, not an agent payment.
+- Plugin activation on fresh enrichments, demo only: a successful Publish makes the fields live in the plugin's OVO block immediately, verified by re-reading the OVO endpoint. It does not activate WordPress plugins for other stores, and it does not bypass merchant approval.
