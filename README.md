@@ -1,3 +1,5 @@
+![OvO Harness](assets/ovo_green.png)
+
 ## Start here, judges
 
 1. Live OvO Harness: https://wsiventures.com/ovoharness/index.html?v=14
