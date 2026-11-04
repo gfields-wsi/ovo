@@ -1,37 +1,28 @@
 ![OvO Harness](assets/ovo_green.png)
 
-# OvO — Overview
+# Overview
 
-OvO makes a small business web store shoppable by AI agents. It does not sell anything itself. It audits a store. It enriches product data. It gets merchant approval. It publishes the fix in place on the merchant's own store. It supports an agent purchase.
+OvO (Orders via Operators) makes small and medium-sized web stores shoppable by AI agents, by creating a VIP shopping experience for semi/fully autonomous AI Agents. 
 
-Problem: a store can look fine to a human shopper, but lack structured fields an agent needs. Material, Fit, and Returns may live only in description prose. An agent that needs structured data must stop.
+## Problem
+Small and Medium-Sized web businesses are run by people who care deeply about making great products, providing great services, and focusing on the needs of their customers. They rarely have the time, staff, or AI expertise to invest in initiatives like becoming reading for Agentic Commerce.
 
-Solution: OvO finds those gaps. It proposes structured fields from store text. A merchant approves them by group. OvO publishes only approved fields, in place. The agent can then verify the same fields, and proceed.
+## OvO Solution: 
+OvO fills this gap for SMB merchants, by providing an easy-to-use, consumer-grade solution that Audits their existing storefront, Enriches the data that's often missing (and needed by AI Agents), Augments their existing web store in place, in minutes (or hours). 
 
-Who it is for: small business merchants, and autonomous shopping agents that shop on their behalf.
+## Target Customer:
+1. SMB Merchants wanting to make sure their stores are shoppable by AI Agents
+2. AI Agents (like the Meta Muse personal assistant)
 
 Scope now: this is an MVP, a research preview, built in a few days. Test mode only. Test card only. No real Link yet. No real customer payment yet.
 
-## Start Here — Judge Review Path
+## Judging OvO
 
-Goal: verify that OvO helps an AI shopping agent proceed from incomplete merchant product data to a more actionable shopping outcome.
-
-1. **Watch the demo** — [Video](https://youtube.com/shorts/i1ncawyazM0)
-   - Understand the merchant problem and the before and after claim.
-2. **Understand the flow** — [How OvO Works](#how-ovo-works)
-   - Identify Muse, OvO agents, WooCommerce integration, and the payment boundary.
-3. **Run the judge test** — [Launch harness](https://wsiventures.com/ovoharness/index.html?v=14)
-   - Execute Before, then OvO, then After, using the same shopping task.
-   - Locked task: City Chelsea Rain Boots, black, size 10, $1 Canadian, product 23, variation 29, store https://wsiventures.com/solemates
-   - Expected Before outcome: agent stops at Searched. Material, Fit, and Returns are missing as structured fields.
-   - Expected OvO outcome: Audit gaps, Enrichment proposals, Approval cards by group, then Publish for approved groups only.
-   - Expected After outcome: same fields present as structured data. Exact total re-checked live. Test checkout proven in test mode only.
-   - Compare input snapshots and outcome. Do not assume checkout or payment completed unless live evidence confirms it.
-4. **Inspect Meta AI evidence** — [Meta AI Integration](#meta-ai-integration)
-   - Review model ID, purpose, duration, and outcome for each Meta call, in the harness Trace pane.
-   - After a run, open Logs and press Export Run JSON. That file carries timestamp, run ID, events, and results.
-5. **Inspect the implementation** — [Technical Architecture](#technical-architecture) and [Repository Structure](#repository-structure)
-   - Review source, tests, run instructions, and known limitations.
+1. **Demo Video** - watch the [Video](https://youtube.com/shorts/i1ncawyazM0)
+2. **Structure** — see [How OvO Works](#how-ovo-works)
+3. **Test in Harness** — walk through the before, during, and after experiences in the [OvO Harness](https://wsiventures.com/ovoharness/index.html?v=14)
+4. **Inspect Meta AI Usage** — understand how we leverage [Meta AI Technologies](#meta-ai-integration)
+5. **Inspect the implementation** — see the [Technical Architecture](#technical-architecture) and [Repo Structure](#repository-structure)
 
 Detailed judging guide: [JUDGE.md](JUDGE.md)
 
@@ -60,9 +51,6 @@ Detailed judging guide: [JUDGE.md](JUDGE.md)
 
 ![OvO Agentic Commerce Flow](assets/OvO_Agentic_Commerce_Flow_Diagram.png)
 
-Caption: This flow shows the intended roles, not the exact code path. In the live demo, the agent must verify material, fit, returns, stock, and the exact total from structured data before any payment, and must stop with no payment and no order if any of those are missing. The OvO Payment Bridge calls Stripe, through the merchant Stripe account, in test mode only, and creates a WooCommerce order only after Stripe confirms. Real Link payment is not shown as a proven step, because it is not proven yet.
-
-How it works, in short: a shopper asks Muse to buy a product. Muse reads the store. OvO agents audit the store, enrich missing fields, and ask for merchant approval. The WooCommerce plugin publishes approved fields in place. Muse then reads the enriched store, verifies the fields and the exact total, and calls the Payment Bridge. The Bridge calls Stripe in test mode, and creates a WooCommerce order after Stripe confirms.
 
 ## Meta AI Integration
 
