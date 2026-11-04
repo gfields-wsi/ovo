@@ -3,12 +3,12 @@
 ## For judges: fastest path, no install
 
 Open the live harness:
-https://wsiventures.com/ovoharness/index.html?v=10
+https://wsiventures.com/ovoharness/index.html?v=14
 
 Follow JUDGE.md. You need no WordPress admin access, no plug-in step,
 and no key. This is the judged run.
 
-Demo video (3 minutes): [VIDEO LINK TO BE ADDED BY GREG]
+Demo video (3 minutes): https://youtube.com/shorts/i1ncawyazM0
 
 ## For judges: read the code
 
@@ -42,7 +42,7 @@ Harness files are plain web files plus two PHP proxies:
 
 To host it yourself, upload the ovo-harness/ files to a web host
 that runs PHP, set the host keys above, and open index.html with
-a version query, for example index.html?v=10, to avoid a stale
+a version query, for example index.html?v=14, to avoid a stale
 server-cached copy. Purge server cache if the plain link stays stale.
 
 ## What does not run from this repository alone
@@ -52,8 +52,8 @@ server-cached copy. Purge server cache if the plain link stays stale.
   The sole-mates/ folder in this repository is the store source,
   not a running store. See sole-mates/docs/SETUP-LOCALWP.md for a
   local store copy, if you want one for exploration.
-- Live agent payment is not available from this repository alone.
-  Agent payment is blocked. The payment bridge is not installed.
+- Live agent payment, MVP, is available in test mode only from the live store, not from this repository alone.
+  Bridge version 0.5.0-test is installed on Sole Mates, with test orders 132, 135, and 136. Real Link is not available yet.
 - Live publish needs a host token and a recorded approval, as above.
   Without them, Publish fails plainly. That is expected, not a bug.
 

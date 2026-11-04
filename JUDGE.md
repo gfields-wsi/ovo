@@ -3,7 +3,9 @@
 ## Open the harness
 
 Open this exact link:
-https://wsiventures.com/ovoharness/index.html?v=10
+https://wsiventures.com/ovoharness/index.html?v=14
+
+Demo video (3 minutes): https://youtube.com/shorts/i1ncawyazM0
 
 Use the version link. The plain link can serve a stale server-cached
 copy, even after a correct upload. Browser cache clearing does not
@@ -17,7 +19,7 @@ You need no key. Do not enter a key anywhere on this page.
 Locked task: City Chelsea Rain Boots, black, size 10, $1 CAD,
 product 23, store https://wsiventures.com/solemates
 
-1. Press Run Before.
+1. Press Run Judge Test, or Run Before.
    Expect: the run stops at Searched. The screen lists the missing
    structured fields by name, and states the stopping reason.
 2. Press Run OvO.
@@ -58,9 +60,7 @@ product 23, store https://wsiventures.com/solemates
 ## What not to expect
 
 - No live customer payment. Test mode only.
-- No agent payment yet. Agent payment is blocked. The payment bridge
-  is not installed. A judge-entered browser test order is a fallback
-  record only, not an agent payment.
+- No real Link payment yet. Agent payment, MVP, research preview: test mode only, test card only, bridge version 0.5.0-test, test orders 132, 135, and 136. A judge-entered browser test order is a fallback record only, not an agent payment.
 - No full MCP, ACP, or UCP compliance.
 - No consumer Muse personal agent discovery, unless tested in the
   actual product.
