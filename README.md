@@ -65,13 +65,7 @@ This is an MVP, a research preview, built in a few days. It does not overstate, 
 
 ## Capabilities, MVP
 
-- Audit a store for missing structured fields: working, live, in the harness.
-- Enrich Material, Fit, and Returns from store text: working, live, 36 rows published for 12 products on November 2, 2026.
-- Merchant approval by group: working, in the harness, where the judge acts as merchant for the demo. Silence never counts as approval.
-- Publish approved fields in place, through the plugin: working, live, with batch IDs recorded in the harness.
-- Agent checkout, MVP, research preview: working in test mode only, test card only, test orders 132, 135, and 136. Order 132 used a test helper token. Orders 135 and 136 used a test card, with no Link token.
-- Agent checkout, real Link: next step, not done yet. No Stripe profile ID yet, and no Link spend request step yet.
-- Render deployment: next step, not done yet. The judged run uses the cPanel link above.
+Audit finds missing fields. Enrichment adds Material, Fit, and Returns from store text. Approval is by group. Silence never counts as approval. Publish writes only approved fields. Agent checkout works in test mode only. It uses a test card only. Real Link is next. Render deployment is next.
 
 ## Features and Capabilities
 
@@ -114,29 +108,35 @@ What is deterministic code, not model work: Audit gap finding is deterministic f
 
 ## Technical architecture and stack, MVP
 
-- Store: WordPress plus WooCommerce, Sole Mates mock store, 12 products at $1 Canadian.
-- Harness: static page, plus two server proxies, meta.php for Meta calls, and publish.php for live publish. Tokens and keys live in host settings only, never in browser code.
-- Plugin: OvO Enrichment, version 0.2.0-demo, live endpoint for OVO fields, and a diff endpoint for publish, gated by token plus approval fields.
-- Bridge: OvO Payment Bridge, version 0.5.0-test, live, test mode only, with a manifest endpoint and a checkout endpoint.
-- Evaluation: Before versus After, on the same locked task, with field coverage, agent action, blocking reason, and order verification.
+Store: WordPress plus WooCommerce. Harness: a static page plus two server proxies. Plugin: OvO Enrichment, version 0.2.0-demo. Bridge: OvO Payment Bridge, version 0.5.0-test. Test mode only. Evaluation: Before versus After, on the same locked task.
 
 ## Repository map and reproducibility, MVP
 
-Public files, on main: README.md, JUDGE.md, SETUP.md, docs, eval, and the Sole Mates store source.
+Public files on main: README, JUDGE, SETUP, docs, eval, and the Sole Mates store source. Public harness code: branch ovo-harness, folder ovo-harness. Public bridge code: branch payment-bridge, folder ovo-payment-bridge. To reproduce, open the harness link. Press Run Judge Test. Then press Run OvO. Then press Run After. Then open Logs. Then press Export Run JSON. No key is in the repo. No key is shared.
 
-Public harness code: branch ovo-harness, folder ovo-harness, commit 93b9090d07b82fc02d9dea01c39fc751b1ac3790. Live link: version 14 above.
+## Roadmap
 
-Public bridge code: branch payment-bridge, folder ovo-payment-bridge, commit 2c7bca4254093ec743e246f298c2264dbc096a11, version 0.5.0-test.
+These are the things we did not have time to cover. They are next, not done.
 
-To reproduce, with no credentials: open the harness link, press Run Judge Test, then Run OvO, then Run After, then open Logs and press Export Run JSON. To reproduce the Meta calls live, the host proxy needs a Meta key, which is not in the repo and is not shared.
+Real Link payment. This needs a Stripe profile ID. It also needs a Link spend request step. Then a human Link approval. Then a token checkout. That is the full real payment path.
 
-## Known limitations and roadmap, MVP
+Render deployment. The judged run uses cPanel now. Render is a later host option. It is not needed for the judged run.
 
-MVP scope now: test mode only, no real Link yet, no real customer payment yet, no Render deployment yet, run logs are browser only unless exported, and the plugin revert step is admin only.
+Private core repos. Agents and plugin code will move to private repos after submission. Public branches will then point to interface docs only. This needs a fresh check of hackathon rules first.
 
-Next, in order: real Link, with a Stripe profile ID and a Link spend request step; a documented public interface for private components, with sanitized traces; and a Render deployment, if it is still needed after the cPanel judged run.
+License scoping. MIT will stay only for demo code. Other public files will get a clear source available notice. Legal review is needed for the plugin GPL question. Legal review is also needed for license scope.
+
+Sanitized Meta traces. A separate trace file will show model, purpose, input, decision, output, duration, and run ID. No key will be in that file. No private prompt text will be in that file.
+
+Harness screenshot. A current screenshot of the harness will go in the README. An animated bear may go below it. It is secondary to the judge workflow.
+
+Production plugin compatibility. Broad SMB onboarding. Full MCP, ACP, and UCP compliance. Consumer Muse discovery. These are all future work. None are claimed now.
+
+Negative control and frozen snapshot. Before already is the negative control. A frozen snapshot is not planned. The live Before read is the proof.
 
 ---
+
+
 
 # OvO
 
