@@ -5,7 +5,7 @@ Decision 0, R1 to R10 mapping, eval runs, and ground truth.
 
 ## For judges: start here
 
-- main, commit d8ce3beaa0bcdf2240e71a9421596f6065e51328
+- main, commit 8efc75198a5adaf98a3aeeec4e96f14126944184
   Project README, docs, eval runs, and the Sole Mates store source.
   Note: ovo-plugin/ on main is only a placeholder file. The real
   plug-in code is on the plugin-agent branch, below.
