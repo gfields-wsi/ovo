@@ -134,8 +134,10 @@ Day-one progress 2026-10-29: Muse Spark 1.3 tool calling and streaming verified 
 ## Structure
 
 - `sole-mates/` — Sole Mates mock store, WordPress plus WooCommerce, 10+ products (12 in the current storefront, 79 variations).
-- `ovo-plugin/` — Small WooCommerce plugin that publishes enrichment in place, with originals kept for revert.
-- `ovo-agent/` — Audit, enrich, and shopping-agent tools, powered by Meta models.
+- `ovo-plugin/` on main — Placeholder only. Real plugin code is on branch plugin-agent, folder ovo-plugin-agent/.
+- `ovo-agent/` on main — Placeholder and docs only. Real agent code is in its own branches, below, not merged to main.
+- Agent branches, not merged to main: audit-agent (ovo-audit-agent/), enrichment-agent (ovo-enrichment-agent/), approval-agent (ovo-approval-agent/), coordinating-agent (ovo-coordinating-agent/), plugin-agent (ovo-plugin-agent/), payment-bridge (ovo-payment-bridge/).
+- Harness branch: ovo-harness (ovo-harness/), live at version 14.
 - `eval/` — Golden tasks, ground truth, before-and-after runs, and red-team runs.
 - `docs/` — Decision 0 and R1 to R10 mapping, day-one tests, and build order.
 
