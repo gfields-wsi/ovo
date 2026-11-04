@@ -1,3 +1,63 @@
+## Start here, judges
+
+Live OvO Harness: https://wsiventures.com/ovoharness/index.html?v=10
+Use the version link above. The plain link can serve a stale server-cached copy.
+
+Harness code: repository gfields-wsi/ovo, branch ovo-harness, folder ovo-harness/
+Commit: f0e2582911773b61397440076f6b7ef656369adb (2026-11-03)
+Main is unchanged by the harness work. Nothing was merged to main.
+
+Demo video (3 minutes): [VIDEO LINK TO BE ADDED BY GREG]
+
+## The demo, in three steps
+
+Locked task for the judged run: City Chelsea Rain Boots, black, size 10,
+$1 CAD, product 23, at https://wsiventures.com/solemates
+
+1. Run Before. The agent reads the store only, with no OVO fields.
+   It stops, and the screen states the exact reason: the agent will not
+   pay unless it can verify material, fit, returns, stock, and the exact
+   total from structured fields. A fact in description prose alone does
+   not count as a structured field.
+2. Run OvO. Audit, Enrichment, Merchant Approval, and Publish, in that
+   order. Each stage shows its own output, source, and log.
+3. Run After. The agent reads the store plus the OVO fields. It shows
+   the same fields now present as structured data, the exact total
+   re-checked from live store data, and the test order in the store's
+   own order list.
+
+Full judge instructions: see JUDGE.md in this folder.
+
+## Honest limits, up front
+
+- Test mode only. No live customer payment.
+- Agent payment is blocked. The payment bridge is not installed.
+  A judge-entered browser test order is a fallback record only, not
+  an agent payment.
+- Publish is live for this demo store only, approval-gated, product 23
+  only, additional_property fields only, token held on the host only.
+- Do not claim full MCP, ACP, or UCP compliance, consumer Muse personal
+  agent discovery unless tested in the actual product, live customer
+  payment, production plug-in compatibility, or broad SMB onboarding.
+- Payment stays pass-through: the merchant's checkout and processor,
+  the merchant as merchant of record.
+
+## How Meta tools are used, in two separate parts
+
+Builder partner: Meta Muse, the personal agent, built and wired the
+harness in its own virtual machine, iterated on it with Greg, checked
+it in a real browser preview, and verified the push by reading the
+branch back. [GREG TO CONFIRM: exact split between Codex files and
+Muse fixes, before this paragraph is published.]
+
+Runtime: Muse Spark 1.3, through the Meta Model API, is what the
+harness calls when it shops and when it checks audit work. The harness
+shows this live, with model, purpose, duration, and outcome, and no
+key ever appears on screen. Audit and enrichment are deterministic
+first. Spark only checks or shops. No Meta call is simulated.
+
+---
+
 # OvO
 
 VIP Shopping Experience for AI Agents
