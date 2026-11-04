@@ -9,11 +9,11 @@ OvO (Orders via Operators) makes small and medium-sized web stores shoppable by 
 - **Target Customer** - SMB eCommerce Merchants wanting to make sure their stores are shoppable by AI Agents, and AI Agents (starting with the Meta Muse personal assistant).
 
 # Judging OvO
-Watch the [Demo Video](https://youtube.com/shorts/i1ncawyazM0)
-See [How OvO Works](#how-ovo-works)
-Test the before, during, and after experiences in the [OvO Harness](https://wsiventures.com/ovoharness/index.html?v=14)
-Understand how we leverage [Meta AI Technologies](#meta-ai-integration)
-See the [Technical Architecture](#technical-architecture) and [Repo Structure](#repository-structure)
+- Watch the [Demo Video](https://youtube.com/shorts/i1ncawyazM0)
+- See [How OvO Works](#how-ovo-works)
+- Test the before, during, and after experiences in the [OvO Harness](https://wsiventures.com/ovoharness/index.html?v=14)
+- Understand how we leverage [Meta AI Technologies](#meta-ai-integration)
+- See the [Technical Architecture](#technical-architecture) and [Repo Structure](#repository-structure)
 
 Or, refer to judging guide: [JUDGE.md](JUDGE.md)
 
