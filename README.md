@@ -79,35 +79,6 @@ The diagram below is a high level flow. It is simplified, and it is not a code d
 
 Caption: This flow shows the intended roles, not the exact code path. In the live demo, the agent must verify material, fit, returns, stock, and the exact total from structured data before any payment, and must stop with no payment and no order if any of those are missing. There is no separate OvO Payment Gateway. The bridge plugin calls Stripe, through the merchant Stripe account, in test mode only, and creates a WooCommerce order only after Stripe confirms. Real Link payment is not shown as a proven step, because it is not proven yet.
 
-Sequence, corrected against the live harness:
-
-```mermaid
-sequenceDiagram
-    actor Judge
-    participant Harness as Public OvO Harness
-    participant Store as Public Mock WooCommerce Store
-    participant Meta as Meta Model API
-    participant Plugin as WooCommerce OvO Plugin
-    participant Bridge as OvO Payment Bridge, test mode only
-    Judge->>Harness: Press Run Judge Test
-    Harness->>Store: Read store catalog only, no OVO fields
-    Harness->>Meta: Before shopping task, Muse Spark 1.3
-    Meta-->>Harness: Shopping decision, with trace
-    Harness-->>Judge: Agent stops at Searched, fields missing
-    Judge->>Harness: Press Run OvO, approve a group
-    Harness->>Plugin: Publish approved fields only
-    Plugin->>Store: Write Material, Fit, Returns in place
-    Judge->>Harness: Press Run After
-    Harness->>Store: Read store catalog plus OVO endpoint
-    Harness->>Meta: After shopping task, Muse Spark 1.3
-    Meta-->>Harness: Shopping decision, with trace
-    Harness->>Bridge: Test checkout, test card only, no Link token
-    Bridge->>Store: Create WooCommerce order after Stripe test confirmation
-    Harness-->>Judge: Before versus After evidence, plus Export Run JSON
-```
-
-Note on the sequence: the bridge step above is test mode only. It does not include a Link spend request, because that step is not built yet.
-
 ## Meta AI implementation, MVP
 
 Model used in the harness: Muse Spark 1.3, through the Meta Model API, through a server proxy. No key is in browser code, and no key is in logs.
