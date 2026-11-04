@@ -14,8 +14,7 @@ OvO (Orders via Operators) makes small and medium-sized web stores shoppable by 
 - Test the before, during, and after experiences in the [OvO Harness](https://wsiventures.com/ovoharness/index.html?v=14)
 - Understand how we leverage [Meta AI Technologies](#meta-ai-integration)
 - See the [Technical Architecture](#technical-architecture) and [Repo Structure](#repository-structure)
-
-Or, refer to judging guide: [JUDGE.md](JUDGE.md)
+- Refer to judging guide [JUDGE.md](JUDGE.md)
 
 ## Capabilities and Implementation Status
 
