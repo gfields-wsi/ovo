@@ -77,7 +77,7 @@ The diagram below is a high level flow. It is simplified, and it is not a code d
 
 ![OvO Agentic Commerce Flow](assets/OvO_Agentic_Commerce_Flow_Diagram.png)
 
-Caption: This flow shows the intended roles, not the exact code path. In the live demo, the agent must verify material, fit, returns, stock, and the exact total from structured data before any payment, and must stop with no payment and no order if any of those are missing. There is no separate OvO Payment Gateway. The bridge plugin calls Stripe, through the merchant Stripe account, in test mode only, and creates a WooCommerce order only after Stripe confirms. Real Link payment is not shown as a proven step, because it is not proven yet.
+Caption: This flow shows the intended roles, not the exact code path. In the live demo, the agent must verify material, fit, returns, stock, and the exact total from structured data before any payment, and must stop with no payment and no order if any of those are missing. The OvO Payment Bridge calls Stripe, through the merchant Stripe account, in test mode only, and creates a WooCommerce order only after Stripe confirms. Real Link payment is not shown as a proven step, because it is not proven yet.
 
 ## Meta AI implementation, MVP
 
