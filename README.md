@@ -156,7 +156,7 @@ Decision 0 DECIDED 2026-10-29 by Greg: Startup track, Build for Your World theme
 
 Live demo store: https://wsiventures.com/solemates — WordPress + WooCommerce, 12 products at $1 CAD, live, with a $1 Cash on delivery test order (#119) and a $1 Stripe test-mode order (#122) completed. Bridge test orders, all $1 CAD, test mode only: #132 (test helper token), #135 and #136 (test card only, no Link token).
 
-Day-one progress 2026-10-29: Muse Spark 1.3 tool calling and streaming verified via the Meta Model API; Store API products and cart verified (via `?rest_route=`); product JSON-LD present; Stripe test mode live in the store checkout. Agent Store API checkout with Stripe is still open: Stripe requires a payment token made through its own payment form, and a direct API token call is blocked.
+Day-one progress 2026-10-29: Muse Spark 1.3 tool calling and streaming verified via the Meta Model API; Store API products and cart verified (via `?rest_route=`); product JSON-LD present; Stripe test mode live in the store checkout. Agent Store API checkout with Stripe is still open: Stripe requires a payment token made through its own payment form, and a direct API token call is blocked. (Historical, October 29, 2026. Superseded November 4, 2026, by the bridge MVP, test orders 132, 135, and 136.)
 
 ## Structure
 
