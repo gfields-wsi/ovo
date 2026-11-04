@@ -73,6 +73,27 @@ This is an MVP, a research preview, built in a few days. It does not overstate, 
 - Agent checkout, real Link: next step, not done yet. No Stripe profile ID yet, and no Link spend request step yet.
 - Render deployment: next step, not done yet. The judged run uses the cPanel link above.
 
+## Features and Capabilities
+
+| Feature | Description | Status |
+|---|---|---|
+| OvO Harness | Live judge console to run Before, OvO, and After, with Trace, Timeline, Diff, and Logs | MVP, live at version 14 |
+| Audit | Finds missing structured fields in a store, with gaps and a readiness score | MVP, live |
+| Enrichment | Proposes Material, Fit, and Returns from store text, with a source for each field | MVP, live, 36 rows for 12 products |
+| Merchant Approval | Approval by group, where the judge acts as merchant for the demo, silence never counts as approval | MVP, live |
+| Publish in place | Writes only approved fields to the merchant store, through the plugin, with batch IDs recorded | MVP, live |
+| OvO Enrichment Plugin | WooCommerce plugin, version 0.2.0-demo, with a live OVO endpoint and a token gated diff endpoint | MVP, live |
+| OvO Payment Bridge | Agent to agent checkout endpoint, with live price and stock re-check, and a manifest endpoint | MVP, live, version 0.5.0-test, test mode only |
+| Agent checkout, test card | Agent initiated checkout with a test card, no human checkout step, no Link token needed | MVP, live, test orders 132, 135, and 136 |
+| Agent checkout, real Link | Link spend request, human Link approval, and token checkout, through the merchant Stripe account | Next step, not done yet |
+| Meta Model API traces | Each Meta call shows model, purpose, duration, and outcome, in the top bar and in Trace | MVP, live, Muse Spark 1.3 |
+| Export Run JSON | Portable run file with timestamp, run ID, events, and results, from Logs after a run | MVP, live |
+| Sole Mates mock store | WordPress plus WooCommerce demo store, 12 products at $1 Canadian, with the locked judged task | MVP, live |
+| Flow diagram | High level OvO Agentic Commerce Flow image, with Shopper, Muse, Store, Agents, Plugin, Bridge, and Stripe | MVP, live, in How it works |
+| Demo video | 3 minute video of the judged run, Before, OvO, and After | MVP, live |
+| Judge guides | README, JUDGE.md, SETUP.md, and BRANCH-MAP.md, with the same version 14 links | MVP, live |
+| Render deployment | Hosted deployment of the harness, outside cPanel | Next step, not done yet |
+
 ## How it works
 
 The diagram below is a high level flow. It is simplified, and it is not a code diagram.
