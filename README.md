@@ -16,14 +16,14 @@ OvO (Orders via Operators) makes small and medium-sized web stores shoppable by 
 - See the [Technical Architecture](#technical-architecture) and [Repo Structure](#repository-structure)
 - Refer to judging guide [JUDGE.md](JUDGE.md)
 
-## Capabilities and Implementation Status
+# Capabilities and Implementation Status
 
 | Feature | Description | Status |
 |---|---|---|
 | OvO Harness | Live judge console to run Before, OvO, and After, with Trace, Timeline, Diff, and Logs | MVP, live at version 14 |
-| Audit | Finds missing structured fields in a store, with gaps and a readiness score | MVP, live |
-| Enrichment | Proposes Material, Fit, and Returns from store text, with a source for each field | MVP, live, 36 rows for 12 products |
-| Merchant Approval | Approval by group, where the judge acts as merchant for the demo, silence never counts as approval | MVP, live |
+| Audit Agent | Finds missing structured fields in a store, with gaps and a readiness score | MVP, live |
+| Enrichment Agent | Proposes Material, Fit, and Returns from store text, with a source for each field | MVP, live, 36 rows for 12 products |
+| Merchant Approval Agent | Approval by group, where the judge acts as merchant for the demo, silence never counts as approval | MVP, live |
 | Publish in place | Writes only approved fields to the merchant store, through the plugin, with batch IDs recorded | MVP, live |
 | OvO Enrichment Plugin | WooCommerce plugin, version 0.2.0-demo, with a live OVO endpoint and a token gated diff endpoint | MVP, live |
 | OvO Payment Bridge | Agent to agent checkout endpoint, with live price and stock re-check, and a manifest endpoint | MVP, live, version 0.5.0-test, test mode only |
@@ -32,17 +32,13 @@ OvO (Orders via Operators) makes small and medium-sized web stores shoppable by 
 | Meta Model API traces | Each Meta call shows model, purpose, duration, and outcome, in the top bar and in Trace | MVP, live, Muse Spark 1.3 |
 | Export Run JSON | Portable run file with timestamp, run ID, events, and results, from Logs after a run | MVP, live |
 | Sole Mates mock store | WordPress plus WooCommerce demo store, 12 products at $1 Canadian, with the locked judged task | MVP, live |
-| Flow diagram | High level OvO Agentic Commerce Flow image, with Shopper, Muse, Store, Agents, Plugin, Bridge, and Stripe | MVP, live, in How OvO Works |
-| Demo video | 3 minute video of the judged run, Before, OvO, and After | MVP, live |
-| Judge guides | README, JUDGE.md, SETUP.md, and BRANCH-MAP.md, with the same version 14 links | MVP, live |
-| Render deployment | Hosted deployment of the harness, outside cPanel | Next step, not done yet |
 
-## How OvO Works
+# How OvO Works
 
 ![OvO Agentic Commerce Flow](assets/OvO_Agentic_Commerce_Flow_Diagram.png)
 
 
-## Meta AI Integration
+# Meta AI Integration
 
 Model used in the harness: Muse Spark 1.3, through the Meta Model API, through a server proxy. No key is in browser code. No key is in logs.
 
@@ -56,17 +52,8 @@ Builder note: Meta Muse built and wired the harness, iterated with Greg, checked
 
 Sanitized trace evidence: use a live run, then open Trace, then open Logs and press Export Run JSON. That exported file is the sanitized trace for that run. A separate published trace file is on the Roadmap, not yet published.
 
-## Technical Architecture
 
-Store: WordPress plus WooCommerce. Harness: a static page plus two server proxies. Plugin: OvO Enrichment, version 0.2.0-demo. Bridge: OvO Payment Bridge, version 0.5.0-test. Test mode only.
-
-Components and boundaries: the harness calls the store API and the OVO endpoint directly. It calls Meta through meta.php, a server proxy. It calls Publish through publish.php, a server proxy. Tokens and keys live in host settings only, never in browser code. Publish is live for this demo store only. Publish is approval gated. Publish is product 23 only. Publish is additional_property fields only.
-
-Data flow: store catalog, then OVO fields, then Audit gaps, then Enrichment proposals, then Approval, then Publish, then enriched store, then Bridge checkout, then WooCommerce order.
-
-Code paths: harness code is branch ovo-harness, folder ovo-harness, commit 93b9090d07b82fc02d9dea01c39fc751b1ac3790, live at version 14. Bridge code is branch payment-bridge, folder ovo-payment-bridge, commit 2c7bca4254093ec743e246f298c2264dbc096a11, version 0.5.0-test. Agent code is in its own branches, listed in Repository Structure below, not merged to main.
-
-## Evaluation Evidence and Results
+# Evaluation Evidence and Results
 
 Controlled baseline: Before reads the store catalog only, not the OVO endpoint. Material, Fit, and Returns are missing as structured fields, 3 missing. The agent stops at Searched. No order is placed.
 
@@ -82,7 +69,7 @@ Caveats: run logs live only in the judge's own browser, unless Export Run JSON i
 
 Logs and artifacts: Trace, Timeline, Diff, and Logs in the harness, plus Export Run JSON after a run. Test orders are in the store's own order list, in test mode.
 
-## Repository Structure
+## Repo Structure
 
 - `sole-mates/` — Sole Mates mock store, WordPress plus WooCommerce, 12 products in the current storefront.
 - `ovo-plugin/` on main — Placeholder only. Real plugin code is on branch plugin-agent, folder ovo-plugin-agent/.
@@ -107,20 +94,16 @@ Expected results: Before stops at Searched. OvO shows Audit, Enrichment, Approva
 
 Troubleshooting: if the plain link shows old wording, use the version link, then a private window. If Meta calls fail plainly with 503, no key is set on the host. That is expected, not a bug. If Publish fails plainly, no token is set, or no approval is recorded. That is also expected, not a bug.
 
-## Limitations and Roadmap
+# Roadmap
 
-MVP scope now: test mode only, no real Link yet, no real customer payment yet, no Render deployment yet, run logs are browser only unless exported, and the plugin revert step is admin only.
+- **Payment** - real Link payment, with a Stripe profile ID, a Link spend request step, human Link approval, and token checkout.
+- **Deploy** - Render or Vercel deployment, as a later host option.
+- **Repo Cleanup** - Private core repos after submission, with public branches pointing to interface docs only. 
+- **Meta Trace** - A sanitized Meta trace file, with model, purpose, input, decision, output, duration, and run ID, no key, no private prompt text. 
+- **Harness Polish** - A current harness screenshot, with an animated bear as secondary, not primary.
+- **Plugin Hardening** - Production plugin compatibility, broad SMB onboarding, full MCP, ACP, and UCP compliance, and consumer Muse discovery, all as future work, none claimed now.
+- **Additional CMS Support** - Including Shopify, Wix, Squarespace, and others based on customer demand
 
-Roadmap, in order: real Link payment, with a Stripe profile ID, a Link spend request step, human Link approval, and token checkout. Render deployment, as a later host option. Private core repos after submission, with public branches pointing to interface docs only. License scoping, with MIT only for demo code, and legal review for the plugin GPL question and for license scope. A sanitized Meta trace file, with model, purpose, input, decision, output, duration, and run ID, no key, no private prompt text. A current harness screenshot, with an animated bear as secondary, not primary. Production plugin compatibility, broad SMB onboarding, full MCP, ACP, and UCP compliance, and consumer Muse discovery, all as future work, none claimed now.
+# License, Ownership, and Third-Party Notices
 
-Payment stays pass-through in spirit: the merchant's checkout and processor, the merchant as merchant of record, for the production design. For this MVP demo, the Bridge calls Stripe through the merchant Stripe account, in test mode only.
-
-## License, Ownership, and Third-Party Notices
-
-License holder for the hackathon submission: Greg Fields, because Meta approved Greg personally, under his personal account, and Greg used that approved slot to build under WSI.
-
-MIT applies only to intentionally reusable demo code, such as the harness demo and mock store, as scoped in the repo license files. Do not read the root MIT license as a blanket grant for all future proprietary work. Each component needs its own scoped license notice, once IP decisions are made.
-
-WordPress and WooCommerce plugin licensing needs legal review, because a plugin that depends on WordPress and WooCommerce code may need to be GPL compatible if it is distributed. That review has not been done yet. Do not assume all plugin code can be kept proprietary.
-
-No key is in this repository. Do not add one. Keys live on the host only, in host settings or in a private file outside public_html.
+License holder for the hackathon submission: Greg Fields.
