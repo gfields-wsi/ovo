@@ -4,27 +4,18 @@
 
 OvO (Orders via Operators) makes small and medium-sized web stores shoppable by AI agents, by creating a VIP shopping experience for semi/fully autonomous AI Agents. 
 
-## Problem
-Small and Medium-Sized web businesses are run by people who care deeply about making great products, providing great services, and focusing on the needs of their customers. They rarely have the time, staff, or AI expertise to invest in initiatives like becoming reading for Agentic Commerce.
+- **Problem** - Small and Medium-Sized web businesses are run by people who care deeply about making great products, providing great services, and focusing on the needs of their customers. They rarely have the time, staff, or AI expertise to invest in initiatives like becoming reading for Agentic Commerce.
+- **OvO Solution** -  OvO fills this gap for SMB merchants by providing an easy-to-use, consumer-grade, and automated solution that makes their existing web properties ready for Agentic Commerce, in minutes (or hours).
+- **Target Customer** - SMB eCommerce Merchants wanting to make sure their stores are shoppable by AI Agents, and AI Agents (starting with the Meta Muse personal assistant).
 
-## OvO Solution: 
-OvO fills this gap for SMB merchants, by providing an easy-to-use, consumer-grade solution that Audits their existing storefront, Enriches the data that's often missing (and needed by AI Agents), Augments their existing web store in place, in minutes (or hours). 
+# Judging OvO
+Watch the [Demo Video](https://youtube.com/shorts/i1ncawyazM0)
+See [How OvO Works](#how-ovo-works)
+Test the before, during, and after experiences in the [OvO Harness](https://wsiventures.com/ovoharness/index.html?v=14)
+Understand how we leverage [Meta AI Technologies](#meta-ai-integration)
+See the [Technical Architecture](#technical-architecture) and [Repo Structure](#repository-structure)
 
-## Target Customer:
-1. SMB Merchants wanting to make sure their stores are shoppable by AI Agents
-2. AI Agents (like the Meta Muse personal assistant)
-
-Scope now: this is an MVP, a research preview, built in a few days. Test mode only. Test card only. No real Link yet. No real customer payment yet.
-
-## Judging OvO
-
-1. **Demo Video** - watch the [Video](https://youtube.com/shorts/i1ncawyazM0)
-2. **Structure** — see [How OvO Works](#how-ovo-works)
-3. **Test in Harness** — walk through the before, during, and after experiences in the [OvO Harness](https://wsiventures.com/ovoharness/index.html?v=14)
-4. **Inspect Meta AI Usage** — understand how we leverage [Meta AI Technologies](#meta-ai-integration)
-5. **Inspect the implementation** — see the [Technical Architecture](#technical-architecture) and [Repo Structure](#repository-structure)
-
-Detailed judging guide: [JUDGE.md](JUDGE.md)
+Or, refer to judging guide: [JUDGE.md](JUDGE.md)
 
 ## Capabilities and Implementation Status
 
