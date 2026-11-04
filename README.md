@@ -1,6 +1,6 @@
 ## Start here, judges
 
-Live OvO Harness: https://wsiventures.com/ovoharness/index.html?v=14
+1. Live OvO Harness: https://wsiventures.com/ovoharness/index.html?v=14
 Use the version link above. The plain link can serve a stale server-cached copy.
 
 Harness code: repository gfields-wsi/ovo, branch ovo-harness, folder ovo-harness/
