@@ -88,6 +88,7 @@ import concurrent.futures
 import csv
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -100,7 +101,41 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-META_HELPER = Path.home() / "workspace/custom-connectors/custom.meta-model-api/bin/meta_model.py"
+
+
+def _resolve_meta_helper():
+    """Meta helper, in order: the OVO_META_HELPER setting, then the
+    repo's own meta_client.py, then the local helper on this machine.
+    The repo client reads a key from the environment first, so it
+    works on a host and here. Returns None when none is found."""
+    env = os.environ.get("OVO_META_HELPER")
+    if env:
+        return Path(env)
+    repo_client = HERE.parent / "ovo-runner" / "meta_client.py"
+    if repo_client.exists():
+        return repo_client
+    local = Path.home() / "workspace/custom-connectors/custom.meta-model-api/bin/meta_model.py"
+    if local.exists():
+        return local
+    return None
+
+
+_HELPER_CACHE = {"checked": False, "path": None}
+
+
+def meta_helper_path():
+    """The Meta helper path, resolved once per run."""
+    if not _HELPER_CACHE["checked"]:
+        _HELPER_CACHE["path"] = _resolve_meta_helper()
+        _HELPER_CACHE["checked"] = True
+    return _HELPER_CACHE["path"]
+
+
+META_HELPER_MISSING = (
+    "No Meta helper found. Set OVO_META_HELPER to the helper path, "
+    "or run from the repo so ovo-runner/meta_client.py is present. "
+    "No vision call was made."
+)
 
 # field, reason, reason_code, next_action — per-store list, filtered
 # at run time: a field that the store actually supplies is removed.
@@ -429,9 +464,12 @@ def vision_check(image_url, product_name):
         ]}],
         "reasoning_effort": "minimal", "max_tokens": 500,
     }
+    helper = meta_helper_path()
+    if helper is None or not helper.exists():
+        return {"error": META_HELPER_MISSING}
     try:
         proc = subprocess.run(
-            [sys.executable, str(META_HELPER), "chat"],
+            [sys.executable, str(helper), "chat"],
             input=json.dumps(payload), capture_output=True, text=True, timeout=120)
         out = json.loads(proc.stdout)
         content = out["choices"][0]["message"]["content"].strip()
@@ -739,6 +777,20 @@ def main(argv=None):
     vision_metrics["vision_attempts"] = len(vision_urls)
     workers = max(1, min(8, args.vision_workers))
     if vision_urls:
+        # Fail fast when a vision call is actually needed and no
+        # helper exists, instead of writing a diff with every
+        # visual row missing. Cached URLs need no helper.
+        uncached = [u for u in vision_urls if args.no_cache or u not in vision_cache]
+        helper = meta_helper_path()
+        if uncached and (helper is None or not helper.exists()):
+            if helper is None:
+                print(META_HELPER_MISSING, file=sys.stderr)
+            else:
+                print(f"OVO_META_HELPER names a missing file: {helper}", file=sys.stderr)
+                print("Set OVO_META_HELPER to the helper path, or run from the repo "
+                      "so ovo-runner/meta_client.py is present.", file=sys.stderr)
+            print("No diff was written.", file=sys.stderr)
+            sys.exit(1)
         if workers == 1:
             for src in vision_urls:
                 vision_by_url[src], _hit = get_vision(src, vision_cache, vision_metrics,

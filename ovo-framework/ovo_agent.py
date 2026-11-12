@@ -60,7 +60,41 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 MODEL = "muse-spark-1.3"
-HELPER = Path.home() / "workspace/custom-connectors/custom.meta-model-api/bin/meta_model.py"
+
+
+def _resolve_meta_helper():
+    """Meta helper, in order: the OVO_META_HELPER setting, then the
+    repo's own meta_client.py, then the local helper on this machine.
+    The repo client reads a key from the environment first, so it
+    works on a host and here. Returns None when none is found."""
+    import os
+    env = os.environ.get("OVO_META_HELPER")
+    if env:
+        return Path(env)
+    repo_client = Path(__file__).resolve().parent.parent / "ovo-runner" / "meta_client.py"
+    if repo_client.exists():
+        return repo_client
+    local = Path.home() / "workspace/custom-connectors/custom.meta-model-api/bin/meta_model.py"
+    if local.exists():
+        return local
+    return None
+
+
+_HELPER_CACHE = {"checked": False, "path": None}
+
+
+def meta_helper_path():
+    """The Meta helper path, resolved once per run."""
+    if not _HELPER_CACHE["checked"]:
+        _HELPER_CACHE["path"] = _resolve_meta_helper()
+        _HELPER_CACHE["checked"] = True
+    return _HELPER_CACHE["path"]
+
+
+META_HELPER_MISSING = (
+    "No Meta helper found. Set OVO_META_HELPER to the helper path, "
+    "or run from the repo so ovo-runner/meta_client.py is present."
+)
 AUDIT_PHASE = "audit"
 ENRICH_PHASE = "enrich"
 COORDINATOR_PHASE = "coordinator"
@@ -140,6 +174,10 @@ class OvoAgent:
         """One Muse Spark call, through the registered helper. No key
         is handled here. Returns the assistant text, or None on failure.
         A failure never stops the deterministic audit; it is logged."""
+        helper = meta_helper_path()
+        if helper is None or not helper.exists():
+            self.log_step("spark_call_failed", META_HELPER_MISSING)
+            return None
         payload = {
             "model": MODEL,
             "messages": [
@@ -151,7 +189,7 @@ class OvoAgent:
         }
         try:
             proc = subprocess.run(
-                [sys.executable, str(HELPER), "chat"],
+                [sys.executable, str(helper), "chat"],
                 input=json.dumps(payload), text=True,
                 capture_output=True, timeout=120,
             )
