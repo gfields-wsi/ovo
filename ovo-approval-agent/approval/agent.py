@@ -56,25 +56,27 @@ approval record for an old diff must not be reused.
 Job: prepare the approval packet and cards, and record only the
 merchant's own decision, in aggregate, by group. This agent never
 approves anything on its own. It never publishes. It never changes
-the live store. It never changes gaps.json, enrichment_diff.json,
-or accuracy_scorecard.json. It only writes its own files here.
+the live store. It never changes gaps.json or
+enrichment_diff_live.json. It only writes its own files here.
 
 Inputs, read only:
-- ../stream2-enrichment/enrichment_diff.json,
-  format ovo-enrichment-diff 1.0-proposed
-- ../accuracy/accuracy_scorecard.json,
-  format ovo-accuracy-scorecard 1.0, used only to group rows
-- ../coordinator/coordinator_run.json, when present, checked only
-  for a published flag. It is not changed.
+- ../ovo-enrichment-agent/enrichment_diff_live.json,
+  format ovo-enrichment-diff 5.0-live
+- ../ovo-audit-agent/audit/gaps.json, for the store address and
+  the gap count only
+- ../ovo-coordinating-agent/coordinator/coordinator_run.json, when
+  present, checked only for a published flag. It is not changed.
+
+There is no accuracy scorecard input. Accuracy travels inside
+the enrichment diff itself, on each row.
 
 Accuracy grouping:
 A row's accuracy percent is taken, in order, from:
 1. accuracy_percent on the diff proposal itself, when present, or
-2. the accuracy scorecard result for that row: accurate true maps
-   to 100 percent, accurate false maps to 0 percent.
-The scorecard today marks each row accurate or not accurate only,
-so it gives no finer percent. Finer percent groups need the
-Coordinating Agent to supply a percent for each row in future.
+2. prd_accuracy_band on the diff proposal: "95% or greater" counts
+   as 95, "80-94%" counts as 80, "50-79%" counts as 50, and
+   "under 50%" counts as 0. A band gives the low end of its range,
+   so a row is never grouped higher than its band proves.
 A row with no accuracy value is ungrouped. It is not presented.
 
 Modes:
@@ -116,10 +118,11 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-ENRICH_DIR = ROOT / "stream2-enrichment"
-ACCURACY_DIR = ROOT / "accuracy"
-COORD_DIR = ROOT / "coordinator"
-FRAMEWORK = ROOT.parent / "ovo-framework"
+REPO_ROOT = ROOT.parent
+ENRICH_DIR = REPO_ROOT / "ovo-enrichment-agent"
+AUDIT_DIR = REPO_ROOT / "ovo-audit-agent" / "audit"
+COORD_DIR = REPO_ROOT / "ovo-coordinating-agent" / "coordinator"
+FRAMEWORK = REPO_ROOT / "ovo-framework"
 sys.path.insert(0, str(FRAMEWORK))
 
 from ovo_agent import OvoAgent, APPROVAL_PHASE  # noqa: E402
@@ -129,7 +132,27 @@ enrichments by accuracy. You present cards. You record only the
 merchant's own decision, in aggregate, by group. You never approve
 anything yourself. You never publish."""
 
-ALLOWED_FIELDS = {"material_structured", "fit_structured", "returns_structured"}
+# Version 5 enrichment fields. Variant fields carry a slug after
+# the _ovo_variant_ prefix, one per size or colour choice.
+ALLOWED_FIELDS = {
+    "_ovo_material", "_ovo_material_appearance", "_ovo_returns_summary",
+    "_ovo_fit_guidance", "_ovo_fit_note", "_ovo_availability_note",
+    "_ovo_size_system", "_ovo_sizes_available",
+}
+# Band low ends, used only to group a row. A band never proves
+# more than its low end.
+BAND_MIN = {
+    "95% or greater": 95.0,
+    "80-94%": 80.0,
+    "50-79%": 50.0,
+    "under 50%": 0.0,
+}
+
+
+def field_allowed(field):
+    if field in ALLOWED_FIELDS:
+        return True
+    return isinstance(field, str) and field.startswith("_ovo_variant_")
 BANDS = [
     {"band": "95_plus", "label": "95 percent or better", "min": 95.0, "max": 100.0,
      "action": "reject_by_exception",
@@ -161,17 +184,22 @@ def key_of(row):
 
 
 def fingerprint(proposed):
+    """SHA-256 of the exact proposed rows, sorted by product and
+    field. Version 5 rows carry new_value and old_value. Product
+    IDs sort as text, so a number order difference cannot change
+    the fingerprint. Approval, the runner, and Augment must all
+    use this exact shape."""
     rows = sorted(
         (
             {
                 "product_id": p.get("product_id"),
                 "field": p.get("field"),
-                "proposed_value": p.get("proposed_value"),
-                "current_value": p.get("current_value"),
+                "new_value": p.get("new_value"),
+                "old_value": p.get("old_value"),
             }
             for p in proposed
         ),
-        key=lambda r: (r["product_id"], r["field"]),
+        key=lambda r: (str(r["product_id"]), r["field"]),
     )
     blob = json.dumps(rows, sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()
@@ -186,18 +214,15 @@ def band_for(accuracy):
     return None
 
 
-def row_accuracy(proposal, score_index):
+def row_accuracy(proposal):
+    """Accuracy for one diff row, from the row itself. An exact
+    accuracy_percent wins. Otherwise the prd_accuracy_band low
+    end counts. No separate scorecard exists, and no value is
+    invented. A row with neither is ungrouped."""
     value = proposal.get("accuracy_percent")
     if isinstance(value, (int, float)) and not isinstance(value, bool):
         return float(value)
-    result = score_index.get(key_of(proposal))
-    if result is None:
-        return None
-    if result.get("accurate") is True:
-        return 100.0
-    if result.get("accurate") is False:
-        return 0.0
-    return None
+    return BAND_MIN.get(proposal.get("prd_accuracy_band"))
 
 
 def parse_iso(value):
@@ -215,21 +240,20 @@ def parse_iso(value):
         return None
 
 
-def resolve_tenant(diff, scorecard, cli_merchant, cli_store):
-    """Tenant IDs, in order: diff, then scorecard, then gaps store
-    URL for the store, then a CLI value. No ID is invented. A
-    missing merchant ID is kept as None, and recorded as such."""
+def resolve_tenant(diff, cli_merchant, cli_store):
+    """Tenant IDs, in order: diff, then gaps store URL for the
+    store, then a CLI value. No ID is invented. A missing merchant
+    ID is kept as None, and recorded as such."""
     gaps_store = None
-    gaps_path = ROOT / "stream1-audit" / "gaps.json"
+    gaps_path = AUDIT_DIR / "gaps.json"
     if gaps_path.exists():
         try:
             gaps_store = json.loads(gaps_path.read_text()).get("store_url")
         except (ValueError, OSError):
             gaps_store = None
-    merchant = diff.get("merchant_id") or scorecard.get("merchant_id") or cli_merchant or None
+    merchant = diff.get("merchant_id") or cli_merchant or None
     store = (
         diff.get("store_id") or diff.get("store_url")
-        or scorecard.get("store_id") or scorecard.get("store_url")
         or gaps_store or cli_store or None
     )
     if merchant and store:
@@ -264,19 +288,22 @@ def open_questions(data):
     return [q for q in data.get("questions", []) if q.get("status") == "open"]
 
 
-def check_gate(diff, scorecard):
+def check_gate(diff):
     """Own-responsibility checks only. Accuracy correctness is not
-    re-checked here, by design. Returns (checks, passed)."""
+    re-checked here, by design. Returns (checks, passed). Version 5
+    rows carry no per-row published or approval flags: approval is
+    a property of the whole diff, through its status and its
+    published flag, so those are checked at diff level."""
     checks = []
 
     def add(name, passed, detail):
         checks.append({"check": name, "passed": passed, "detail": detail})
         return passed
 
-    proposed = [p for p in diff.get("proposals", []) if p.get("status") == "proposed"]
+    proposed = list(diff.get("proposals", []))
     ok = True
     ok &= add("diff_format",
-              diff.get("format") == "ovo-enrichment-diff" and diff.get("version") == "1.0-proposed",
+              diff.get("format") == "ovo-enrichment-diff" and diff.get("version") == "5.0-live",
               f"{diff.get('format')} {diff.get('version')}")
     ok &= add("diff_not_published",
               diff.get("published") is False and diff.get("status") == "proposed_only_awaiting_merchant_approval",
@@ -284,37 +311,20 @@ def check_gate(diff, scorecard):
     ok &= add("diff_count_matches",
               diff.get("proposal_count") == len(proposed),
               f"claimed {diff.get('proposal_count')}, actual {len(proposed)}")
-    bad_fields = sorted({p.get("field") for p in proposed if p.get("field") not in ALLOWED_FIELDS})
+    bad_fields = sorted({p.get("field") for p in proposed if not field_allowed(p.get("field"))})
     ok &= add("proposed_fields_allowed",
               not bad_fields,
-              f"disallowed fields: {bad_fields}" if bad_fields else "material, fit, returns only")
+              f"disallowed fields: {bad_fields}" if bad_fields else "version 5 fields only")
     bad_rows = [
         p for p in proposed
-        if p.get("requires_merchant_approval") is not True
-        or p.get("published") is not False
-        or not p.get("source_label")
-        or not p.get("proposed_value")
+        if not p.get("source_label")
+        or p.get("new_value") in (None, "")
+        or row_accuracy(p) is None
     ]
     ok &= add("proposed_rows_require_approval",
               not bad_rows,
-              f"{len(bad_rows)} rows fail the approval flags" if bad_rows else "all proposed rows require approval")
-    ok &= add("scorecard_format",
-              scorecard.get("format") == "ovo-accuracy-scorecard" and scorecard.get("version") == "1.0",
-              f"{scorecard.get('format')} {scorecard.get('version')}")
-    ok &= add("scorecard_not_published",
-              scorecard.get("published") is False,
-              f"published={scorecard.get('published')}")
-    diff_merchant = diff.get("merchant_id")
-    score_merchant = scorecard.get("merchant_id")
-    diff_store = diff.get("store_id") or diff.get("store_url")
-    score_store = scorecard.get("store_id") or scorecard.get("store_url")
-    tenant_conflict = (
-        (diff_merchant and score_merchant and diff_merchant != score_merchant)
-        or (diff_store and score_store and diff_store != score_store)
-    )
-    ok &= add("tenant_ids_do_not_conflict",
-              not tenant_conflict,
-              "diff and scorecard tenant IDs differ" if tenant_conflict else "no tenant conflict in inputs")
+              f"{len(bad_rows)} rows lack a source label, a new value, or an accuracy value"
+              if bad_rows else "all proposed rows carry a source, a value, and an accuracy value")
     coord_path = COORD_DIR / "coordinator_run.json"
     if coord_path.exists():
         coord = json.loads(coord_path.read_text())
@@ -324,7 +334,7 @@ def check_gate(diff, scorecard):
     return checks, ok
 
 
-def write_record(agent, status, fp, diff, scorecard, groups_data, approved_proposed,
+def write_record(agent, status, fp, diff, groups_data, approved_proposed,
                  approved_corrected, added, rejected, not_approved, excluded, ungrouped,
                  approved_by, decision_file, decided_at,
                  tenant=None, session_info=None, questions_asked=None,
@@ -347,8 +357,8 @@ def write_record(agent, status, fp, diff, scorecard, groups_data, approved_propo
         "status": status,
         "published": False,
         "diff_fingerprint": fp,
-        "diff_source": "stream2-enrichment:enrichment_diff.json ovo-enrichment-diff 1.0-proposed",
-        "accuracy_source": "accuracy:accuracy_scorecard.json ovo-accuracy-scorecard 1.0",
+        "diff_source": "ovo-enrichment-agent:enrichment_diff_live.json ovo-enrichment-diff 5.0-live",
+        "accuracy_source": "enrichment diff: accuracy_percent or prd_accuracy_band on each row; no separate scorecard",
         "accuracy_note": (
             "Accuracy values are taken as given. This agent does not "
             "re-check enrichment values, and it does not recompute accuracy."
@@ -409,13 +419,17 @@ def write_record(agent, status, fp, diff, scorecard, groups_data, approved_propo
 
 
 def packet_row(p, accuracy, band):
+    """One row as the merchant sees it. The packet keeps the
+    current_value and proposed_value names, mapped from the diff
+    row's old_value and new_value, so the decision file and the
+    plugin stage read one shape."""
     return {
         "product_id": p.get("product_id"),
         "product_name": p.get("product_name"),
         "sku": p.get("sku"),
         "field": p.get("field"),
-        "current_value": p.get("current_value"),
-        "proposed_value": p.get("proposed_value"),
+        "current_value": p.get("old_value"),
+        "proposed_value": p.get("new_value"),
         "evidence": p.get("evidence"),
         "source_label": p.get("source_label"),
         "accuracy_percent": accuracy,
@@ -441,25 +455,18 @@ def main():
     )
     agent.log_step("start", "Merchant Approval Agent run started", "framework:ovo_agent.py")
 
-    diff_path = ENRICH_DIR / "enrichment_diff.json"
-    score_path = ACCURACY_DIR / "accuracy_scorecard.json"
-    for path in (diff_path, score_path):
-        if not path.exists():
-            raise SystemExit(f"Missing input: {path}. Run Audit, Enrichment, and Accuracy first.")
+    diff_path = ENRICH_DIR / "enrichment_diff_live.json"
+    if not diff_path.exists():
+        raise SystemExit(f"Missing input: {diff_path}. Run Audit and Enrichment first.")
     diff = json.loads(diff_path.read_text())
-    scorecard = json.loads(score_path.read_text())
-    tenant = resolve_tenant(diff, scorecard, args.merchant_id, args.store_id)
-    checks, gate_ok = check_gate(diff, scorecard)
-    proposed = [p for p in diff.get("proposals", []) if p.get("status") == "proposed"]
-    held = [p for p in diff.get("proposals", []) if p.get("status") != "proposed"]
-    held_index = {key_of(p): p for p in held}
-    score_index = {(r.get("product_id"), r.get("field")): r for r in scorecard.get("results", [])}
-    if scorecard.get("proposed_count") != len(proposed):
-        agent.log_discrepancy(
-            f"Scorecard proposed_count {scorecard.get('proposed_count')} does not match "
-            f"diff proposed rows {len(proposed)}",
-            kept="rows are grouped only when an accuracy value is found for that row",
-        )
+    tenant = resolve_tenant(diff, args.merchant_id, args.store_id)
+    checks, gate_ok = check_gate(diff)
+    # Version 5 rows carry no status field: every row in proposals
+    # is a proposal. There are no held rows in this shape, so a
+    # merchant addition has no held row to attach to.
+    proposed = list(diff.get("proposals", []))
+    held = []
+    held_index = {}
     fp = fingerprint(proposed)
 
     # Group presented rows by accuracy band. Under 50 and ungrouped
@@ -471,7 +478,7 @@ def main():
     for band in BANDS:
         rows = []
         for p in proposed:
-            accuracy = row_accuracy(p, score_index)
+            accuracy = row_accuracy(p)
             if accuracy is None:
                 continue
             if band_for(accuracy) is band:
@@ -487,7 +494,7 @@ def main():
             "rows": rows,
         })
     for p in proposed:
-        accuracy = row_accuracy(p, score_index)
+        accuracy = row_accuracy(p)
         if accuracy is None:
             ungrouped.append({"product_id": p.get("product_id"), "field": p.get("field")})
         elif accuracy < 50.0:
@@ -504,7 +511,7 @@ def main():
              "approved_as_proposed": 0, "approved_as_corrected": 0, "rejected": 0, "not_approved": g["presented_count"]}
             for g in groups
         ]
-        write_record(agent, "blocked_gate_failed", fp, diff, scorecard, groups_summary,
+        write_record(agent, "blocked_gate_failed", fp, diff, groups_summary,
                      [], [], [], [], [r for g in groups for r in g["rows"]], excluded, ungrouped,
                      None, None, None, tenant=tenant, session_info=None,
                      questions_asked=[], questions_closed=[],
@@ -521,11 +528,25 @@ def main():
         raise SystemExit(1)
 
     agent.log_step("gate_checked", f"{sum(1 for c in checks if c['passed'])} of {len(checks)} checks passed",
-                   "stream2-enrichment:enrichment_diff.json")
+                   "ovo-enrichment-agent:enrichment_diff_live.json")
 
     # Packet mode: prepare, do not approve.
     if args.decision_file is None:
         packet_open = open_questions(load_questions())
+        gaps_total = None
+        gaps_path = AUDIT_DIR / "gaps.json"
+        if gaps_path.exists():
+            try:
+                gaps_total = json.loads(gaps_path.read_text()).get("gap_count_total")
+            except (ValueError, OSError):
+                gaps_total = None
+        band_counts = {
+            b["band"]: sum(1 for p in proposed if band_for(row_accuracy(p)) is b)
+            for b in BANDS
+        }
+        band_counts["under_50"] = sum(
+            1 for p in proposed
+            if row_accuracy(p) is not None and row_accuracy(p) < 50.0)
         packet = {
             "format": "ovo-approval-packet",
             "version": "1.0",
@@ -542,8 +563,8 @@ def main():
             ),
             "open_questions": packet_open,
             "diff_fingerprint": fp,
-            "diff_source": "stream2-enrichment:enrichment_diff.json ovo-enrichment-diff 1.0-proposed",
-            "accuracy_source": "accuracy:accuracy_scorecard.json ovo-accuracy-scorecard 1.0",
+            "diff_source": "ovo-enrichment-agent:enrichment_diff_live.json ovo-enrichment-diff 5.0-live",
+            "accuracy_source": "enrichment diff: accuracy_percent or prd_accuracy_band on each row; no separate scorecard",
             "accuracy_note": (
                 "Accuracy values are taken as given. This agent does not "
                 "re-check enrichment values, and it does not recompute accuracy."
@@ -554,17 +575,13 @@ def main():
                 "merchant_approval_agent": "Records merchant decisions only. Not responsible or accountable for enrichment accuracy.",
             },
             "product_count": diff.get("product_count"),
-            "total_gaps": diff.get("total_gaps"),
+            "total_gaps": gaps_total,
             "proposed_count": len(proposed),
             "presented_count": len(presented_index),
             "excluded_under_50_count": len(excluded),
             "ungrouped_count": len(ungrouped),
             "held_count": len(held),
-            "scores_as_given": {
-                "native_store_core_score": diff.get("scores_projected", {}).get("native_store_core_score"),
-                "projected_core_score_if_proposals_approved": diff.get("scores_projected", {}).get("projected_core_score_if_proposals_approved"),
-                "note": "Projected only, as given in the diff. Nothing is published until the merchant approves and Augment runs.",
-            },
+            "accuracy_bands_as_given": band_counts,
             "gate_checks": checks,
             "groups": groups,
             "excluded_under_50": excluded,
@@ -725,7 +742,7 @@ def main():
              "approved_as_proposed": 0, "approved_as_corrected": 0, "rejected": 0, "not_approved": g["presented_count"]}
             for g in groups
         ]
-        write_record(agent, "awaiting_merchant_decision", fp, diff, scorecard, groups_summary,
+        write_record(agent, "awaiting_merchant_decision", fp, diff, groups_summary,
                      [], [], [], [], [r for g in groups for r in g["rows"]], excluded, ungrouped,
                      None, None, None, tenant=tenant, session_info=None,
                      questions_asked=[], questions_closed=[], questions_open=packet_open)
@@ -1033,7 +1050,7 @@ def main():
         errors.append("no group submitted and no additions given")
 
     if errors:
-        write_record(agent, "invalid_decision", fp, diff, scorecard, groups_summary,
+        write_record(agent, "invalid_decision", fp, diff, groups_summary,
                      [], [], [], [], [r for g in groups for r in g["rows"]], excluded, ungrouped,
                      approved_by.strip() if isinstance(approved_by, str) and approved_by.strip() else None,
                      decision_path.name, None, tenant=tenant, session_info=session_info,
@@ -1069,7 +1086,7 @@ def main():
         questions_work["store_id"] = tenant["store_id"]
         questions_path().write_text(json.dumps(questions_work, indent=2))
     questions_open_after = open_questions(questions_work)
-    write_record(agent, status, fp, diff, scorecard, groups_summary,
+    write_record(agent, status, fp, diff, groups_summary,
                  approved_proposed, approved_corrected, added, rejected, not_approved,
                  excluded, ungrouped, approved_by.strip(), decision_path.name, decided_at,
                  tenant=tenant, session_info=session_info,

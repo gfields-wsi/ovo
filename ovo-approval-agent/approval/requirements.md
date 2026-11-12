@@ -11,7 +11,7 @@ Requirement: Merchants can open the cards without access to the workspace.
 - A merchant can open the cards in a browser.
 - Each card shows its accuracy group, its rows, and its values.
 - No row under 50 percent is shown.
-- The cards show the live Sole Mates packet, not test values.
+- The cards show the packet for the store under review, not test values.
 
 ## R2. Cards allow edits and submission on the card
 

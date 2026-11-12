@@ -4,7 +4,7 @@ Built on the shared OvO agent framework in ../framework/ovo_agent.py. It uses th
 
 ## Job
 
-Group enrichments by accuracy. Present one card for each group. Record only the merchant's own decision, in aggregate, by group. Never approve anything on its own. Never publish. Never change the live store. Never change the audit, enrichment, or accuracy files.
+Group enrichments by accuracy. Present one card for each group. Record only the merchant's own decision, in aggregate, by group. Never approve anything on its own. Never publish. Never change the live store. Never change the audit or enrichment files.
 
 ## Run
 
@@ -18,7 +18,7 @@ Run: python3 agent.py --decision-file decision.json
 
 ## Inputs
 
-The agent reads three inputs, and it changes none of them. It reads the enrichment diff from ../stream2-enrichment/enrichment_diff.json. It reads the accuracy scorecard from ../accuracy/accuracy_scorecard.json, only to group rows. When a coordinator run file is present, it checks that file for a published flag only.
+The agent reads two inputs, and it changes none of them. It reads the enrichment diff from ../ovo-enrichment-agent/enrichment_diff_live.json, format ovo-enrichment-diff 5.0-live. Accuracy travels inside that diff, on each row. It reads the audit gaps from ../ovo-audit-agent/audit/gaps.json, for the store address and the gap count only. When a coordinator run file is present, it checks that file for a published flag only. There is no accuracy scorecard input.
 
 ## Outputs
 
@@ -38,7 +38,7 @@ A group that is not submitted gives no approval for any row in that group. Silen
 
 ## Accuracy grouping
 
-A row's accuracy percent is taken from accuracy_percent on the diff proposal, when present. If that field is absent, it is taken from the accuracy scorecard result for that row. In that case, accurate true maps to 100 percent, and accurate false maps to 0 percent. The scorecard today marks each row accurate or not accurate only, so it gives no finer percent. Finer percent groups need the Coordinating Agent to supply a percent for each row in future. A row with no accuracy value is ungrouped. It is not presented.
+A row's accuracy percent is taken from accuracy_percent on the diff proposal, when present. If that field is absent, it is taken from prd_accuracy_band on the same row: "95% or greater" counts as 95, "80-94%" counts as 80, "50-79%" counts as 50, and "under 50%" counts as 0. A band gives the low end of its range, so a row is never grouped higher than its band proves. A row with no accuracy value is ungrouped. It is not presented.
 
 ## Trust and roles
 
@@ -52,11 +52,11 @@ The merchant can correct a proposed value, or add information where it applies. 
 
 ## Gate checks
 
-These checks are this agent's own checks only. They are not accuracy checks. The diff must be proposed only, not published. The claimed proposal count must match the actual proposed rows. Every proposed row must be for material, fit, or returns only. Every proposed row must require merchant approval, must not be published, and must have a source label. The scorecard format must be correct, and it must not be published. Tenant IDs in the diff and in the scorecard must not conflict. When a coordinator run file is present, it must not say published true. If a check fails, the gate closes. The packet files are removed, and a blocked record is written. Nothing may be published from a blocked record.
+These checks are this agent's own checks only. They are not accuracy checks. The diff must be format ovo-enrichment-diff 5.0-live, proposed only, not published. The claimed proposal count must match the actual proposed rows. Every proposed row must be for a version 5 field only. Every proposed row must carry a source label, a new value, and an accuracy value. When a coordinator run file is present, it must not say published true. If a check fails, the gate closes. The packet files are removed, and a blocked record is written. Nothing may be published from a blocked record.
 
 ## Only their data
 
-A packet, a card, and a record carry a merchant ID and a store ID, when those IDs are supplied. The store ID comes from the diff, then the scorecard, then the audit store URL, then a command line value. The merchant ID comes from the diff, then the scorecard, then a command line value. No ID is invented. Today the live inputs supply a store URL and no merchant ID, so the live packet is marked store only, with no merchant ID. That gap is recorded, not hidden. A decision whose merchant ID or store ID does not match the packet is rejected. No packet lists rows from more than one store. The tenant check is enforced when a decision is recorded. A static card file cannot enforce who opens it, so a live card service must check the tenant before it serves a card. That service check is platform work, not yet built.
+A packet, a card, and a record carry a merchant ID and a store ID, when those IDs are supplied. The store ID comes from the diff, then the audit store URL, then a command line value. The merchant ID comes from the diff, then a command line value. No ID is invented. Today the live inputs supply a store URL and no merchant ID, so the live packet is marked store only, with no merchant ID. That gap is recorded, not hidden. A decision whose merchant ID or store ID does not match the packet is rejected. No packet lists rows from more than one store. The tenant check is enforced when a decision is recorded. A static card file cannot enforce who opens it, so a live card service must check the tenant before it serves a card. That service check is platform work, not yet built.
 
 ## Questions
 

@@ -44,4 +44,4 @@ The remaining requirements are approval/requirements.md.
 
 The blank decision file is approval/decision_template.json. It includes a session template.
 
-The example packet and cards are approval/approval_packet.json, approval_packet.md, and approval_cards.html. They show the live Sole Mates packet. Nothing in them is approved. Nothing in them is published.
+The example packet and cards are approval/approval_packet.json, approval_packet.md, and approval_cards.html. They show the packet for the store under review. Nothing in them is approved. Nothing in them is published.
