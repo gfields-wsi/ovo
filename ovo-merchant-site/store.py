@@ -21,6 +21,7 @@ digits, never the card number.
 import hashlib
 import json
 import sqlite3
+import threading
 from pathlib import Path
 
 SCHEMA = """
@@ -132,18 +133,35 @@ def token_hash(token):
 
 
 class MerchantStore:
-    """One store. Open it, use it, close it. Callers never write SQL."""
+    """One store. Open it, use it, close it. Callers never write SQL.
+
+    Each thread gets its own connection to the same file, so the
+    HTTP server can serve requests from worker threads while
+    tests use the main thread. The schema is created on every
+    new connection, idempotently."""
 
     def __init__(self, db_path):
         self.db_path = Path(db_path)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        self.conn = sqlite3.connect(str(self.db_path))
-        self.conn.row_factory = sqlite3.Row
-        self.conn.executescript(SCHEMA)
-        self.conn.commit()
+        self._local = threading.local()
+        _ = self.conn
+
+    @property
+    def conn(self):
+        conn = getattr(self._local, "conn", None)
+        if conn is None:
+            conn = sqlite3.connect(str(self.db_path))
+            conn.row_factory = sqlite3.Row
+            conn.executescript(SCHEMA)
+            conn.commit()
+            self._local.conn = conn
+        return conn
 
     def close(self):
-        self.conn.close()
+        conn = getattr(self._local, "conn", None)
+        if conn is not None:
+            conn.close()
+            self._local.conn = None
 
     # -- merchants -------------------------------------------------
     def create_merchant(self, merchant_id, name, email, password_hash,
