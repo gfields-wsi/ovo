@@ -3,29 +3,42 @@
  * Plugin Name:       OvO Enrichment
  * Plugin URI:        https://wsiventures.com/ovo
  * Description:       Publishes merchant-approved enrichment in place on the merchant's own WooCommerce store. Server-rendered JSON-LD and a REST read surface only. It never writes price, stock, SKU, tax, shipping, or policy claims from modelled data, and it never changes checkout totals. WooCommerce recalculates those server-side.
- * Version:           0.2.0-demo
- * Requires at least: 6.0
+ * Version:           1.0.0
+ * Requires at least: 6.5
+ * Tested up to:      7.1.4
  * Requires PHP:      7.4
- * Author:            OvO Hackathon, Stream 3
+ * Requires Plugins:  woocommerce
+ * WC requires at least: 10.0
+ * WC tested up to:   11.3.0
+ * Author:            OvO
  * License:           GPLv2 or later
  * Text Domain:       ovo-enrichment
  *
- * Demo status: this is a demo build for the Meta AI Hackathon freeze on
- * 2026-11-02. It is not a production plugin, it is not listed in the
- * WordPress plugin directory, and it makes no claim of MCP, ACP, or UCP
- * compliance, consumer Muse discovery, live payment, or production
- * compatibility. Zip upload in WP admin is a demo-only install method.
- * The real merchant path is a CMS app-store install, which does not exist yet.
+ * Production build 1.0.0. Free plugin. No feature is locked behind
+ * payment and no license check sits in this code. The paid OvO
+ * service behind it is disclosed in readme.txt. This plugin is
+ * single-site only: network activation is not supported.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'OVO_ENRICHMENT_VERSION', '0.2.0-demo' );
+define( 'OVO_ENRICHMENT_VERSION', '1.0.0' );
+
+// HPOS: this plugin never reads or writes order data. It declares
+// compatibility only after testing with HPOS on and off.
+add_action(
+    'before_woocommerce_init',
+    function () {
+        if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+        }
+    }
+);
 
 /**
- * Write auth, version 0.2.
+ * Write auth, version 1.0.
  * Admin login still works. In addition, a scoped OvO token works:
  * the admin generates a token once in WooCommerce > OvO Enrichment,
  * the plugin stores only its SHA-256 hash, and the caller sends it
@@ -258,11 +271,212 @@ function ovo_enrichment_audit( $entry ) {
     $entry['at'] = gmdate( 'c' );
     $log[]       = $entry;
     // Cap the log. Revert and demo-reset append, they never truncate it.
-    if ( count( $log ) > 500 ) {
-        $log = array_slice( $log, -500 );
+    if ( count( $log ) > 5000 ) {
+        $log = array_slice( $log, -5000 );
     }
     update_option( 'ovo_enrichment_audit_log', $log, false );
 }
+
+/**
+ * Server cache purge after publish and revert.
+ *
+ * WooCommerce product transients are always cleared. Then each
+ * full-page cache plugin found on the store is asked to purge this
+ * product, and a generic action lets a host hook in its own purge.
+ * Nothing here purges the whole site cache. The list of handlers
+ * that ran is returned so the audit log can record what was purged
+ * and what, if anything, still needs host action.
+ */
+function ovo_enrichment_purge_caches( $product_id ) {
+    $purged = array();
+    if ( function_exists( 'wc_delete_product_transients' ) ) {
+        wc_delete_product_transients( $product_id );
+        $purged[] = 'woocommerce-transients';
+    }
+    clean_post_cache( $product_id );
+    $purged[] = 'wordpress-post-cache';
+    // W3 Total Cache.
+    if ( function_exists( 'w3tc_flush_post' ) ) {
+        w3tc_flush_post( $product_id );
+        $purged[] = 'w3-total-cache';
+    } elseif ( function_exists( 'w3tc_pgcache_flush_post' ) ) {
+        w3tc_pgcache_flush_post( $product_id );
+        $purged[] = 'w3-total-cache';
+    }
+    // WP Super Cache.
+    if ( function_exists( 'wp_cache_post_change' ) ) {
+        wp_cache_post_change( $product_id );
+        $purged[] = 'wp-super-cache';
+    }
+    // WP Rocket.
+    if ( function_exists( 'rocket_clean_post' ) ) {
+        rocket_clean_post( $product_id );
+        $purged[] = 'wp-rocket';
+    }
+    // LiteSpeed Cache.
+    if ( has_action( 'litespeed_purge_post' ) ) {
+        do_action( 'litespeed_purge_post', $product_id );
+        $purged[] = 'litespeed-cache';
+    }
+    // Host hook: a host cache plugin or CDN can purge here.
+    do_action( 'ovo_enrichment_purge_caches', $product_id );
+    $purged[] = 'ovo_enrichment_purge_caches-action';
+    return $purged;
+}
+
+/* ------------------------------------------------------------------ */
+/* WooCommerce product webhooks: OvO is told when a product changes.  */
+/* Created on activation, checked every day, repaired when missing.   */
+/* ------------------------------------------------------------------ */
+
+function ovo_enrichment_webhook_topics() {
+    return array( 'product.created', 'product.updated', 'product.deleted' );
+}
+
+function ovo_enrichment_webhook_url() {
+    $url = get_option( 'ovo_enrichment_webhook_url', '' );
+    if ( '' === $url ) {
+        $url = 'https://wsiventures.com/ovo/webhooks';
+    }
+    return $url;
+}
+
+/**
+ * The user the webhook delivers as. WooCommerce builds the payload
+ * through its own REST API as this user, so it must be an admin who
+ * can read products. Without it the payload is a 401 error body,
+ * signed but empty of product data. Activation runs with no user,
+ * so the webhook is given the first administrator here, on create
+ * and on every repair.
+ */
+function ovo_enrichment_webhook_user_id() {
+    $admins = get_users(
+        array(
+            'role'    => 'administrator',
+            'orderby' => 'ID',
+            'order'   => 'ASC',
+            'number'  => 1,
+            'fields'  => 'ID',
+        )
+    );
+    return ! empty( $admins ) ? (int) $admins[0] : 0;
+}
+
+/**
+ * One webhook per topic, named so the daily check can find it.
+ * Returns the webhook ids, keyed by topic.
+ */
+function ovo_enrichment_ensure_webhooks() {
+    if ( ! class_exists( 'WC_Webhook' ) ) {
+        return array( 'error' => 'WooCommerce is not active.' );
+    }
+    $ids = get_option( 'ovo_enrichment_webhook_ids', array() );
+    if ( ! is_array( $ids ) ) {
+        $ids = array();
+    }
+    $url = ovo_enrichment_webhook_url();
+    foreach ( ovo_enrichment_webhook_topics() as $topic ) {
+        $hook = null;
+        if ( ! empty( $ids[ $topic ] ) ) {
+            $hook = wc_get_webhook( (int) $ids[ $topic ] );
+        }
+        if ( ! $hook ) {
+            // Find a webhook with our name, in case the stored id was lost.
+            // WooCommerce stores webhooks in its own table on current
+            // releases, and as shop_webhook posts on older ones.
+            $found_id = 0;
+            global $wpdb;
+            $table = $wpdb->prefix . 'wc_webhooks';
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+            $found_id = (int) $wpdb->get_var(
+                $wpdb->prepare(
+                    "SELECT webhook_id FROM {$table} WHERE name = %s LIMIT 1",
+                    'OvO ' . $topic
+                )
+            );
+            if ( $found_id ) {
+                $hook = wc_get_webhook( $found_id );
+            } else {
+                $found = get_posts(
+                    array(
+                        'post_type'      => 'shop_webhook',
+                        'post_status'    => 'any',
+                        'posts_per_page' => -1,
+                        'fields'         => 'ids',
+                    )
+                );
+                foreach ( $found as $candidate_id ) {
+                    $candidate = wc_get_webhook( (int) $candidate_id );
+                    if ( $candidate && 'OvO ' . $topic === $candidate->get_name() ) {
+                        $hook = $candidate;
+                        break;
+                    }
+                }
+            }
+        }
+        if ( ! $hook ) {
+            $hook = new WC_Webhook();
+            $hook->set_name( 'OvO ' . $topic );
+            $hook->set_topic( $topic );
+            $hook->set_delivery_url( $url );
+            $hook->set_secret( wp_generate_password( 32, false, false ) );
+        }
+        // Repair: wrong URL, wrong topic, wrong user, or disabled gets fixed here.
+        $hook->set_topic( $topic );
+        $hook->set_delivery_url( $url );
+        $hook->set_user_id( ovo_enrichment_webhook_user_id() );
+        $hook->set_status( 'active' );
+        $hook->save();
+        $ids[ $topic ] = $hook->get_id();
+    }
+    update_option( 'ovo_enrichment_webhook_ids', $ids, false );
+    return $ids;
+}
+
+function ovo_enrichment_webhook_status() {
+    $ids    = get_option( 'ovo_enrichment_webhook_ids', array() );
+    $status = array();
+    foreach ( ovo_enrichment_webhook_topics() as $topic ) {
+        $entry = array( 'topic' => $topic, 'exists' => false, 'active' => false, 'delivery_url' => ovo_enrichment_webhook_url() );
+        if ( ! empty( $ids[ $topic ] ) && class_exists( 'WC_Webhook' ) ) {
+            $hook = wc_get_webhook( (int) $ids[ $topic ] );
+            if ( $hook ) {
+                $entry['exists']       = true;
+                $entry['active']       = ( 'active' === $hook->get_status() );
+                $entry['delivery_url'] = $hook->get_delivery_url();
+                $entry['webhook_id']   = $hook->get_id();
+            }
+        }
+        $status[] = $entry;
+    }
+    return $status;
+}
+
+/**
+ * Daily check, run by WP-Cron and by the admin "Check webhooks now"
+ * button. Recreates or repairs any missing, disabled, or wrong-URL
+ * webhook, and logs what it did.
+ */
+function ovo_enrichment_webhook_daily_check() {
+    $before = ovo_enrichment_webhook_status();
+    $ids    = ovo_enrichment_ensure_webhooks();
+    $after  = ovo_enrichment_webhook_status();
+    $fixed  = array();
+    foreach ( $after as $i => $entry ) {
+        if ( ! $before[ $i ]['exists'] || ! $before[ $i ]['active'] || $before[ $i ]['delivery_url'] !== $entry['delivery_url'] ) {
+            $fixed[] = $entry['topic'];
+        }
+    }
+    ovo_enrichment_audit(
+        array(
+            'action'  => 'webhook_daily_check',
+            'fixed'   => $fixed,
+            'webhooks' => $after,
+        )
+    );
+    return array( 'fixed' => $fixed, 'webhooks' => $after, 'error' => isset( $ids['error'] ) ? $ids['error'] : '' );
+}
+add_action( 'ovo_enrichment_webhook_check', 'ovo_enrichment_webhook_daily_check' );
 
 /**
  * Apply one validated change. Returns array( 'ok', 'error', 'applied' ).
@@ -270,7 +484,7 @@ function ovo_enrichment_audit( $entry ) {
  * This stops a stale diff from overwriting a merchant edit made since
  * the diff was produced.
  */
-function ovo_enrichment_apply_change( $change, $batch_id ) {
+function ovo_enrichment_apply_change( $change, $batch_id, $meta = array() ) {
     $product_id = (int) $change['product_id'];
     $field      = sanitize_text_field( $change['field'] );
     $new_value  = wp_kses_post( (string) $change['new_value'] );
@@ -378,19 +592,25 @@ function ovo_enrichment_apply_change( $change, $batch_id ) {
         'applied_at' => gmdate( 'c' ),
     );
     update_post_meta( $product_id, '_ovo_enriched', $enriched );
-    if ( function_exists( 'wc_delete_product_transients' ) ) {
-        wc_delete_product_transients( $product_id );
-    }
-    ovo_enrichment_audit(
-        array(
-            'action'     => 'apply',
-            'product_id' => $product_id,
-            'field'      => $field,
-            'key'        => $key,
-            'source'     => $source,
-            'batch_id'   => $batch_id,
-        )
+    $purged = ovo_enrichment_purge_caches( $product_id );
+    $audit_entry = array(
+        'action'     => 'apply',
+        'product_id' => $product_id,
+        'field'      => $field,
+        'key'        => $key,
+        'source'     => $source,
+        'batch_id'   => $batch_id,
+        'old_value'  => $old_value,
+        'new_value'  => $new_value,
+        'cache_purged' => $purged,
     );
+    if ( ! empty( $meta['approved_by'] ) ) {
+        $audit_entry['approved_by'] = $meta['approved_by'];
+    }
+    if ( ! empty( $meta['approval_fingerprint'] ) ) {
+        $audit_entry['approval_fingerprint'] = $meta['approval_fingerprint'];
+    }
+    ovo_enrichment_audit( $audit_entry );
     return array( 'ok' => true, 'error' => '', 'applied' => $key );
 }
 
@@ -431,13 +651,14 @@ function ovo_enrichment_revert_product( $product_id, $field_key = '' ) {
         unset( $enriched[ $key ] );
         $reverted[] = $key;
     }
-    update_post_meta( $product_id, '_ovo_enriched', $enriched );
     if ( empty( $enriched ) ) {
-        // Keep originals after a full revert? No: once the catalog is back
-        // to the original, the snapshot has served its purpose. The audit
-        // log still records what was applied and reverted.
+        // Nothing enriched left: delete the meta rows entirely, so
+        // the product leaves the enriched list and the manifest
+        // count. An empty meta row would still match the list query.
+        delete_post_meta( $product_id, '_ovo_enriched' );
         delete_post_meta( $product_id, '_ovo_originals' );
     } else {
+        update_post_meta( $product_id, '_ovo_enriched', $enriched );
         // Partial revert: keep originals for the fields still enriched.
         $kept = array();
         foreach ( $enriched as $key => $entry ) {
@@ -447,25 +668,23 @@ function ovo_enrichment_revert_product( $product_id, $field_key = '' ) {
         }
         update_post_meta( $product_id, '_ovo_originals', $kept );
     }
-    if ( function_exists( 'wc_delete_product_transients' ) ) {
-        wc_delete_product_transients( $product_id );
-    }
+    $purged = ovo_enrichment_purge_caches( $product_id );
     ovo_enrichment_audit(
         array(
             'action'     => 'revert',
             'product_id' => $product_id,
             'field_key'  => $field_key,
             'reverted'   => $reverted,
+            'cache_purged' => $purged,
         )
     );
     return array( 'ok' => true, 'reverted' => $reverted );
 }
 
 /* ------------------------------------------------------------------ */
-/* REST: public read, admin-only write. No new shared secret in v0.1. */
-/* Writes require a logged-in user who can manage options, which in   */
-/* the demo is the merchant admin. That is a stated gap, not a claim   */
-/* of a scoped agent token, which does not exist yet.                 */
+/* REST: public read, admin-only write. Writes need a logged-in user  */
+/* who can manage options, or a scoped OvO token plus an approval     */
+/* record. A token alone never publishes.                             */
 /* ------------------------------------------------------------------ */
 
 function ovo_enrichment_public_product( $product_id ) {
@@ -498,22 +717,65 @@ function ovo_enrichment_public_product( $product_id ) {
     );
 }
 
+/**
+ * Manifest data, as a named function so tests can call it without
+ * booting WordPress. Versioned: a breaking change needs a new
+ * version, v2 alongside v1, not a silent change to v1.
+ */
+function ovo_enrichment_manifest_data() {
+    return array(
+        'plugin'                 => 'ovo-enrichment',
+        'version'                => OVO_ENRICHMENT_VERSION,
+        'api_version'            => '1.0',
+        'scope'                  => 'WordPress + WooCommerce only. Shopify, Wix, and Squarespace are out of scope.',
+        'store_url'              => home_url( '/' ),
+        'tool_endpoint'          => rest_url( 'ovo/v1/products' ),
+        'enriched_product_count' => ovo_enrichment_count_enriched(),
+        'webhooks'               => ovo_enrichment_webhook_status(),
+        'blocked_fields'         => ovo_enrichment_blocked_fields(),
+        'cache_policy'           => 'Public GET responses: Cache-Control public, max-age=60, must-revalidate. Write routes: no-store.',
+        'note'                   => 'This manifest is not MCP, ACP, or UCP compliance, and it is not consumer Muse discovery.',
+    );
+}
+
+function ovo_enrichment_count_enriched() {
+    $ids = get_posts(
+        array(
+            'post_type'      => 'product',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'meta_key'       => '_ovo_enriched',
+        )
+    );
+    return count( $ids );
+}
+
+/**
+ * Cache policy for the OvO read surface. Public GET responses state
+ * it in a header; write routes are never cached.
+ */
+function ovo_enrichment_rest_cache_headers( $result, $server, $request ) {
+    $route = $request->get_route();
+    if ( 0 !== strpos( $route, '/ovo/v1' ) ) {
+        return $result;
+    }
+    if ( 'GET' === $request->get_method() ) {
+        $result->header( 'Cache-Control', 'public, max-age=60, must-revalidate' );
+    } else {
+        $result->header( 'Cache-Control', 'no-store' );
+    }
+    return $result;
+}
+add_filter( 'rest_post_dispatch', 'ovo_enrichment_rest_cache_headers', 10, 3 );
+
 function ovo_enrichment_register_routes() {
     register_rest_route(
         'ovo/v1',
         '/manifest',
         array(
             'methods'             => 'GET',
-            'callback'            => function () {
-                return array(
-                    'plugin'        => 'ovo-enrichment',
-                    'version'       => OVO_ENRICHMENT_VERSION,
-                    'tool_endpoint' => rest_url( 'ovo/v1/products' ),
-                    'scope'         => 'WordPress + WooCommerce only. Shopify, Wix, and Squarespace are out of scope.',
-                    'blocked_fields' => ovo_enrichment_blocked_fields(),
-                    'note'          => 'This manifest is not MCP, ACP, or UCP compliance, and it is not consumer Muse discovery.',
-                );
-            },
+            'callback'            => 'ovo_enrichment_manifest_data',
             'permission_callback' => '__return_true',
         )
     );
@@ -522,21 +784,35 @@ function ovo_enrichment_register_routes() {
         '/products',
         array(
             'methods'             => 'GET',
-            'callback'            => function () {
-                $ids = get_posts(
+            'callback'            => function ( $request ) {
+                // Paginated. Default page 1, 100 per page, max 100.
+                // Totals ride in X-WP-Total and X-WP-TotalPages headers,
+                // so a caller can page past 100 enriched products
+                // instead of hitting a silent cap.
+                $page     = max( 1, (int) $request->get_param( 'page' ) );
+                $per_page = (int) $request->get_param( 'per_page' );
+                if ( $per_page <= 0 ) {
+                    $per_page = 100;
+                }
+                $per_page = min( 100, $per_page );
+                $query    = new WP_Query(
                     array(
                         'post_type'      => 'product',
                         'post_status'    => 'publish',
-                        'posts_per_page' => 100,
+                        'posts_per_page' => $per_page,
+                        'paged'          => $page,
                         'fields'         => 'ids',
                         'meta_key'       => '_ovo_enriched',
                     )
                 );
                 $out = array();
-                foreach ( $ids as $id ) {
+                foreach ( $query->posts as $id ) {
                     $out[] = ovo_enrichment_public_product( (int) $id );
                 }
-                return $out;
+                $response = new WP_REST_Response( $out );
+                $response->header( 'X-WP-Total', (int) $query->found_posts );
+                $response->header( 'X-WP-TotalPages', (int) $query->max_num_pages );
+                return $response;
             },
             'permission_callback' => '__return_true',
         )
@@ -589,13 +865,24 @@ function ovo_enrichment_register_routes() {
                 }
                 $applied = array();
                 $rejected = array();
+                // Approver, for the audit log. Token calls carry it in
+                // the diff; admin calls are approved by the signed-in
+                // admin posting the diff.
+                $meta = array();
+                if ( 'token' === $auth['via'] ) {
+                    $meta['approved_by']          = sanitize_text_field( $params['approved_by'] );
+                    $meta['approval_fingerprint'] = sanitize_text_field( $params['approval_fingerprint'] );
+                } else {
+                    $user = wp_get_current_user();
+                    $meta['approved_by'] = $user ? $user->user_login : 'admin';
+                }
                 foreach ( $changes as $change ) {
                     $check = ovo_enrichment_validate_change( $change );
                     if ( ! $check['ok'] ) {
                         $rejected[] = array( 'change' => $change, 'error' => $check['error'] );
                         continue;
                     }
-                    $result = ovo_enrichment_apply_change( $change, $batch );
+                    $result = ovo_enrichment_apply_change( $change, $batch, $meta );
                     if ( $result['ok'] ) {
                         $applied[] = $result['applied'];
                     } else {
@@ -642,20 +929,27 @@ function ovo_enrichment_register_routes() {
                 if ( ! isset( $params['confirm'] ) || 'RESET-DEMO' !== $params['confirm'] ) {
                     return new WP_Error( 'ovo_confirm', 'Send confirm set to RESET-DEMO.', array( 'status' => 400 ) );
                 }
-                $ids = get_posts(
-                    array(
-                        'post_type'      => 'product',
-                        'post_status'    => 'publish',
-                        'posts_per_page' => 100,
-                        'fields'         => 'ids',
-                        'meta_key'       => '_ovo_enriched',
-                    )
-                );
+                // Every enriched product, not just the first 100:
+                // page through the whole set.
                 $reset = array();
-                foreach ( $ids as $id ) {
-                    $result  = ovo_enrichment_revert_product( (int) $id, '' );
-                    $reset[] = array( 'product_id' => (int) $id, 'reverted' => $result['reverted'] );
-                }
+                $page  = 1;
+                do {
+                    $ids = get_posts(
+                        array(
+                            'post_type'      => 'product',
+                            'post_status'    => 'publish',
+                            'posts_per_page' => 100,
+                            'paged'          => $page,
+                            'fields'         => 'ids',
+                            'meta_key'       => '_ovo_enriched',
+                        )
+                    );
+                    foreach ( $ids as $id ) {
+                        $result  = ovo_enrichment_revert_product( (int) $id, '' );
+                        $reset[] = array( 'product_id' => (int) $id, 'reverted' => $result['reverted'] );
+                    }
+                    $page++;
+                } while ( count( $ids ) === 100 );
                 ovo_enrichment_audit( array( 'action' => 'demo-reset', 'products' => $reset ) );
                 // Deliberately not touched: WooCommerce orders, carts,
                 // shopper sessions, and the audit log itself. A demo reset
@@ -760,17 +1054,12 @@ function ovo_enrichment_admin_page() {
         update_option( 'ovo_enrichment_token_hash', hash( 'sha256', $new_token ), false );
         ovo_enrichment_audit( array( 'action' => 'token_generated' ) );
     }
-    $count = count(
-        get_posts(
-            array(
-                'post_type'      => 'product',
-                'post_status'    => 'publish',
-                'posts_per_page' => 100,
-                'fields'         => 'ids',
-                'meta_key'       => '_ovo_enriched',
-            )
-        )
-    );
+    if ( isset( $_POST['ovo_webhook_check_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ovo_webhook_check_nonce'] ) ), 'ovo_webhook_check' ) ) {
+        $checked = ovo_enrichment_webhook_daily_check();
+        echo '<div class="notice notice-success"><p>Webhook check ran. Fixed: ' . esc_html( implode( ', ', $checked['fixed'] ) ?: 'nothing missing' ) . '.</p></div>';
+    }
+    $count = ovo_enrichment_count_enriched();
+    $webhooks = ovo_enrichment_webhook_status();
     $log = get_option( 'ovo_enrichment_audit_log', array() );
     if ( ! is_array( $log ) ) {
         $log = array();
@@ -779,16 +1068,27 @@ function ovo_enrichment_admin_page() {
     ?>
     <div class="wrap">
         <h1>OvO Enrichment</h1>
-        <p>Demo build <?php echo esc_html( OVO_ENRICHMENT_VERSION ); ?>. Enrichment publishes in place on this store. It never writes price, stock, SKU, tax, shipping, or policy claims from modelled data, and it never changes checkout totals.</p>
+        <p>Version <?php echo esc_html( OVO_ENRICHMENT_VERSION ); ?>. Enrichment publishes in place on this store. It never writes price, stock, SKU, tax, shipping, or policy claims from modelled data, and it never changes checkout totals.</p>
         <p><strong>Enriched products:</strong> <?php echo esc_html( $count ); ?></p>
-        <p><strong>Install note:</strong> zip upload here is a demo-only method. A real merchant install would be one tap from a CMS app store, which does not exist yet.</p>
-        <p><strong>Demo reset:</strong> reverts enrichment to the kept originals and keeps the audit log. It does not delete WooCommerce orders, carts, or shopper sessions. Use the REST demo-reset route with confirm set to RESET-DEMO, with demo mode on.</p>
+        <p><strong>Install:</strong> this plugin is free. It works with the OvO service described in the readme. No feature is locked behind payment, and there is no license check in this plugin. Single-site only: network activation is not supported.</p>
+        <p><strong>Demo reset:</strong> reverts enrichment to the kept originals and keeps the audit log. It does not delete WooCommerce orders, carts, or shopper sessions. Use the REST demo-reset route with confirm set to RESET-DEMO, with demo mode on. Demo mode is off by default.</p>
+        <h2>Product webhooks</h2>
+        <p>OvO is told when a product is created, updated, or deleted. The webhooks are created on activation and checked every day. A missing or disabled one is repaired by the check.</p>
+        <ul>
+        <?php foreach ( $webhooks as $w ) : ?>
+            <li><?php echo esc_html( $w['topic'] . ' — ' . ( $w['exists'] ? ( $w['active'] ? 'active' : 'not active' ) : 'missing' ) . ' — ' . $w['delivery_url'] ); ?></li>
+        <?php endforeach; ?>
+        </ul>
+        <form method="post">
+            <?php wp_nonce_field( 'ovo_webhook_check', 'ovo_webhook_check_nonce' ); ?>
+            <?php submit_button( 'Check webhooks now' ); ?>
+        </form>
         <form method="post">
             <?php wp_nonce_field( 'ovo_demo_mode', 'ovo_demo_mode_nonce' ); ?>
             <label><input type="checkbox" name="ovo_demo_mode" value="1" <?php checked( get_option( 'ovo_enrichment_demo_mode', false ), 1 ); ?> /> Demo mode on (required for demo-reset)</label>
             <?php submit_button( 'Save demo mode' ); ?>
         </form>
-        <h2>OvO token (version 0.2)</h2>
+        <h2>OvO token</h2>
         <p>Send the token as X-Ovo-Token on POST /ovo/v1/diff. A token call must also carry approved_by and approval_fingerprint. Generating a new token revokes the old one. Only the hash is stored.</p>
         <?php if ( '' !== $new_token ) : ?>
             <p><strong>New token, shown once. Copy it now:</strong> <code><?php echo esc_html( $new_token ); ?></code></p>
@@ -798,6 +1098,7 @@ function ovo_enrichment_admin_page() {
             <?php submit_button( 'Generate new OvO token' ); ?>
         </form>
         <h2>Recent audit log (last 50, newest first)</h2>
+        <p>The full log is kept (up to 5,000 entries). Every apply entry records old value, new value, source, approver, fingerprint, and batch id.</p>
         <?php if ( empty( $log ) ) : ?>
             <p>No OvO actions logged yet.</p>
         <?php else : ?>
@@ -817,5 +1118,29 @@ function ovo_enrichment_activate() {
     if ( false === get_option( 'ovo_enrichment_audit_log', false ) ) {
         update_option( 'ovo_enrichment_audit_log', array(), false );
     }
+    // Product webhooks, one per topic. A missing one is repaired by
+    // the daily check below.
+    ovo_enrichment_ensure_webhooks();
+    if ( ! wp_next_scheduled( 'ovo_enrichment_webhook_check' ) ) {
+        wp_schedule_event( time(), 'daily', 'ovo_enrichment_webhook_check' );
+    }
 }
 register_activation_hook( __FILE__, 'ovo_enrichment_activate' );
+
+function ovo_enrichment_deactivate() {
+    // Pause the webhooks while the plugin is off, so OvO is not sent
+    // deliveries to routes that do not exist. Activation re-enables
+    // them through ovo_enrichment_ensure_webhooks().
+    $ids = get_option( 'ovo_enrichment_webhook_ids', array() );
+    if ( is_array( $ids ) && class_exists( 'WC_Webhook' ) ) {
+        foreach ( $ids as $id ) {
+            $hook = wc_get_webhook( (int) $id );
+            if ( $hook ) {
+                $hook->set_status( 'paused' );
+                $hook->save();
+            }
+        }
+    }
+    wp_clear_scheduled_hook( 'ovo_enrichment_webhook_check' );
+}
+register_deactivation_hook( __FILE__, 'ovo_enrichment_deactivate' );
