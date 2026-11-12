@@ -35,6 +35,13 @@ class TestPureFunctions(unittest.TestCase):
 
 
 class TestCli(unittest.TestCase):
+    def tearDown(self):
+        # The audit writes audit_error.json on failure. Remove it so
+        # the test leaves no file behind in the repo.
+        error_file = HERE / "audit_error.json"
+        if error_file.exists():
+            error_file.unlink()
+
     def test_store_url_is_required(self):
         proc = subprocess.run([sys.executable, str(HERE / "agent.py")],
                               capture_output=True, text=True, cwd=str(HERE))
