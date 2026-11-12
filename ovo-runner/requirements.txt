@@ -1,0 +1,7 @@
+# OvO runner, parts list.
+# Python standard library only. No extra parts are needed.
+# Python 3.11 or newer is used here. The code uses only parts
+# that ship with Python: argparse, hashlib, json, re, sqlite3,
+# subprocess, urllib, datetime, and pathlib.
+# The Meta call is a plain web call in meta_client.py.
+# It needs no extra library.
