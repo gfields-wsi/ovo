@@ -32,7 +32,7 @@ The check script reads the live Store API, compares the catalog hash with the la
 ## Workers, defined in workers.json
 
 - Audit: built. Audit agent does audit work. Coordinating Agent spawns Audit agent and passes store address.
-- Enrichment: built. Enrichment agent does enrichment work. Coordinating Agent spawns Enrichment agent and passes Audit output.
+- Enrichment: built. Enrichment agent does enrichment work. Coordinating Agent spawns Enrichment agent and passes the store address. Accuracy travels inside the diff.
 - Merchant Approval: built. Merchant Approval agent records merchant decisions. Coordinating Agent spawns Merchant Approval agent, passes Enrichment output, and pauses until a decision is recorded.
 - Plugin: built, dry-run only in its own runner. Plugin agent does publish work. Coordinating Agent spawns Plugin agent only after approval, and only with the approved list. Live post is refused by the Plugin runner until its own stream proves token auth on WordPress, and the plugin is installed on a real store.
 
@@ -41,7 +41,7 @@ The check script reads the live Store API, compares the catalog hash with the la
 The coordinator verifies each agent output, not just its exit code:
 
 - Audit output must be ovo-gap-list 1.0, and its store address must match the input store address.
-- Enrichment output must be proposed only, not published, and its proposal count must match its actual proposed rows.
+- Enrichment output must be ovo-enrichment-diff 5.0-live, proposed only, not published, and its proposal count must match its actual proposed rows.
 - Approval output must be ovo-approval-record 1.0, not published, and its fingerprint must match the Enrichment diff fingerprint.
 - If approval allows publish, the publishable count must match the approved rows, and the approved list must not be empty.
 - If any check fails, the coordinator writes coordinator_run.json with status "failed" and stops. It does not run the next agent, and it does not leave an old success log standing as the latest run.
