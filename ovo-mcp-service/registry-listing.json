@@ -1,0 +1,22 @@
+{
+  "name": "OvO",
+  "description": "Makes WooCommerce stores shoppable by AI agents, programmatically. Audit, enrichment, merchant approval, and publish in place, on the merchant's own store.",
+  "manifest_url": "https://wsiventures.com/ovo/.well-known/ovo",
+  "site": "https://wsiventures.com/ovo",
+  "platform": "WooCommerce only",
+  "agent": "Meta Muse is the first supported agent.",
+  "tools": [
+    "ovo_start_check",
+    "ovo_run_status",
+    "ovo_scorecard",
+    "ovo_approval_packet",
+    "ovo_store_manifest"
+  ],
+  "rules": [
+    "The merchant approves. An agent can click but never approve.",
+    "The merchant stays the seller.",
+    "One scoped key per store. A key works for one store only.",
+    "A store is checked before it goes live in any listing."
+  ],
+  "verified_stores": []
+}
