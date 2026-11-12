@@ -1,0 +1,46 @@
+{
+  "flow": [
+    "Audit",
+    "Enrichment",
+    "Merchant Approval",
+    "Plugin"
+  ],
+  "workers": [
+    {
+      "name": "Audit",
+      "phase": "audit",
+      "runner": "../stream1-audit/agent.py",
+      "input": "Store URL, live Store API",
+      "output": "gaps.json, ovo-gap-list 1.0",
+      "scope": "Audit agent does audit work. Coordinating Agent spawns Audit agent and passes store address.",
+      "status": "built"
+    },
+    {
+      "name": "Enrichment",
+      "phase": "enrich",
+      "runner": "../stream2-enrichment/agent.py",
+      "input": "gaps.json",
+      "output": "enrichment_diff.json, ovo-enrichment-diff 1.0-proposed",
+      "scope": "Enrichment agent does enrichment work. Coordinating Agent spawns Enrichment agent and passes Audit output.",
+      "status": "built"
+    },
+    {
+      "name": "Merchant Approval",
+      "phase": "approval",
+      "runner": "../approval/agent.py",
+      "input": "enrichment_diff.json",
+      "output": "approval_record.json, ovo-approval-record 1.0",
+      "scope": "Merchant Approval agent records merchant decisions. Coordinating Agent spawns Merchant Approval agent, passes Enrichment output, and pauses until a decision is recorded.",
+      "status": "built"
+    },
+    {
+      "name": "Plugin",
+      "phase": "publish",
+      "runner": "/home/hatch/workspace/ovo-hackathon/ovo-plugin/augment-runner.py",
+      "input": "approval_record.json, enrichment_diff.json",
+      "output": "plugin_run.json, dry-run only until Plugin stream proves token auth on WordPress",
+      "scope": "Plugin agent does publish work. Coordinating Agent spawns Plugin agent only after approval, and only with approved list. Live post is refused by Plugin runner today.",
+      "status": "built_dry_run_only"
+    }
+  ]
+}
