@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Stream 1: OvO Agent - Audit (repeatable, deterministic).
-Reads the live Sole Mates store through the public WooCommerce Store API
+Reads a live WooCommerce store through the public WooCommerce Store API
 using the ?rest_route= form. Pretty wp-json paths return 404 here because
 permalinks are plain, so this script never uses them.
 
@@ -33,7 +33,6 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-DEFAULT_STORE_URL = "https://wsiventures.com/solemates"
 HERE = Path(__file__).resolve().parent
 
 
@@ -164,7 +163,7 @@ def fetch_products(api_url):
             raise ValueError(f"Audit failed: {e}") from e
     raise ValueError(f"Audit failed: {last_error}")
 
-def main(store_url=DEFAULT_STORE_URL):
+def main(store_url):
     products = fetch_products(api_url_for(store_url))
     gaps = []
     store_gaps = []
@@ -538,8 +537,8 @@ if __name__ == "__main__":
     import argparse
     import sys
     parser = argparse.ArgumentParser(description="OvO Audit Agent deterministic audit")
-    parser.add_argument("--store-url", default=DEFAULT_STORE_URL,
-                        help="Public store URL, e.g. https://wsiventures.com/solemates")
+    parser.add_argument("--store-url", required=True,
+                        help="Public store URL, e.g. https://example.com/shop")
     store_url = parser.parse_args().store_url
     try:
         main(store_url)

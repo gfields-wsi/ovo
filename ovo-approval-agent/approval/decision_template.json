@@ -1,14 +1,14 @@
 {
   "format": "ovo-merchant-decision",
   "version": "1.0",
-  "diff_fingerprint": "f60359d09240fdd3ca987f6661bc6cc5347c15be92139117d5ae9a044fb8d6c4",
+  "diff_fingerprint": "",
   "approved_by": "",
   "merchant_id": null,
-  "store_id": "https://wsiventures.com/solemates",
+  "store_id": "",
   "session": {
     "session_id": "",
     "merchant_id": null,
-    "store_id": "https://wsiventures.com/solemates",
+    "store_id": "",
     "submitted_by": "merchant",
     "expires_at_utc": "",
     "revoked": false,

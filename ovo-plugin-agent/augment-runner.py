@@ -5,7 +5,7 @@ This is NOT a live publish by itself. Default mode is dry-run: it
 verifies, maps, and writes an augment_run.json, and makes no POST.
 Live POST mode is deliberately not enabled here, because plugin
 version 0.1 has no token auth and the plugin is not installed on
-Sole Mates yet. Version 0.2 token auth is in the plugin code, but
+a real store yet. Version 0.2 token auth is in the plugin code, but
 it has not been tested on WordPress yet, so --post is refused
 until a WordPress test proves it.
 
@@ -149,7 +149,7 @@ def main():
     }
     result["status"] = "dry_run_ready_not_posted"
     if args.post:
-        result["errors"].append("--post is refused: plugin token auth has not been tested on WordPress yet, and the plugin is not installed on Sole Mates")
+        result["errors"].append("--post is refused: plugin token auth has not been tested on WordPress yet, and the plugin is not installed on a real store")
         result["status"] = "blocked_post_not_enabled"
         Path(args.out).write_text(json.dumps(result, indent=2) + "\n")
         print(json.dumps(result, indent=2))

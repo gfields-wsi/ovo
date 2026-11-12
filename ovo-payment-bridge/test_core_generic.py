@@ -1,4 +1,4 @@
-"""Tests for core_generic.py, R1-R22, generic, no Sole Mates hard coding, no live session."""
+"""Tests for core_generic.py, R1-R22, generic, no store hard coding, no live session."""
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 from core_generic import Bridge, MockStripeAdapter, BridgeError
@@ -89,5 +89,5 @@ b = setup(); b.revoke_merchant(); cart = cart_for(b); spt = spend_and_spt(b, m, 
 # Level A test helper
 b = setup(); cart = cart_for(b, 100); spt = b.test_helper_spt(m, 100, "USD"); assert spt["test_helper"] is True; o = checkout(b, m, cart, spt, "k_helper"); assert o["status"] == "paid"
 
-print("core_generic tests passed: Requirements 1-22, generic, no Sole Mates hard coding, no live purchase session.")
+print("core_generic tests passed: Requirements 1-22, generic, no store hard coding, no live purchase session.")
 print("Level B Link approval and live are NOT proven by these tests, by design.")

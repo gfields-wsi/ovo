@@ -42,8 +42,6 @@ function ovo_bridge_stripe_secret() {
     $home = getenv('HOME');
     $candidates = array();
     if ($home) $candidates[] = $home . '/stripe-test-secret';
-    $candidates[] = '/home/wsiventuresoutbo/.stripe_test_secret';
-    $candidates[] = '/home/wsiventuresoutbo/.ovobridge_stripe_test_secret';
     foreach ($candidates as $f) {
         if (is_readable($f)) { $k = trim(file_get_contents($f)); if (strpos($k, 'sk_test_') === 0) return $k; }
     }
@@ -229,7 +227,7 @@ function ovo_bridge_checkout_complete($request) {
         'currency' => strtolower($currency),
         'confirm' => 'true',
         // v0.5: Stripe requires return_url at PaymentIntent confirmation, or payment fails.
-        'return_url' => 'https://wsiventures.com/solemates/',
+        'return_url' => home_url('/'),
         'metadata[cart_id]' => $cart_id,
         'metadata[quote_id]' => sanitize_text_field($params['quote_id']),
         'metadata[order_source]' => $test_card ? 'ovo-bridge-test-card-only' : 'ovo-bridge-test',

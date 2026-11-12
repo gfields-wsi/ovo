@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       OvO Enrichment
- * Plugin URI:        https://wsiventures.com/solemates
+ * Plugin URI:        https://wsiventures.com/ovo
  * Description:       Publishes merchant-approved enrichment in place on the merchant's own WooCommerce store. Server-rendered JSON-LD and a REST read surface only. It never writes price, stock, SKU, tax, shipping, or policy claims from modelled data, and it never changes checkout totals. WooCommerce recalculates those server-side.
  * Version:           0.2.0-demo
  * Requires at least: 6.0
@@ -90,7 +90,7 @@ function ovo_enrichment_field_map() {
         ),
         // Medium. Non-variation custom attributes only. See apply step:
         // any attribute name that already exists as a variation attribute
-        // (for Sole Mates, Size) is rejected, so variations are never broken.
+        // (for example, Size) is rejected, so variations are never broken.
         // Value format: "Attribute name|term". Example: "Best for|Everyday wear".
         'attribute' => array(
             'target' => 'wc',

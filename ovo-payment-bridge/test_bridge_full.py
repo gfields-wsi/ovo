@@ -3,12 +3,12 @@ import sys
 sys.path.insert(0, ".")
 from bridge import Bridge, BridgeError
 
-CTX = "Purchasing Trailhead boots size 10 from Sole Mates for a customer who asked for waterproof leather boots with returns. " * 2
+CTX = "Purchasing Trailhead boots size 10 from the merchant store for a customer who asked for waterproof leather boots with returns. " * 2
 ADDR = {"zone": "CA", "city": "Toronto"}
 
 def fresh(**kw):
     b = Bridge(**kw)
-    b.approve_merchant("m1", "solemates", "merchant-admin")
+    b.approve_merchant("m1", "mock-merchant", "merchant-admin")
     b.authorize_agent("agent-token-1")
     return b
 

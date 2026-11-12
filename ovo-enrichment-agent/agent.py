@@ -10,7 +10,7 @@ Usage:
     python3 agent.py --store-url https://example.com/shop
     python3 agent.py --store-url https://example.com/shop --merchant my-shop
     python3 agent.py --store-url https://example.com/shop --rollback --batch <batch_id>
-    python3 agent.py   (defaults to Sole Mates, for backward compatibility)
+    python3 agent.py --store-url https://example.com/shop   (store URL is required)
 
 What v5 adds over v4, per the five independent public-launch items:
 1.  Scale, speed, cost: per-run metrics (duration, seconds per
@@ -40,11 +40,11 @@ approve on the merchant's behalf.
 Usage:
     python3 agent.py --store-url https://example.com/shop
     python3 agent.py --store-url https://example.com/shop --merchant my-shop
-    python3 agent.py   (defaults to Sole Mates, for backward compatibility)
+    python3 agent.py --store-url https://example.com/shop   (store URL is required)
 
 What v4 adds over v3, per the 14 requirements:
-1.  Merchant is derived from the given URL. No Sole Mates data is
-    used for any other store.
+1.  Merchant is derived from the given URL. No other store's data is
+    used for any store.
 2.  Store API discovery tries ?rest_route= first, then /wp-json/,
     with public access only. Failure is fail-closed, with no
     proposals and a non-zero exit, and no previous diff is overwritten.
@@ -100,7 +100,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-DEFAULT_STORE_URL = "https://wsiventures.com/solemates"
 META_HELPER = Path.home() / "workspace/custom-connectors/custom.meta-model-api/bin/meta_model.py"
 
 # field, reason, reason_code, next_action — per-store list, filtered
@@ -641,7 +640,7 @@ def band_from_sources(value, sources):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="OvO Enrichment Agent, live, any WooCommerce store")
-    parser.add_argument("--store-url", default=DEFAULT_STORE_URL,
+    parser.add_argument("--store-url", required=True,
                         help="Store homepage URL, e.g. https://example.com/shop")
     parser.add_argument("--merchant", default=None, help="Override merchant slug")
     parser.add_argument("--ground-truth", default=None,

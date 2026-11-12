@@ -77,7 +77,7 @@ def main():
     parser.add_argument("--skip-spark", action="store_true")
     parser.add_argument("--spark-sample", type=int, default=0,
                         help="Check only the first N products with Spark, 0 means all products")
-    parser.add_argument("--store-url", default="https://wsiventures.com/solemates",
+    parser.add_argument("--store-url", required=True,
                         help="Public store URL to audit, no login required")
     args = parser.parse_args()
     skip_spark = args.skip_spark
