@@ -7,8 +7,18 @@ define( 'ABSPATH', '/tmp/' );
 function add_action() {}
 function add_filter() {}
 function register_activation_hook() {}
+function register_deactivation_hook() {}
 function sanitize_text_field( $s ) { return is_string( $s ) ? trim( strip_tags( $s ) ) : $s; }
 function wp_kses_post( $s ) { return $s; }
+function home_url( $p = '/' ) { return 'http://test.local' . $p; }
+function rest_url( $r = '' ) { return 'http://test.local/wp-json/' . $r; }
+function get_posts( $args = array() ) { return array(); }
+function get_option( $k, $d = false ) { return $d; }
+function update_option( $k, $v, $a = null ) { return true; }
+function clean_post_cache( $id ) {}
+function has_action( $tag, $fn = false ) { return false; }
+function do_action( $tag ) {}
+function wc_delete_product_transients( $id ) {}
 require __DIR__ . '/ovo-enrichment.php';
 
 $tests = array(
@@ -44,5 +54,20 @@ foreach ( array( 'is_checkout', 'is_cart', 'is_account_page', 'is_product' ) as 
     if ( strpos( $src, $guard ) === false ) { echo "FAIL missing guard: $guard\n"; $fail++; }
 }
 if ( strpos( $src, "'offers'" ) !== false ) { echo "FAIL OVO block contains offers\n"; $fail++; }
+// 1.0.0 helpers, pure logic only, no live store.
+$topics = ovo_enrichment_webhook_topics();
+foreach ( array( 'product.created', 'product.updated', 'product.deleted' ) as $t ) {
+    if ( ! in_array( $t, $topics, true ) ) { echo "FAIL missing webhook topic: $t\n"; $fail++; }
+}
+$manifest = ovo_enrichment_manifest_data();
+foreach ( array( 'plugin', 'version', 'api_version', 'tool_endpoint', 'blocked_fields', 'cache_policy' ) as $k ) {
+    if ( ! isset( $manifest[ $k ] ) ) { echo "FAIL manifest missing key: $k\n"; $fail++; }
+}
+if ( '1.0.0' !== $manifest['version'] ) { echo "FAIL manifest version is not 1.0.0\n"; $fail++; }
+if ( strpos( $manifest['cache_policy'], 'max-age=60' ) === false ) { echo "FAIL manifest cache policy missing max-age\n"; $fail++; }
+$purged = ovo_enrichment_purge_caches( 123 );
+foreach ( array( 'woocommerce-transients', 'wordpress-post-cache' ) as $p ) {
+    if ( ! in_array( $p, $purged, true ) ) { echo "FAIL cache purge missing handler: $p\n"; $fail++; }
+}
 echo $fail === 0 ? "ALL STUB TESTS PASSED\n" : "$fail STUB TEST FAILURES\n";
 exit( $fail === 0 ? 0 : 1 );
