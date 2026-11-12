@@ -1,0 +1,1250 @@
+{
+  "format": "ovo-merchant-guidance",
+  "version": "1.0",
+  "generated_at_utc": "2026-10-31T09:05:42.505797+00:00",
+  "store_url": "https://wsiventures.com/solemates",
+  "store_key": "wsiventures.com/solemates",
+  "gap_count": 124,
+  "guidance": [
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 14,
+      "product_name": "Trailhead Waterproof Hiking Boots",
+      "sku": "SM-BOOT-001",
+      "field": "mentioned_option_not_selectable",
+      "merchant_action": "Add that option as a selectable variation online, or remove the mention from the online description.",
+      "what_is_missing": "An option is mentioned in the description, but it cannot be selected online.",
+      "why_it_matters": "An agent cannot offer an option the buyer cannot select.",
+      "source_label": "store_api:product.description + store_api:product.variations"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 23,
+      "product_name": "City Chelsea Rain Boots",
+      "sku": "SM-BOOT-002",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 31,
+      "product_name": "Boardwalk Leather Sandals",
+      "sku": "SM-SAND-001",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 40,
+      "product_name": "Cloudstep Sport Sandals",
+      "sku": "SM-SAND-002",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 48,
+      "product_name": "Court Classic White Sneakers",
+      "sku": "SM-SNEA-001",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 58,
+      "product_name": "Retro High-Top Sneakers",
+      "sku": "SM-SNEA-002",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Fireside Wool Slippers",
+      "sku": "SM-SLIP-001",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Cloud Plush House Slippers",
+      "sku": "SM-SLIP-002",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Velocity Road Runners",
+      "sku": "SM-RUN-001",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 92,
+      "product_name": "Trailblazer Trail Runners",
+      "sku": "SM-RUN-002",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Marathon Knit Runners",
+      "sku": "SM-RUN-003",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "material_structured",
+      "merchant_action": "Add material as a structured product attribute, using the exact material from the description, or supply the correct material if the description is wrong.",
+      "what_is_missing": "Material is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare material reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "fit_structured",
+      "merchant_action": "Add fit as a structured product attribute, using the exact fit note from the description, or supply the correct fit note if the description is wrong.",
+      "what_is_missing": "Fit is in the product description, but it is not a structured field.",
+      "why_it_matters": "An agent cannot compare fit reliably when it is only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "returns_structured",
+      "merchant_action": "Add returns terms as a structured field, using the exact terms from the description, or supply the correct terms if the description is wrong.",
+      "what_is_missing": "Returns terms are in the product description, but they are not a structured field.",
+      "why_it_matters": "An agent cannot tell the buyer the return terms reliably when they are only in prose.",
+      "source_label": "store_api:product.description + store_api:product.attributes"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "weight_present",
+      "merchant_action": "Supply the product weight.",
+      "what_is_missing": "Product weight is empty.",
+      "why_it_matters": "An agent cannot compare weight, and shipping estimates cannot use weight.",
+      "source_label": "store_api:product.weight"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "dimensions_present",
+      "merchant_action": "Supply the product length, width, and height.",
+      "what_is_missing": "Product dimensions are empty.",
+      "why_it_matters": "An agent cannot compare size in length, width, and height.",
+      "source_label": "store_api:product.dimensions"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "image_alt",
+      "merchant_action": "Supply alt text that describes the photo.",
+      "what_is_missing": "The product image has no alt text.",
+      "why_it_matters": "An agent cannot describe the photo to a buyer.",
+      "source_label": "store_api:product.images[0].alt"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "tags",
+      "merchant_action": "Add relevant tags for the product.",
+      "what_is_missing": "The product has no tags.",
+      "why_it_matters": "An agent cannot group or find the product by tag.",
+      "source_label": "store_api:product.tags"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "brand",
+      "merchant_action": "Supply the brand name for the product.",
+      "what_is_missing": "The product has no brand.",
+      "why_it_matters": "An agent cannot identify the brand of the product.",
+      "source_label": "store_api:product.brands"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "stock_quantity",
+      "merchant_action": "Supply the numeric stock quantity, if the store tracks it.",
+      "what_is_missing": "Only a yes or no stock flag is present. No numeric stock quantity is present.",
+      "why_it_matters": "An agent cannot tell how many units are left.",
+      "source_label": "store_api:product.is_in_stock + store_api:product.low_stock_remaining"
+    },
+    {
+      "product_id": 110,
+      "product_name": "Everyday Comfort Runners",
+      "sku": "SM-RUN-004",
+      "field": "gtin",
+      "merchant_action": "Supply the GTIN, if the product has one.",
+      "what_is_missing": "No GTIN is in the product record.",
+      "why_it_matters": "An agent cannot match the product across stores by GTIN.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": null,
+      "product_name": null,
+      "sku": null,
+      "field": "shipping_info",
+      "merchant_action": "Supply shipping rates and policy at checkout level, where shipping is set.",
+      "what_is_missing": "No shipping rates or shipping policy are in the product record.",
+      "why_it_matters": "An agent cannot quote shipping for the product.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": null,
+      "product_name": null,
+      "sku": null,
+      "field": "tax_info",
+      "merchant_action": "Supply the tax rule at checkout level, where tax is set.",
+      "what_is_missing": "No tax rate or tax rule is in the product record.",
+      "why_it_matters": "An agent cannot quote tax for the product.",
+      "source_label": "store_api:product (full record)"
+    },
+    {
+      "product_id": null,
+      "product_name": null,
+      "sku": null,
+      "field": "json_ld_product_schema",
+      "merchant_action": "No action is required from this audit item. A separate schema check is needed to verify it.",
+      "what_is_missing": "Product schema was not checked by this audit.",
+      "why_it_matters": "This audit does not claim schema is present or absent, so no merchant action is claimed here.",
+      "source_label": "audit_rule:json_ld_left_unverified"
+    }
+  ]
+}
