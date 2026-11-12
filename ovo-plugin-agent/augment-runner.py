@@ -54,6 +54,8 @@ Mapping, version 5 field to additional_property label:
   _ovo_size_system         -> "Size system"
   _ovo_sizes_available     -> "Sizes available"
   _ovo_variant_<slug>      -> "Variant <slug>"
+  _ovo_image_alt           -> "Image alt text"
+  _ovo_image_alt_<n>       -> "Image alt text <n>"
 Source for mapped rows is "observed", because version 5 proposals
 are restated from store prose and photos. Confidence is carried as
 the approval record status, not invented as a percent.
@@ -91,8 +93,14 @@ ACCURACY_TARGET = 85.0
 def label_for(field):
     if field in MAP:
         return MAP[field]
-    if isinstance(field, str) and field.startswith("_ovo_variant_"):
+    if not isinstance(field, str):
+        return None
+    if field.startswith("_ovo_variant_"):
         return "Variant " + field[len("_ovo_variant_"):]
+    if field == "_ovo_image_alt":
+        return "Image alt text"
+    if field.startswith("_ovo_image_alt_"):
+        return "Image alt text " + field[len("_ovo_image_alt_"):]
     return None
 
 

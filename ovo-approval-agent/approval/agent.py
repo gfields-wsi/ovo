@@ -133,12 +133,16 @@ merchant's own decision, in aggregate, by group. You never approve
 anything yourself. You never publish."""
 
 # Version 5 enrichment fields. Variant fields carry a slug after
-# the _ovo_variant_ prefix, one per size or colour choice.
+# the _ovo_variant_ prefix, one per size or colour choice. Image
+# alt fields are _ovo_image_alt for the first photo, then
+# _ovo_image_alt_2, _ovo_image_alt_3, and so on, one per photo.
 ALLOWED_FIELDS = {
     "_ovo_material", "_ovo_material_appearance", "_ovo_returns_summary",
     "_ovo_fit_guidance", "_ovo_fit_note", "_ovo_availability_note",
     "_ovo_size_system", "_ovo_sizes_available",
 }
+
+
 # Band low ends, used only to group a row. A band never proves
 # more than its low end.
 BAND_MIN = {
@@ -152,7 +156,11 @@ BAND_MIN = {
 def field_allowed(field):
     if field in ALLOWED_FIELDS:
         return True
-    return isinstance(field, str) and field.startswith("_ovo_variant_")
+    if not isinstance(field, str):
+        return False
+    return (field.startswith("_ovo_variant_")
+            or field == "_ovo_image_alt"
+            or field.startswith("_ovo_image_alt_"))
 BANDS = [
     {"band": "95_plus", "label": "95 percent or better", "min": 95.0, "max": 100.0,
      "action": "reject_by_exception",

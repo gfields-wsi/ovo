@@ -42,10 +42,11 @@ def make_diff():
         "status": "proposed_only_awaiting_merchant_approval", "published": False,
         "generated_at_utc": "2026-11-12T00:00:00Z", "batch_id": "test-1",
         "merchant": "example", "store_url": "https://example.com/shop",
-        "product_count": 2, "proposal_count": 6,
+        "product_count": 2, "proposal_count": 7,
         "proposals": [
             row(1, "_ovo_material", "Leather", "95% or greater", acc=98.0),
             row(1, "_ovo_fit_guidance", "True to size", "95% or greater"),
+            row(1, "_ovo_image_alt", "Boots, Brown, Boots", "80-94%"),
             row(1, "_ovo_returns_summary", "30-day returns", "80-94%"),
             row(2, "_ovo_material", "Canvas", "80-94%"),
             row(2, "_ovo_fit_guidance", "Runs large", "50-79%"),
@@ -170,10 +171,10 @@ class TestPacketAndRecord(unittest.TestCase):
     def test_packet_mode_needs_no_scorecard(self):
         self.run_main([])
         packet = json.loads((self.approval_dir / "approval_packet.json").read_text())
-        self.assertEqual(packet["presented_count"], 5)
+        self.assertEqual(packet["presented_count"], 6)
         self.assertEqual(packet["excluded_under_50_count"], 1)
         self.assertEqual(packet["accuracy_bands_as_given"],
-                         {"95_plus": 2, "80_94": 2, "50_79": 1, "under_50": 1})
+                         {"95_plus": 2, "80_94": 3, "50_79": 1, "under_50": 1})
         self.assertEqual(packet["total_gaps"], 6)
         record = json.loads((self.approval_dir / "approval_record.json").read_text())
         self.assertEqual(record["status"], "awaiting_merchant_decision")
@@ -195,7 +196,8 @@ class TestPacketAndRecord(unittest.TestCase):
         for g in template["groups"]:
             g["submitted"] = True
             if g["band"] == "80_94":
-                g["approvals"] = [{"product_id": 1, "field": "_ovo_returns_summary"},
+                g["approvals"] = [{"product_id": 1, "field": "_ovo_image_alt"},
+                                  {"product_id": 1, "field": "_ovo_returns_summary"},
                                   {"product_id": 2, "field": "_ovo_material"}]
             if g["band"] == "50_79":
                 g["approvals"] = [{"product_id": 2, "field": "_ovo_fit_guidance"}]
@@ -205,7 +207,7 @@ class TestPacketAndRecord(unittest.TestCase):
         record = json.loads((self.approval_dir / "approval_record.json").read_text())
         self.assertEqual(record["status"], "approved_all_presented")
         self.assertTrue(record["publish_allowed"])
-        self.assertEqual(record["publishable_count"], 5)
+        self.assertEqual(record["publishable_count"], 6)
 
     def test_wrong_fingerprint_is_rejected(self):
         self.run_main([])
