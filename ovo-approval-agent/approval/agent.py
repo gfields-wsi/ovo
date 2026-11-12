@@ -348,6 +348,24 @@ def write_record(agent, status, fp, diff, groups_data, approved_proposed,
                  tenant=None, session_info=None, questions_asked=None,
                  questions_closed=None, questions_open=None):
     publishable = len(approved_proposed) + len(approved_corrected) + len(added)
+    # approved_rows is the list the Plugin Agent's augment runner
+    # reads. The record used to carry only the three split lists,
+    # so a recorded decision could not reach a publish. This list
+    # is the same rows, in the shape the runner reads: product and
+    # field, with a corrected value or an added value where the
+    # merchant supplied one.
+    approved_rows = []
+    for row in approved_proposed:
+        approved_rows.append({"product_id": row["product_id"],
+                              "field": row["field"]})
+    for row in approved_corrected:
+        approved_rows.append({"product_id": row["product_id"],
+                              "field": row["field"],
+                              "corrected_value": row["corrected_value"]})
+    for row in added:
+        approved_rows.append({"product_id": row["product_id"],
+                              "field": row["field"],
+                              "added_value": row["added_value"]})
     tenant = tenant or {"merchant_id": None, "store_id": None, "tenant_status": "no_tenant_id_supplied"}
     if session_info and status not in ("invalid_decision", "blocked_gate_failed", "awaiting_merchant_decision"):
         authority = "merchant_session"
@@ -408,6 +426,7 @@ def write_record(agent, status, fp, diff, groups_data, approved_proposed,
         "excluded_under_50": excluded,
         "ungrouped_no_accuracy": ungrouped,
         "publishable_count": publishable,
+        "approved_rows": approved_rows,
         "publish_allowed": status in ("approved_all_presented", "approved_partial"),
         "publish_scope": (
             "Augment may publish only approved_as_proposed as proposed, "
