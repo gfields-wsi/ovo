@@ -119,7 +119,7 @@ ROOT = HERE.parent
 ENRICH_DIR = ROOT / "stream2-enrichment"
 ACCURACY_DIR = ROOT / "accuracy"
 COORD_DIR = ROOT / "coordinator"
-FRAMEWORK = ROOT / "framework"
+FRAMEWORK = ROOT.parent / "ovo-framework"
 sys.path.insert(0, str(FRAMEWORK))
 
 from ovo_agent import OvoAgent, APPROVAL_PHASE  # noqa: E402

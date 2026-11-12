@@ -2,7 +2,7 @@
 """
 OvO Audit Agent (Stream 1), built on the shared OvO agent framework.
 
-The framework lives in ../framework/ovo_agent.py and is shared, by
+The framework lives in ovo-framework/ovo_agent.py at the repo root and is shared, by
 virtue, with the Enrichment Agent. This file is only the Audit phase:
 a system prompt, a tool set, and a run order. It does not implement
 enrichment, and it does not implement a plugin.
@@ -36,7 +36,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-FRAMEWORK = HERE.parent / "framework"
+FRAMEWORK = HERE.parent.parent / "ovo-framework"
 sys.path.insert(0, str(FRAMEWORK))
 sys.path.insert(0, str(HERE))
 

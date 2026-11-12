@@ -35,7 +35,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-FRAMEWORK = ROOT / "framework"
+FRAMEWORK = HERE.parent.parent / "ovo-framework"
 sys.path.insert(0, str(FRAMEWORK))
 
 from ovo_agent import OvoAgent, COORDINATOR_PHASE  # noqa: E402
