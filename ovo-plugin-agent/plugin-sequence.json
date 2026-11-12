@@ -1,0 +1,436 @@
+{
+  "actors": [
+    {
+      "id": "trigger",
+      "name": "Trigger",
+      "system": "trigger.py, --once or --watch on catalog hash change"
+    },
+    {
+      "id": "coordinator",
+      "name": "OvO Coordinating Agent",
+      "system": "Spawns workers in order, fail-closed, stops at approval gates, never publishes, never buys"
+    },
+    {
+      "id": "merchant",
+      "name": "Merchant",
+      "system": "human, store owner, sole approver"
+    },
+    {
+      "id": "audit",
+      "name": "Audit Agent",
+      "system": "Stream 1, gaps.json"
+    },
+    {
+      "id": "enrichment_agent",
+      "name": "Enrichment Agent",
+      "system": "Stream 2, enrichment_diff.json proposed only"
+    },
+    {
+      "id": "accuracy",
+      "name": "Accuracy Agent",
+      "system": "Checks proposals against source prose, scorecard only"
+    },
+    {
+      "id": "merchant_approval",
+      "name": "Merchant Approval Agent",
+      "system": "Prepares packet, records merchant decision only, never decides itself"
+    },
+    {
+      "id": "plugin_agent",
+      "name": "Plugin Agent",
+      "system": "Preps and manages the Plugin, manages Enrichment Agent integration, defines Enrichment contract, validates and publishes approved enrichment in place"
+    },
+    {
+      "id": "shopping_agent",
+      "name": "Shopping Agent",
+      "system": "reference agent, for example Meta Muse, reads only"
+    }
+  ],
+  "autonomy_and_oversight": {
+    "source": "PRD Autonomy and Oversight table",
+    "tiers": [
+      {
+        "action": "acts_alone",
+        "confidence": "95_percent_or_higher",
+        "human_check": "merchant rejects by exception",
+        "plugin_enforces_in_v0_1": false
+      },
+      {
+        "action": "tacit_suggestion",
+        "confidence": "80_to_94_percent",
+        "human_check": "merchant approves by exception",
+        "plugin_enforces_in_v0_1": false
+      },
+      {
+        "action": "suggests",
+        "confidence": "50_to_79_percent",
+        "human_check": "merchant approves",
+        "plugin_enforces_in_v0_1": false
+      },
+      {
+        "action": "reject_and_iterate",
+        "confidence": "below_50_percent",
+        "human_check": "none, do not publish",
+        "plugin_enforces_in_v0_1": false
+      },
+      {
+        "action": "publish_approved_enrichments",
+        "confidence": "any",
+        "human_check": "merchant approves",
+        "note": "In v0.1, admin posting the diff is treated as approval. No approver, tier, or approval record is checked.",
+        "plugin_enforces_in_v0_1": false
+      }
+    ]
+  },
+  "date": "2026-10-30",
+  "field_policy": {
+    "blocked": [
+      "price",
+      "regular_price",
+      "sale_price",
+      "date_on_sale_from",
+      "date_on_sale_to",
+      "stock_quantity",
+      "stock_status",
+      "manage_stock",
+      "backorders",
+      "sku",
+      "gtin",
+      "global_unique_id",
+      "tax_class",
+      "tax_status",
+      "shipping_class",
+      "weight",
+      "length",
+      "width",
+      "height",
+      "purchase_note",
+      "returns_policy",
+      "shipping_policy",
+      "material",
+      "safety",
+      "compatibility"
+    ],
+    "medium_jsonld_only": [
+      "additional_property"
+    ],
+    "medium_write": [
+      "short_description",
+      "description",
+      "attribute_non_variation_only",
+      "product_cat_append_only",
+      "product_tag_append_only"
+    ],
+    "modelled_rule": "Modelled source is allowed only for additional_property. Modelled native fields are rejected.",
+    "safe_write": [
+      "image_alt_text"
+    ]
+  },
+  "honest_limits": [
+    "No MCP, ACP, or UCP compliance claim.",
+    "No consumer Muse discovery claim.",
+    "No live payment claim.",
+    "No production plugin compatibility claim.",
+    "Zip upload is a demo-only install method. A real merchant install would be a CMS app-store install, which does not exist yet.",
+    "No scoped agent token in v0.1.",
+    "No tier enforcement in v0.1.",
+    "No WordPress integration test has run in this stream.",
+    "Coordinating Agent does not publish itself and does not buy.",
+    "Merchant Approval is built standalone but is not yet spawned by coordinator.py.",
+    "Augment via Plugin is built in Stream 3 but is not yet wired into coordinator.py.",
+    "Re-Audit after Augment is intended order, not today's coordinator run order.",
+    "Automatic triggering is a trigger.py demo entry point, not a cron, webhook, or store trigger inside coordinator.py, and it must not bypass approval gates."
+  ],
+  "name": "OvO Coordinated Plugin sequence",
+  "scope": {
+    "in_scope": [
+      "WordPress + WooCommerce",
+      "Stripe is out of scope for this plugin",
+      "Meta Muse as reference shopping agent"
+    ],
+    "out_of_scope": [
+      "Shopify",
+      "Wix",
+      "Squarespace",
+      "payment",
+      "checkout totals",
+      "purchase rules",
+      "purchase limits"
+    ],
+    "payment_note": "This sequence has no payment step. The attached Agentic Commerce Protocol diagram for ChatGPT instant checkout is a different flow and is not the OvO Plugin flow."
+  },
+  "states": {
+    "catalog": [
+      "native_only",
+      "enriched",
+      "reverted_to_original"
+    ],
+    "change": [
+      "pending",
+      "applied",
+      "rejected",
+      "reverted"
+    ],
+    "diff": [
+      "draft",
+      "approved",
+      "rejected"
+    ]
+  },
+  "status": "provisional, not fully correct until each agent scope is clarified and tested on implementation",
+  "status_note": "PROVISIONAL. This file is not fully correct until each agent scope is clarified and tested on implementation. Plugin Agent scope is as stated by Greg on 2026-10-30: prep and manage the Plugin and manage Enrichment Agent integration, and define for the Enrichment Agent what it needs and how. If code and this file disagree, reconcile both before the 2026-11-02 freeze. Do not present this file as proof of live behaviour. The organizer confirms integration.",
+  "steps": [
+    {
+      "id": "C0",
+      "from": "trigger",
+      "to": "coordinator",
+      "action": "start_coordinator",
+      "description": "Trigger starts the Coordinating Agent, once or on catalog change. A trigger is not approval.",
+      "implemented_in_v0_1": true,
+      "implemented_note": "trigger.py built. coordinator.py itself has no cron or webhook."
+    },
+    {
+      "id": "P0",
+      "from": "plugin_agent",
+      "to": "enrichment_agent",
+      "action": "define_enrichment_contract",
+      "description": "Plugin Agent defines what the Enrichment Agent must provide and how, before Enrichment runs: diff schema, allowlist, blocked fields, source labels, modelled gate, old-value rule, and approval fingerprint requirement.",
+      "implemented_in_v0_1": true,
+      "implemented_note": "Contract is defined in enrichment-agent-definition.md and .json in this folder. Plugin code enforces allowlist, blocked fields, modelled gate, and old-value rule on receipt."
+    },
+    {
+      "id": "C1",
+      "from": "coordinator",
+      "to": "audit",
+      "action": "spawn_audit",
+      "description": "Coordinator spawns Audit. Audit reads the live public store, scores readiness, writes gaps.json. Audit tracks gaps only, it does not fill gaps.",
+      "implemented_in_v0_1": true
+    },
+    {
+      "id": "C2",
+      "from": "coordinator",
+      "to": "enrichment",
+      "action": "spawn_enrichment",
+      "description": "Coordinator spawns Enrichment. Enrichment proposes structured fields only from source prose, from gaps.json, writes enrichment_diff.json proposed only, stops at merchant approval, does not publish.",
+      "implemented_in_v0_1": true
+    },
+    {
+      "id": "C3",
+      "from": "coordinator",
+      "to": "accuracy",
+      "action": "spawn_accuracy",
+      "description": "Coordinator spawns Accuracy. Accuracy checks every proposed value against the product's own source prose, writes accuracy_scorecard.json, target 85 percent. Below target, the coordinator stops and Augment must not run. Accuracy never publishes and never changes the live store.",
+      "implemented_in_v0_1": true
+    },
+    {
+      "id": "C4",
+      "from": "coordinator",
+      "to": "merchant_approval",
+      "action": "spawn_merchant_approval",
+      "description": "Intended: coordinator spawns Merchant Approval. Approval prepares a packet, groups rows by accuracy, presents no row under 50 percent, records only the merchant's own decision, bound by diff fingerprint. The coordinator owns enrichment correctness, not approval decisions.",
+      "implemented_in_v0_1": false,
+      "implemented_note": "Approval agent built standalone in approval/, with approval_record.json awaiting_merchant_decision, published false, approved_count 0. It is not yet spawned by coordinator.py, and workers.json lists it as defined_not_built_today with runner null."
+    },
+    {
+      "id": "C5",
+      "from": "merchant",
+      "to": "merchant_approval",
+      "action": "merchant_decides",
+      "description": "Merchant approves or rejects each proposed row, or approves all explicitly. A pending, missing, extra, or held row makes the decision invalid, and nothing may be published. A fingerprint mismatch makes the decision invalid.",
+      "implemented_in_v0_1": false,
+      "implemented_note": "Decision file format ovo-merchant-decision 1.0 is defined in approval/AGENT.md. No merchant decision has been recorded yet for the current diff."
+    },
+    {
+      "id": "C6",
+      "from": "coordinator",
+      "to": "plugin_agent",
+      "action": "check_approval_then_spawn_augment",
+      "description": "Coordinator checks the approval record fingerprint against the live diff before any publish. No record, invalid record, or fingerprint mismatch stops the run, fail-closed.",
+      "implemented_in_v0_1": false,
+      "implemented_note": "Fingerprint check is defined in approval/AGENT.md. It is not implemented in plugin v0.1, which trusts an admin POST instead."
+    },
+    {
+      "id": "S4",
+      "from": "enrichment_agent",
+      "to": "plugin_agent",
+      "action": "post_approved_diff",
+      "description": "Approved batch is pushed to the plugin at POST /ovo/v1/diff. The plugin does not pull enrichment.",
+      "endpoint": "POST /ovo/v1/diff",
+      "auth_v0_1": "WordPress user with manage_options. No scoped agent token, no signed batch.",
+      "implemented_in_v0_1": true
+    },
+    {
+      "id": "S5",
+      "from": "plugin_agent",
+      "to": "plugin_agent",
+      "action": "validate_change",
+      "description": "Validate each change: allowlist only, blocked price, stock, SKU, GTIN, tax, shipping, weight, dimensions, modelled only as additional_property, old value must match live store, variation attributes must not be written.",
+      "implemented_in_v0_1": true,
+      "on_failure": "That change is listed as rejected with a reason. Other changes are still processed."
+    },
+    {
+      "id": "S6",
+      "from": "plugin_agent",
+      "to": "plugin_agent",
+      "action": "write_change",
+      "description": "Keep original first, first-write wins, write safe or medium field or JSON-LD-only value, write audit entry.",
+      "implemented_in_v0_1": true,
+      "storage": {
+        "applied": "_ovo_enriched post meta",
+        "audit": "ovo_enrichment_audit_log option, append only",
+        "originals": "_ovo_originals post meta"
+      }
+    },
+    {
+      "id": "S7",
+      "from": "plugin_agent",
+      "to": "enrichment_agent",
+      "action": "return_result",
+      "description": "Return applied and rejected lists per change.",
+      "implemented_in_v0_1": true
+    },
+    {
+      "id": "S8",
+      "from": "plugin_agent",
+      "to": "shopping_agent",
+      "action": "publish_in_place",
+      "description": "Server-rendered JSON-LD on single product pages only, plus GET /ovo/v1/manifest, /products, /products/{id}. Nothing on cart, checkout, or account pages. Price and stock are never in the OvO block or REST surface.",
+      "implemented_in_v0_1": true
+    },
+    {
+      "id": "C7",
+      "from": "coordinator",
+      "to": "audit",
+      "action": "spawn_re_audit_after_augment",
+      "description": "Intended: coordinator spawns Re-Audit after Augment to verify the live published score, not just a projected score.",
+      "implemented_in_v0_1": false,
+      "implemented_note": "Today Re-Audit runs before Augment in coordinator.py, so live re-audit is 66.7 percent unchanged and the 86.7 percent score is projected only."
+    },
+    {
+      "id": "S9",
+      "from": "shopping_agent",
+      "to": "plugin_agent",
+      "action": "read_enrichment",
+      "description": "Shopping agent reads OvO JSON-LD and REST, and reads price and stock from the store's own data.",
+      "implemented_in_v0_1": true,
+      "implemented_note": "Read surfaces exist in code. Live reading is untested because the plugin is not installed on Sole Mates yet."
+    },
+    {
+      "id": "S10",
+      "from": "merchant",
+      "to": "plugin_agent",
+      "action": "revert_or_demo_reset",
+      "description": "Merchant can revert one field or all fields, or run a demo reset with demo mode on and confirm RESET-DEMO. Demo reset keeps the audit log and does not touch orders, carts, or shopper sessions.",
+      "endpoints": [
+        "POST /ovo/v1/revert",
+        "POST /ovo/v1/demo-reset"
+      ],
+      "implemented_in_v0_1": true
+    }
+  ],
+  "verification": {
+    "live_status_2026_10_30": "Not installed on https://wsiventures.com/solemates. OvO manifest returns 404 rest_no_route. Coordinator verified run: native 66.7 percent, projected 86.7 percent, live re-audit 66.7 percent unchanged, accuracy 36 of 36, status awaiting_merchant_approval, published false.",
+    "method": "curl on raw server response, not browser DOM",
+    "pass_requires": [
+      "product page raw HTML contains the ovo-enrichment script",
+      "GET /ovo/v1/products/{id} returns the same fields",
+      "checkout raw HTML contains no ovo-enrichment block"
+    ],
+    "script": "ovo-enrichment/verify-live.sh"
+  },
+  "version": "0.3.0-provisional",
+  "coordinator": {
+    "agent": "OvO Coordinating Agent",
+    "job": "Spawn worker agents of defined scope, in order, fail-closed. Stop at approval gates. Never publish itself. Never buy. The organizer confirms integration, not the coordinator.",
+    "code": "goals/ovo-agentic-commerce-research-spikes/files/ovo-hackathon/coordinator/coordinator.py, workers.json",
+    "run_order_today": [
+      "Audit",
+      "Enrichment",
+      "Accuracy",
+      "Re-Audit"
+    ],
+    "run_order_intended": [
+      "Audit",
+      "Enrichment",
+      "Accuracy",
+      "Merchant Approval",
+      "Augment via Plugin",
+      "Re-Audit"
+    ],
+    "run_order_note": "Today Re-Audit runs before Augment because Augment is skipped, so live is unchanged and the score is projected only. Intended order moves Re-Audit after Augment, so it verifies the live published score.",
+    "workers": [
+      {
+        "name": "Audit",
+        "status": "built",
+        "output": "gaps.json, ovo-gap-list 1.0",
+        "publishes": false
+      },
+      {
+        "name": "Enrichment",
+        "status": "built",
+        "output": "enrichment_diff.json, ovo-enrichment-diff 1.0-proposed",
+        "publishes": false
+      },
+      {
+        "name": "Accuracy",
+        "status": "built",
+        "output": "accuracy_scorecard.json, ovo-accuracy-scorecard 1.0, 36 of 36, 100.0 percent, meets 85 percent target",
+        "publishes": false
+      },
+      {
+        "name": "Merchant Approval",
+        "status": "built standalone, not yet spawned by coordinator.py",
+        "output": "approval_packet.json, approval_record.json, ovo-approval-record 1.0, status awaiting_merchant_decision, published false",
+        "publishes": false,
+        "binding": "SHA-256 diff fingerprint. Augment must check the fingerprint against the live diff. A new diff needs a new approval record."
+      },
+      {
+        "name": "Augment",
+        "status": "defined_not_built_today in coordinator workers.json; Plugin v0.1 built in Stream 3, not yet wired into coordinator.py",
+        "output": "Published store fields, with revert record",
+        "publishes": true
+      },
+      {
+        "name": "Re-Audit",
+        "status": "built, Audit Agent with --skip-spark",
+        "output": "agent_run.json, plus projected score in coordinator_run.json",
+        "publishes": false
+      }
+    ],
+    "fail_closed_checks": [
+      "Audit output must be ovo-gap-list 1.0",
+      "Enrichment output must be proposed only, not published, and proposal_count must match actual rows",
+      "Accuracy output must be ovo-accuracy-scorecard 1.0, not published, counts must match Enrichment, percent and verdict must match recomputation",
+      "Accuracy below 85 percent stops the run, Augment must not run",
+      "Re-Audit live score must be unchanged when nothing was published; if it changed, the coordinator fails with a failure log"
+    ],
+    "verified_run_2026_10_30": {
+      "native_core": "66.7 percent, 120 of 180",
+      "projected_core": "86.7 percent, 156 of 180",
+      "live_re_audit_core": "66.7 percent, unchanged",
+      "proposals": "36 of 124 gaps",
+      "accuracy": "36 of 36, 100.0 percent",
+      "status": "awaiting_merchant_approval",
+      "published": false
+    }
+  },
+  "trigger": {
+    "code": "goals/ovo-agentic-commerce-research-spikes/files/ovo-hackathon/coordinator/trigger.py",
+    "modes": [
+      "--once, one run then stop",
+      "--watch, poll live Store API, run once when catalog hash changes, then exit"
+    ],
+    "safety": "A trigger is not an approval. The coordinator still stops at the merchant approval gate, with published false. The trigger never publishes, never buys, and never bypasses a gate. It runs at most once per invocation.",
+    "status": "Built as a demo entry point. No cron, webhook, or store-change trigger is built into coordinator.py itself. Automatic triggering by the coordinator is a future requirement, not a completed integration.",
+    "first_sight_rule": "A first sight of a catalog records its hash and does not run, so a fresh install does not trigger on its own."
+  },
+  "plugin_agent": {
+    "scope": "Prep and manage the Plugin, and manage the integration with the Enrichment Agent.",
+    "defines_for_enrichment_agent": "What the Enrichment Agent must provide and how: diff schema, field allowlist, blocked fields, source labels, modelled gate, old-value rule, variation guard, batch id, confidence tiers, and approval fingerprint requirement.",
+    "does_not_define": "Enrichment values themselves, which come from source prose only, and merchant approval decisions, which belong to the merchant.",
+    "definition_files": [
+      "enrichment-agent-definition.md",
+      "enrichment-agent-definition.json"
+    ]
+  }
+}
