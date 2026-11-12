@@ -98,10 +98,13 @@ def go_live_ok(store, merchant_id):
 
 def record_paid_order(store, merchant_id, order_id, subtotal_cents,
                       currency, store_url, session_id=None, cart_id=None,
-                      actor="agent", paid_at=None):
+                      actor="agent", paid_at=None, billable=True):
     """Record a paid order. The fee is fixed at the rate in force
     when the order was paid. A later rate change never changes
-    this order's fee."""
+    this order's fee. When billable is false, the order carries
+    a zero fee: a paid order with no agent link is recorded, but
+    it is never billed. Attribution decides billable; billing
+    only does the math."""
     if store.get_order(order_id):
         raise ValueError(f"order already recorded: {order_id}")
     if not store_url:
@@ -112,7 +115,8 @@ def record_paid_order(store, merchant_id, order_id, subtotal_cents,
     if not currency or len(currency) != 3:
         raise ValueError("currency must be a three-letter code")
     paid_at = paid_at or now_utc()
-    rate = rate_in_force(store, merchant_id, at=paid_at)
+    rate = rate_in_force(store, merchant_id, at=paid_at) if billable \
+        else Decimal("0")
     order = {
         "order_id": order_id,
         "merchant_id": merchant_id,
@@ -120,7 +124,7 @@ def record_paid_order(store, merchant_id, order_id, subtotal_cents,
         "subtotal_cents": subtotal_cents,
         "currency": currency.upper(),
         "rate_percent": str(rate),
-        "fee_cents": fee_cents(subtotal_cents, rate),
+        "fee_cents": fee_cents(subtotal_cents, rate) if billable else 0,
         "session_id": session_id,
         "cart_id": cart_id,
         "actor": actor,
