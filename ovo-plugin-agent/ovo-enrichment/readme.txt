@@ -53,7 +53,7 @@ It is rejected. The diff response lists it under rejected, with the reason. Noth
 == Changelog ==
 
 = 0.2.0-demo =
-Scoped OvO token auth, stored as a hash only, generated once in admin. A token call must carry approved_by and approval_fingerprint. Confidence below 50 percent is rejected. Augment runner in the parent folder verifies the approval fingerprint, maps approved framework rows to JSON-LD additional_property only, and fails closed when approval is awaiting. Live WordPress test is still pending, and the plugin is still not installed on Sole Mates.
+Scoped OvO token auth, stored as a hash only, generated once in admin. A token call must carry approved_by and approval_fingerprint. Confidence below 50 percent is rejected. Augment runner in the parent folder verifies the approval fingerprint, maps approved framework rows to JSON-LD additional_property only, and fails closed when approval is awaiting. Live WordPress test is still pending, and the plugin is still not installed on a live store.
 
 = 0.1.0-demo =
 First demo build. JSON-LD, REST read, REST diff with old-value check, originals and revert, demo reset, admin status page.
