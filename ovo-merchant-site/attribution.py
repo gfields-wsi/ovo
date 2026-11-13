@@ -100,3 +100,77 @@ def record_human_order(store, merchant_id, order_id, subtotal_cents,
         store, merchant_id, order_id, subtotal_cents, currency,
         store_url, session_id=None, cart_id=None, actor="human",
         paid_at=paid_at, billable=False)
+
+
+def record_bridge_order(store, merchant_id, event):
+    """Record a paid bridge order from its signed attribution
+    event. The link is checked before the order is recorded:
+    the session must exist, the cart must belong to that
+    session on the same store, and the event store must match.
+    A test order is recorded with a zero fee: the link is kept
+    for the record, but a test order is never billed. An
+    unlinked event (no session, no cart) is recorded as a human
+    order with a zero fee. A linked order that fails the check
+    is refused, never recorded."""
+    if not isinstance(event, dict):
+        raise ValueError("attribution event must be a record")
+    for field in ("order_id", "subtotal_cents", "currency",
+                  "store_url", "paid_at_utc"):
+        if event.get(field) in (None, ""):
+            raise ValueError(
+                f"attribution event is missing {field}")
+    if event["store_url"] is None:
+        raise ValueError("attribution event has no store address")
+    session_id = event.get("session_id")
+    cart_id = event.get("cart_id")
+    if session_id and cart_id:
+        read = store.get_read_session(session_id)
+        if not read:
+            raise ValueError(
+                f"unknown read session: {session_id}")
+        if read["store_url"] != event["store_url"]:
+            raise ValueError(
+                "attribution event is for a different store")
+        cart = store.get_cart(cart_id)
+        if not cart or cart["session_id"] != session_id:
+            raise ValueError(
+                "cart does not belong to the read session")
+        actor = event.get("agent_route") or "agent"
+        return billing.record_paid_order(
+            store, merchant_id, event["order_id"],
+            event["subtotal_cents"], event["currency"],
+            event["store_url"], session_id=session_id,
+            cart_id=cart_id, actor=actor,
+            paid_at=event["paid_at_utc"],
+            billable=not event.get("test_mode"))
+    if session_id or cart_id:
+        raise ValueError(
+            "attribution event has half a link: session and cart"
+            " must both be present, or both absent")
+    return billing.record_paid_order(
+        store, merchant_id, event["order_id"],
+        event["subtotal_cents"], event["currency"],
+        event["store_url"], session_id=None, cart_id=None,
+        actor="human", paid_at=event["paid_at_utc"],
+        billable=False)
+
+
+def receive_attribution_event(store, merchant_id, event, signature,
+                              signing_key):
+    """Receive a signed attribution event from a bridge. The
+    signature is verified first, with HMAC-SHA256 and the
+    per-host signing key. A wrong signature is refused before
+    anything is recorded. The key comes from the host settings
+    store, never from the event."""
+    import hashlib
+    import hmac
+    import json
+    if not signing_key or not signature:
+        raise ValueError("attribution signature is missing")
+    canonical = json.dumps(event, sort_keys=True,
+                           separators=(",", ":")).encode("utf-8")
+    expected = hmac.new(signing_key.encode("utf-8"), canonical,
+                        hashlib.sha256).hexdigest()
+    if not hmac.compare_digest(expected, signature):
+        raise ValueError("attribution signature does not match")
+    return record_bridge_order(store, merchant_id, event)

@@ -1,8 +1,34 @@
 # OvO Payment Bridge — Separate Component, Test Mode Only
 
-Status: Code implementation in workspace, 2026-11-02, test mode only, mocks only. bridge.py plus test_bridge_full.py pass all 22 requirements in mock form. Not deployed to Sole Mates. No live charges. No changes to the enrichment plugin. Level B Link approval and live acceptance criteria are NOT proven, and are blocked on inputs below.
+Status: Version 1.0.0, Phase 6, 2026-11-12. Test mode only, mocks only, plus live fail-closed tests on the local test install. bridge.py plus the Phase 6 tests pass in mock form. Not deployed to a live store. No live charges. No changes to the enrichment plugin. Level B Link approval and live acceptance criteria are NOT proven, and are blocked on inputs below.
 
-Blocked, not code gaps: real merchant network id, real Link wallet spend request and customer approval, Stripe preview API access and secret key via Secure Vault, merchant bridge approval for a live store, CAD SPT test result, and Greg's separate approval to deploy to Sole Mates and to charge live. Without those, Requirements 22.2, 22.3, and 20.2 cannot pass, and no live claim is made.
+Blocked, not code gaps: real merchant network id, real Link wallet spend request and customer approval, Stripe preview API access and secret key via Secure Vault, merchant bridge approval for a live store, CAD SPT test result, and Greg's separate approval to deploy to a live store and to charge live. Without those, Requirements 22.2, 22.3, and 20.2 cannot pass, and no live claim is made.
+
+## Phase 6: what changed
+
+Phase 6 adds four things, all in test mode first.
+
+1. Merchant payment profile. The seller network id is derived from the merchant Stripe account id and stored per merchant, in the merchant site store, never shared across stores. In test mode the derivation is a labelled test derivation. The real derivation from Stripe is not proven: the real Link adapter fails closed on every call until a verified Link route and Greg's approval for a real Link test are both in place.
+
+2. Link spend request through an adapter. The bridge asks Link for a single-use payment token for the exact merchant total. In test mode a mock adapter answers. The agent sends that token, with no card data, and the merchant creates the payment in its own Stripe account. Money stays with the merchant. The merchant stays the seller. OvO stores no card data.
+
+3. Single-use human approval token. The token binds one human approval to one cart and one total. It is used up on first checkout. A cart change, price change, or stock change voids it. A declined payment uses it up too, so a retry needs a fresh human approval. An extra card check, such as 3D Secure, fails closed with no paid order.
+
+4. Attribution. The bridge records the session to cart to paid order link on every paid order: session id, cart id, order id, agent route, human approval id, and subtotal before tax and shipping. The WordPress plugin writes the same link into the WooCommerce order record, so the merchant can see it in their own store. A signed attribution event goes to the OVO host, where Phase 4 billing records it: a linked agent order bills at the rate in force (1.5 percent for a standard merchant, 1 percent for a launch merchant), a test order bills zero, and a human order with no agent link bills zero. No link means no bill. The fee itself is set by Phase 4 billing, not by the bridge.
+
+New tests: test_link_spend.py (profile and spend request), test_approval_token.py (single-use tokens), test_bridge_attribution.py (signed events and billing), test_bridge_phase6.py (end-to-end happy path and the fail-closed list). The old test_bridge_full.py now presents a fresh approval token on every checkout, as version 1.0.0 requires.
+
+## Phase 6 finish, 13 November 2026
+
+Two fixes closed the Phase 6 validation gaps.
+
+1. Test name clash. Two files were both called attribution.py: the bridge event builder and the Phase 4 billing receiver. A full test run from the repo root imported the wrong one and failed. The bridge module is now bridge_attribution.py. Phase 4 billing is untouched. The full bridge suite runs 59 tests, all passing, from the repo root and from a fresh clone.
+
+2. Order total gap, Requirement 6. The PHP checkout checked that subtotal plus tax plus shipping equals the charged amount, but then created the order with the product only and called calculate_totals() with no shipping line and no tax line set. WooCommerce could then work the total out again from its own rules, and nothing checked it against the charged amount. The PHP checkout now sets a shipping line and a tax line from the approved split before calculate_totals(), then reads the order total right after it: if the total differs from the charged amount, the order is held, not marked paid, the mismatch is logged, and the charge is named in the order note so the merchant can refund it. The checkout also accepts a simple product as its own line item, because the live test install has simple products only and a variation-only rule would refuse every checkout there. The return_url is the store home address, per store, not a demo store address.
+
+Live total test: test_bridge_live_total.py runs the checkout on Site A with tax 500 cents and shipping 1000 cents above zero, and asserts the WooCommerce order total equals the charged amount. It needs the Stripe test secret on the test install host and the agent token set; without the secret it reports BLOCKED, not failed. It was not run end to end here: the machine has no PHP binary after the VM restart, Site A is down, and no Stripe test secret is on this machine. PHP lint is also open for the same reason. Those two checks stay open for Phase 6 validation.
+
+Still open, carried to Phase 8: a real Link spend request, a real Shared Payment Token, a real paid order on a pilot store, and the merchant Stripe profile with the agentic commerce seller terms.
 
 First store, Sole Mates, merchant Stripe account id, provided by Greg 2026-11-02: [Sole Mates merchant Stripe account id, provided separately, not published]. Network id / profile id for this account is still to be derived, via Stripe with a secret key, or via a 402 challenge. Do not use this account id as a network id without verification.
 

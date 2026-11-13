@@ -124,6 +124,15 @@ CREATE TABLE IF NOT EXISTS carts (
   items_json TEXT NOT NULL,
   created_at_utc TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS payment_profiles (
+  merchant_id TEXT PRIMARY KEY,
+  store_url TEXT NOT NULL,
+  stripe_account_id TEXT NOT NULL,
+  seller_network_id TEXT NOT NULL,
+  derived_from TEXT NOT NULL,
+  derived_at_utc TEXT NOT NULL,
+  revoked INTEGER NOT NULL DEFAULT 0
+);
 """
 
 
@@ -410,3 +419,28 @@ class MerchantStore:
         out = dict(row)
         out["items"] = json.loads(out["items_json"])
         return out
+
+    # -- payment profiles: one per merchant, never shared ---------
+    def save_payment_profile(self, merchant_id, store_url,
+                             stripe_account_id, seller_network_id,
+                             derived_from, derived_at_utc):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO payment_profiles (merchant_id,"
+            " store_url, stripe_account_id, seller_network_id,"
+            " derived_from, derived_at_utc, revoked)"
+            " VALUES (?, ?, ?, ?, ?, ?, 0)",
+            (merchant_id, store_url, stripe_account_id,
+             seller_network_id, derived_from, derived_at_utc))
+        self.conn.commit()
+
+    def get_payment_profile(self, merchant_id):
+        row = self.conn.execute(
+            "SELECT * FROM payment_profiles WHERE merchant_id = ?",
+            (merchant_id,)).fetchone()
+        return dict(row) if row else None
+
+    def revoke_payment_profile(self, merchant_id):
+        self.conn.execute(
+            "UPDATE payment_profiles SET revoked = 1 WHERE merchant_id = ?",
+            (merchant_id,))
+        self.conn.commit()
