@@ -81,7 +81,7 @@ def main():
         print("BLOCKED: OVO_BRIDGE_AGENT_TOKEN is not set")
         return 2
     cart_id = "live-test-cart-1"
-    status, approval = req("POST", "/ovo-bridge/v1/approval", {
+    status, approval = req("POST", "/wp-json/ovo-bridge/v1/approval", {
         "cart_id": cart_id, "total_cents": total, "currency": CURRENCY,
         "session_id": "live-test-session-1",
         "human_approval_id": "live-test-human-1",
@@ -93,7 +93,7 @@ def main():
     address = {"first_name": "Test", "last_name": "Buyer",
                "address_1": "1 Test Street", "city": "Toronto",
                "postcode": "M5V 1J1", "country": "CA"}
-    status, result = req("POST", "/ovo-bridge/v1/checkout/complete", {
+    status, result = req("POST", "/wp-json/ovo-bridge/v1/checkout/complete", {
         "cart_id": cart_id, "quote_id": "live-test-quote-1",
         "idempotency_key": "live-test-total-1",
         "customer_email": "test@localhost",
