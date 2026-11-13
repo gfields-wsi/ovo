@@ -378,7 +378,25 @@ function ovo_bridge_checkout_complete($request) {
         return ovo_bridge_error('ovo_bridge_declined', 500);
     }
     $order = wc_create_order();
-    $order->add_product($variation, $quantity);
+    $line_id = $order->add_product($variation, $quantity);
+    // The approved tax goes on the line item itself, and on the
+    // order, before totals are worked out. A tax line item alone
+    // does not feed the order total: WooCommerce works the total
+    // from the line items' taxes. Setting it here keeps the
+    // approved tax in the total. Proven live on Site A, 13 Nov
+    // 2026: subtotal 100, tax 5, shipping 10 gives order total
+    // 115.00 with this method, and 110.00 without it.
+    if ($tax > 0) {
+        $line = $order->get_item($line_id);
+        if ($line) {
+            $line->set_taxes(array(
+                'total' => array(0 => number_format($tax / 100, 2, '.', '')),
+                'subtotal' => array(0 => number_format($tax / 100, 2, '.', '')),
+            ));
+            $line->save();
+        }
+        $order->set_cart_tax(number_format($tax / 100, 2, '.', ''));
+    }
     $email = sanitize_email($params['customer_email']);
     $ship = is_array($params['shipping_address']) ? $params['shipping_address'] : array();
     $bill = is_array($params['billing_address']) ? $params['billing_address'] : array();
@@ -420,11 +438,13 @@ function ovo_bridge_checkout_complete($request) {
     // Phase 6, Requirement 6: set the shipping and tax lines from
     // the approved split before WooCommerce works the totals out.
     // The approved split is the merchant total: subtotal plus tax
-    // plus shipping. Without these lines, calculate_totals() works
-    // tax and shipping out from the store rules, and the order
-    // total can differ from the amount already charged through
-    // Stripe. The lines below carry the approved amounts, in
-    // dollars, as WooCommerce expects.
+    // plus shipping. The lines below carry the approved amounts,
+    // in dollars, as WooCommerce expects. Totals are then worked
+    // out without the tax recalculation: calculate_totals(true)
+    // recomputes tax from the store rates and wipes the approved
+    // tax on a store with no matching rate. The approved split is
+    // the merchant total, so it is kept, and the guard below still
+    // checks the result against the charged amount.
     if ($shipping > 0) {
         $ship_item = new WC_Order_Item_Shipping();
         $ship_item->set_method_title('OvO Bridge Shipping');
@@ -440,7 +460,7 @@ function ovo_bridge_checkout_complete($request) {
         $tax_item->set_shipping_tax_total('0');
         $order->add_item($tax_item);
     }
-    $order->calculate_totals();
+    $order->calculate_totals(false);
     // Guard, Phase 6: the order total after calculate_totals()
     // must equal the amount already charged. If WooCommerce worked
     // it out differently, the order is not marked paid: it is held
