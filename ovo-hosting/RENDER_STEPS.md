@@ -19,19 +19,33 @@ services wait until he says go.
 
 ## Step 1. Create the database first
 
+Create each service by hand, in order. The Blueprint
+starting point does not appear in Greg's Render dashboard,
+so the Blueprint path in an earlier version of these steps
+was wrong. `render.yaml` still records the same four
+services, with the same names, the same region, and the
+same start commands. Use it as the record, and create the
+services by hand below.
+
 1. In Render, open the dashboard.
-2. Choose New, then Blueprint.
-3. Pick the `gfields-wsi/ovo` repo, and the production
-   branch.
-4. Render reads `render.yaml` at the repo root, and lists
-   four resources: one database, one web service, one
-   worker, and one cron job.
-5. Look at the database first. It is named `ovo-db`.
-   Leave the plan as Render shows it. You can change the
-   plan later, in the dashboard.
+2. Choose New, then Postgres.
+3. Fill in Name `ovo-db`, Database `ovo`, User `ovo`,
+   Region Ohio, PostgreSQL version 16.
+4. Leave the plan as Render shows it, or pick the plan
+   Greg chose. You can change the plan later, in the
+   dashboard.
+5. Choose Create Database. Wait until its status reads
+   Available.
 6. Do not change the database name, or the service names.
    The other services find the database by the name
    `ovo-db`.
+
+Then create the other three services by hand, in order,
+from `render.yaml`: the Web Service `ovo-api`, the
+Background Worker `ovo-worker`, and the Cron Job
+`ovo-sweep`, all in Ohio, all from the `gfields-wsi/ovo`
+repo, production branch, with the start commands shown
+in `render.yaml`.
 
 ## Step 2. Type the keys into the settings store
 

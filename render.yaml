@@ -19,6 +19,12 @@
 # for a new database. Greg can change the plan for any service
 # at creation, in the dashboard.
 #
+# Region is set here, and it is Ohio. Greg is in Toronto, so
+# Ohio is the closest Render region. All four services must be
+# in the same region, so they share one private network. That
+# is why the region is set on the database and on each service
+# below, not left to the Oregon default.
+#
 # Keys are never written here. META_API_KEY and
 # STRIPE_SECRET_KEY are marked sync: false, so Render asks for
 # them at creation, and Greg types them into the Render
@@ -30,10 +36,8 @@ databases:
   - name: ovo-db
     databaseName: ovo
     user: ovo
+    region: ohio
     # No plan set: Render uses its default for a new database.
-    # No region set: Render uses oregon, the default, for the
-    # database and for every service below, so they share one
-    # private network.
 
 services:
   # 2. Web Service — the agent service and API.
@@ -41,6 +45,7 @@ services:
   # pages, the public manifest, and run health.
   - name: ovo-api
     type: web
+    region: ohio
     runtime: python
     buildCommand: pip install -r ovo-hosting/requirements.txt
     preDeployCommand: python3 ovo-hosting/migrate.py
@@ -62,6 +67,7 @@ services:
   # approves, and never publishes.
   - name: ovo-worker
     type: worker
+    region: ohio
     runtime: python
     buildCommand: pip install -r ovo-hosting/requirements.txt
     preDeployCommand: python3 ovo-hosting/migrate.py
@@ -82,6 +88,7 @@ services:
   # because a cron job has no pre-deploy step.
   - name: ovo-sweep
     type: cron
+    region: ohio
     runtime: python
     schedule: "0 3 * * *"
     buildCommand: pip install -r ovo-hosting/requirements.txt
