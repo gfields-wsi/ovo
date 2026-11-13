@@ -9,12 +9,16 @@ Stdlib only. Two routes:
 - GET /health: a plain health answer, no key needed.
 
 Run it with: python3 server.py --db /path/to/mcp.db --port 8080
+On Render, DATABASE_URL is set by the Blueprint, and the
+stores use Postgres. Locally, with no DATABASE_URL, the
+stores use SQLite files, as before.
 The manifest file lives in public/.well-known/ovo next to this
 file. Static pages and the manifest deploy to the web server;
 this API runs on Render.
 """
 import argparse
 import json
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -85,11 +89,15 @@ def main():
                         help="MCP store file. Default is mcp.db next to server.py.")
     parser.add_argument("--runner-db", default=None,
                         help="Runner store file. Default is ovo-runner/ovo_runs.db.")
+    parser.add_argument("--database-url", default=None,
+                        help="Postgres address. Defaults to DATABASE_URL. "
+                             "When set, the stores use Postgres.")
     parser.add_argument("--port", type=int, default=8080)
     parser.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args()
     service = McpService(args.db or HERE / "mcp.db",
-                         runner_db_path=args.runner_db)
+                         runner_db_path=args.runner_db,
+                         database_url=args.database_url or os.environ.get("DATABASE_URL"))
     try:
         server = ThreadingHTTPServer((args.host, args.port), make_handler(service))
         print(f"{SERVICE_NAME} {SERVICE_VERSION} on {args.host}:{args.port}")

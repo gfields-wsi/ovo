@@ -139,10 +139,14 @@ def same_store(left, right):
 
 
 def run_flow(store_url, decision_file=None, skip_spark=False,
-             run_key=None, db_path=None, repo_root=None):
+             run_key=None, db_path=None, repo_root=None, store=None):
     """Run the production flow once. Returns the run result dict.
     Raises RunnerFailed when a gate fails. All run state is recorded
-    in the store, so a retry with the same run key resumes safely."""
+    in the store, so a retry with the same run key resumes safely.
+    store, when given, is the run store to use: a Postgres store
+    on Render, or a SQLite store locally. When it is not given,
+    a SQLite store is opened from db_path. A store given here is
+    closed by this function when the run ends."""
     repo_root = Path(repo_root or REPO_ROOT)
     run_key = run_key or uuid.uuid4().hex
     db_path = Path(db_path or HERE / "ovo_runs.db")
@@ -184,7 +188,7 @@ def run_flow(store_url, decision_file=None, skip_spark=False,
         "status": "failed",
     }
 
-    store = RunStore(db_path)
+    store = store or RunStore(db_path)
     try:
         run = store.create_or_resume_run(run_key, store_url, merchant_slug,
                                          started.isoformat())
@@ -456,14 +460,31 @@ def main():
                              "resumes safely and publishes nothing twice.")
     parser.add_argument("--db", default=None,
                         help="Run store file. Default is ovo_runs.db next to runner.py.")
+    parser.add_argument("--database-url", default=None,
+                        help="Postgres address, from DATABASE_URL on Render. "
+                             "When set, run state lives in Postgres, so a "
+                             "host restart loses no run. When not set, the "
+                             "SQLite file from --db is used.")
     args = parser.parse_args()
     store_url = args.store_url.strip()
     if not store_url.startswith("https://") and not store_url.startswith("http://"):
         raise SystemExit("Store address must start with http:// or https://")
+    store = None
+    if args.database_url:
+        # Load the hosting factory by path, as the MCP service
+        # loads runner modules. A bad address fails here, loudly,
+        # instead of silently falling back to a local file.
+        import importlib.util
+        hosting_path = Path(__file__).resolve().parent.parent / "ovo-hosting" / "postgres_store.py"
+        spec = importlib.util.spec_from_file_location(
+            "ovo_hosting_postgres_store", str(hosting_path))
+        hosting = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(hosting)
+        store = hosting.open_run_store(args.database_url)
     try:
         run_flow(store_url, decision_file=args.decision_file,
                  skip_spark=args.skip_spark, run_key=args.run_key,
-                 db_path=args.db)
+                 db_path=args.db, store=store)
     except RunnerFailed:
         raise SystemExit(1)
     return 0

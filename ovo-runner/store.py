@@ -60,6 +60,16 @@ CREATE TABLE IF NOT EXISTS decisions (
   recorded_at_utc TEXT NOT NULL,
   PRIMARY KEY (run_key, fingerprint)
 );
+CREATE TABLE IF NOT EXISTS sweep_runs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  started_at_utc TEXT NOT NULL,
+  finished_at_utc TEXT,
+  stores_checked TEXT NOT NULL,
+  runs_resumed INTEGER NOT NULL DEFAULT 0,
+  stuck_runs INTEGER NOT NULL DEFAULT 0,
+  failed_runs INTEGER NOT NULL DEFAULT 0,
+  detail_json TEXT
+);
 """
 
 TERMINAL_PUBLISH = ("dry_run_complete", "blocked")
@@ -109,6 +119,42 @@ class RunStore:
         row = self.conn.execute(
             "SELECT * FROM runs WHERE run_key = ?", (run_key,)).fetchone()
         return dict(row) if row else None
+
+    def list_runs(self):
+        """All runs, newest first. The health watch reads this.
+        It returns run rows only, never stage detail."""
+        rows = self.conn.execute(
+            "SELECT * FROM runs ORDER BY started_at_utc DESC").fetchall()
+        return [dict(r) for r in rows]
+
+    def record_sweep(self, started_at, finished_at, stores_checked,
+                     runs_resumed, stuck_runs, failed_runs, detail):
+        """One daily sweep, recorded. Stores_checked is a list of
+        store addresses the sweep looked at. The sweep never
+        starts a check for a store that is not on that list."""
+        cur = self.conn.execute(
+            "INSERT INTO sweep_runs (started_at_utc, finished_at_utc,"
+            " stores_checked, runs_resumed, stuck_runs, failed_runs,"
+            " detail_json) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (started_at, finished_at, json.dumps(stores_checked),
+             runs_resumed, stuck_runs, failed_runs,
+             json.dumps(detail) if detail is not None else None))
+        self.conn.commit()
+        return cur.lastrowid
+
+    def list_sweeps(self):
+        """Sweep records, newest first."""
+        rows = self.conn.execute(
+            "SELECT * FROM sweep_runs ORDER BY id DESC").fetchall()
+        out = []
+        for row in rows:
+            item = dict(row)
+            if item.get("stores_checked"):
+                item["stores_checked"] = json.loads(item["stores_checked"])
+            if item.get("detail_json"):
+                item["detail"] = json.loads(item.pop("detail_json"))
+            out.append(item)
+        return out
 
     def update_run(self, run_key, status, finished_at, result):
         self.conn.execute(

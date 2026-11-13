@@ -1,0 +1,12 @@
+# OvO hosting, parts list.
+# Python standard library only, plus one extra part.
+# psycopg is the Postgres driver for Python, with its
+# prebuilt binary. It is used only when DATABASE_URL is set,
+# on Render. Local work and local tests use SQLite and need
+# no extra part.
+# The two lines below are the same as psycopg[binary]. They
+# are written out in full because the bracket form fails to
+# resolve on this index: it asks for psycopg-binary 3.2.0.dev1,
+# a version that does not exist.
+psycopg==3.2.0
+psycopg-binary==3.2.0

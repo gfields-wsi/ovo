@@ -30,6 +30,7 @@ shape). Methods: initialize, ping, tools/list, tools/call.
 """
 import importlib.util
 import json
+import os
 import threading
 import uuid
 from datetime import datetime, timezone
@@ -156,6 +157,16 @@ def _load_runner_module(name, repo_root, filename):
             sys.path.pop(0)
 
 
+def _load_hosting(repo_root):
+    """Load the hosting factory, ovo-hosting/postgres_store.py,
+    by path. It opens the Postgres stores on Render. It is only
+    loaded when a Postgres address is set, so local work never
+    needs it."""
+    return _load_module(
+        "ovo_hosting_postgres_store",
+        Path(repo_root) / "ovo-hosting" / "postgres_store.py")
+
+
 class McpError(Exception):
     """A refused call. Carries a JSON-RPC error code and a reason
     that is also written to the refusals table."""
@@ -173,14 +184,24 @@ class McpService:
     detail. The runner runs checks in a background thread."""
 
     def __init__(self, db_path, runner_db_path=None, repo_root=None,
-                 runner=None, http_get=None):
+                 runner=None, http_get=None, database_url=None):
         self.db_path = Path(db_path)
         self.repo_root = Path(repo_root or Path(__file__).resolve().parents[1])
         self.runner_db_path = Path(
             runner_db_path or self.repo_root / "ovo-runner" / "ovo_runs.db")
         self._runner = runner  # injected in tests; real run_flow by default
         self._http_get = http_get
-        self._store = McpStore(self.db_path)
+        # Postgres on Render, SQLite locally. database_url may be
+        # passed in, or read from DATABASE_URL. When it is set,
+        # the stores below are Postgres stores with the same
+        # methods and records. When it is not set, nothing here
+        # changes from the SQLite behaviour the tests cover.
+        self.database_url = database_url or os.environ.get("DATABASE_URL") or None
+        if self.database_url:
+            self._store = _load_hosting(self.repo_root).open_mcp_store(
+                self.database_url)
+        else:
+            self._store = McpStore(self.db_path)
         self._threads = []
 
     def close(self):
@@ -277,6 +298,9 @@ class McpService:
         return run
 
     def _runner_store(self):
+        if self.database_url:
+            return _load_hosting(self.repo_root).open_run_store(
+                self.database_url)
         module = _load_runner_module("ovo_runner_store", self.repo_root, "store.py")
         return module.RunStore(self.runner_db_path)
 
@@ -329,9 +353,15 @@ class McpService:
 
     def _run_check(self, run_key, store_url):
         """Run the production flow in the background. A fresh store
-        is opened in this thread; SQLite connections are not shared
-        across threads."""
-        store = McpStore(self.db_path)
+        is opened in this thread; database connections are not
+        shared across threads, on SQLite or on Postgres."""
+        if self.database_url:
+            hosting = _load_hosting(self.repo_root)
+            store = hosting.open_mcp_store(self.database_url)
+            runner_store = hosting.open_run_store(self.database_url)
+        else:
+            store = McpStore(self.db_path)
+            runner_store = None
         try:
             if self._runner is not None:
                 result = self._runner(store_url, run_key)
@@ -340,7 +370,8 @@ class McpService:
                                              "runner.py")
                 result = module.run_flow(store_url, run_key=run_key,
                                          db_path=self.runner_db_path,
-                                         repo_root=self.repo_root)
+                                         repo_root=self.repo_root,
+                                         store=runner_store)
             store.update_run(run_key, result.get("status", "failed"),
                              now_utc(), result)
         except Exception as exc:  # noqa: BLE001 - a failed run is recorded, not raised

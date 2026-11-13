@@ -1,0 +1,97 @@
+# OvO on Render — Blueprint
+#
+# This file creates the four Render services, in order:
+#   1. Postgres (ovo-db) — the database. First, so the other
+#      services can read its address from it.
+#   2. Web Service (ovo-api) — the agent service and API.
+#   3. Background Worker (ovo-worker) — the runner worker.
+#   4. Cron Job (ovo-sweep) — the daily sweep, 03:00 UTC.
+#
+# The web server keeps the OvO site, the approval pages, the
+# plugin downloads, the public manifest, and static scorecards.
+# Vercel is not used. This file is deployment code only. It
+# creates nothing by itself. Greg creates the services from it
+# in the Render dashboard, when he is ready. See
+# ovo-hosting/RENDER_STEPS.md for the exact steps.
+#
+# Plans are not set here. Render uses its defaults: 0.5c-512mb
+# for a new web service, worker, or cron job, and 0.1c-256mb
+# for a new database. Greg can change the plan for any service
+# at creation, in the dashboard.
+#
+# Keys are never written here. META_API_KEY and
+# STRIPE_SECRET_KEY are marked sync: false, so Render asks for
+# them at creation, and Greg types them into the Render
+# settings store. The Meta key stays on the server too; the
+# OvO site and the runner each get their own keys. A key for
+# one merchant store is never shared with another store.
+
+databases:
+  - name: ovo-db
+    databaseName: ovo
+    user: ovo
+    # No plan set: Render uses its default for a new database.
+    # No region set: Render uses oregon, the default, for the
+    # database and for every service below, so they share one
+    # private network.
+
+services:
+  # 2. Web Service — the agent service and API.
+  # Serves the five MCP tools, the merchant site API and
+  # pages, the public manifest, and run health.
+  - name: ovo-api
+    type: web
+    runtime: python
+    buildCommand: pip install -r ovo-hosting/requirements.txt
+    preDeployCommand: python3 ovo-hosting/migrate.py
+    startCommand: python3 ovo-hosting/api_server.py
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ovo-db
+          property: connectionString
+      - key: META_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+
+  # 3. Background Worker — the runner worker.
+  # Watches run health, and recovers runs that a host restart
+  # cut short. It never starts a new check on its own, never
+  # approves, and never publishes.
+  - name: ovo-worker
+    type: worker
+    runtime: python
+    buildCommand: pip install -r ovo-hosting/requirements.txt
+    preDeployCommand: python3 ovo-hosting/migrate.py
+    startCommand: python3 ovo-hosting/worker.py
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ovo-db
+          property: connectionString
+      - key: META_API_KEY
+        sync: false
+
+  # 4. Cron Job — the daily sweep.
+  # Runs once a day, at 03:00 UTC, off peak. It re-reads each
+  # store on the watch list, and records the sweep. The watch
+  # list starts empty: OVO_SWEEP_STORES is set only when a
+  # merchant agrees to watching. The migration runs first,
+  # because a cron job has no pre-deploy step.
+  - name: ovo-sweep
+    type: cron
+    runtime: python
+    schedule: "0 3 * * *"
+    buildCommand: pip install -r ovo-hosting/requirements.txt
+    startCommand: python3 ovo-hosting/migrate.py && python3 ovo-hosting/sweep.py
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ovo-db
+          property: connectionString
+      - key: META_API_KEY
+        sync: false
+      - key: OVO_SWEEP_STORES
+        value: ""
