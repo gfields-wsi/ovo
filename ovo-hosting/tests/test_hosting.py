@@ -393,9 +393,14 @@ class TestRenderYaml(unittest.TestCase):
         for service in self.blueprint["services"]:
             for entry in service["envVars"]:
                 if "value" in entry:
-                    # The only value written is the empty watch list.
-                    self.assertEqual(entry["key"], "OVO_SWEEP_STORES")
-                    self.assertEqual(entry["value"], "")
+                    # The only values written are the empty watch
+                    # list, and the Python version pin.
+                    self.assertIn(entry["key"],
+                                  ("OVO_SWEEP_STORES", "PYTHON_VERSION"))
+                    if entry["key"] == "OVO_SWEEP_STORES":
+                        self.assertEqual(entry["value"], "")
+                    if entry["key"] == "PYTHON_VERSION":
+                        self.assertEqual(entry["value"], "3.12.13")
                 if entry["key"] in ("META_API_KEY", "STRIPE_SECRET_KEY"):
                     self.assertEqual(entry.get("sync"), False)
         self.assertNotIn("sk-", text)

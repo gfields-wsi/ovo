@@ -52,6 +52,8 @@ services:
     startCommand: python3 ovo-hosting/api_server.py
     healthCheckPath: /health
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.13"
       - key: DATABASE_URL
         fromDatabase:
           name: ovo-db
@@ -73,6 +75,8 @@ services:
     preDeployCommand: python3 ovo-hosting/migrate.py
     startCommand: python3 ovo-hosting/worker.py
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.13"
       - key: DATABASE_URL
         fromDatabase:
           name: ovo-db
@@ -94,6 +98,8 @@ services:
     buildCommand: pip install -r ovo-hosting/requirements.txt
     startCommand: python3 ovo-hosting/migrate.py && python3 ovo-hosting/sweep.py
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.13"
       - key: DATABASE_URL
         fromDatabase:
           name: ovo-db
