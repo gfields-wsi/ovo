@@ -12,8 +12,12 @@ merchant pages and the API the pages call:
   GET  /api/review/<run_key>          the packet as JSON
   GET  /api/billing/<merchant>?y&m    the monthly bill
   POST /api/signin                    OvO site sign-in
+  POST /api/signup                    create a merchant account
   POST /api/wordpress-signin          WordPress sign-in, verified
   POST /api/card-auth                 card authorization reference
+  POST /api/keys                      issue a scoped agent key, shown once
+  POST /api/keys/revoke               take back the key for a store
+  POST /api/keys/status              key status for a store, never the key
   POST /api/packets                   deliver a packet for review
   POST /api/decide                    record a merchant decision
   POST /api/install                   Install OvO Plugins, one press
@@ -23,7 +27,10 @@ merchant pages and the API the pages call:
 The pages are plain files under static/, so the same pages can
 deploy to the web server as static files and call this API on
 Render. The database path comes from OVO_MERCHANT_DB, or a file
-next to this app. Nothing here logs a password, a token, or a
+next to this app. Agent keys live in the key store, not here:
+the key store is the MCP store, Postgres on Render and a file
+locally. Only the hash of a key is stored. The key itself is
+shown once, when it is issued, and never logged. Nothing here logs a password, a token, or a
 key. The Stripe secret key is read from the environment only
 when a live Stripe call is about to happen, and no live Stripe
 call happens in this phase.
@@ -36,17 +43,36 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(REPO_ROOT / "ovo-mcp-service"))
+sys.path.insert(0, str(REPO_ROOT / "ovo-hosting"))
 
 import approval  # noqa: E402
 import auth  # noqa: E402
 import billing  # noqa: E402
 import install as install_mod  # noqa: E402
 import attribution  # noqa: E402
+from keys import issue_key  # noqa: E402
 from store import MerchantStore  # noqa: E402
 
 DB_PATH = os.environ.get("OVO_MERCHANT_DB") or str(HERE / "ovo-merchant-site.db")
 STORE = MerchantStore(DB_PATH)
+MCP_DB_PATH = None  # tests point this at a throwaway key store file
+
+
+def _open_mcp_store():
+    """Open the key store. A fresh store per call: the HTTP server
+    runs requests on threads, and a store opened in one thread
+    must not be used in another. Postgres on Render, a file
+    locally. The caller closes it."""
+    database_url = os.environ.get("DATABASE_URL")
+    if database_url:
+        import postgres_store
+        return postgres_store.open_mcp_store(database_url)
+    from mcp_store import McpStore
+    path = MCP_DB_PATH or (REPO_ROOT / "ovo-mcp-service" / "mcp.db")
+    return McpStore(path)
 PACKAGE_DIR = HERE / "downloads"
 PACKAGE_DIR.mkdir(exist_ok=True)
 
@@ -184,6 +210,84 @@ class Handler(BaseHTTPRequestHandler):
                 _json(self, 401, {"error": error})
             else:
                 _json(self, 200, result)
+        elif path == "/api/signup":
+            missing = [f for f in ("merchant_id", "name", "email",
+                                   "password") if not data.get(f)]
+            if missing:
+                _json(self, 400, {"error": "merchant_id, name, email,"
+                                           " and password are required"})
+                return
+            try:
+                result = auth.create_merchant(
+                    STORE, data.get("merchant_id"), data.get("name"),
+                    data.get("email"), data.get("password"))
+            except ValueError as exc:
+                _json(self, 400, {"error": str(exc)})
+            else:
+                _json(self, 201, result)
+        elif path == "/api/keys":
+            store_url = (data.get("store_url") or "").strip()
+            if not store_url:
+                _json(self, 400, {"error": "store address is required"})
+                return
+            if not store_url.startswith(("http://", "https://")):
+                _json(self, 400, {"error": "store address must start"
+                                           " with http:// or https://"})
+                return
+            session, error = _require_session(data, store_url)
+            if error:
+                _json(self, 401, {"error": error})
+                return
+            mcp = _open_mcp_store()
+            try:
+                # One live key per store: a new key takes back the old one.
+                mcp.revoke_store_keys(session["merchant_id"], store_url)
+                key = issue_key(mcp, session["merchant_id"], store_url,
+                                billing.now_utc())
+            finally:
+                mcp.close()
+            _json(self, 200, {"key": key, "store_url": store_url,
+                              "merchant_id": session["merchant_id"],
+                              "shown_once": True})
+        elif path == "/api/keys/revoke":
+            store_url = (data.get("store_url") or "").strip()
+            if not store_url:
+                _json(self, 400, {"error": "store address is required"})
+                return
+            session, error = _require_session(data, store_url)
+            if error:
+                _json(self, 401, {"error": error})
+                return
+            mcp = _open_mcp_store()
+            try:
+                count = mcp.revoke_store_keys(
+                    session["merchant_id"], store_url)
+            finally:
+                mcp.close()
+            _json(self, 200, {"revoked": True, "store_url": store_url,
+                              "keys_revoked": count})
+        elif path == "/api/keys/status":
+            # POST, not GET: the session token rides in the body, and
+            # the log only ever sees the method, the path, and the
+            # status. A token in a URL would land in the log.
+            store_url = (data.get("store_url") or "").strip()
+            if not store_url:
+                _json(self, 400, {"error": "store address is required"})
+                return
+            session, error = _require_session(data, store_url)
+            if error:
+                _json(self, 401, {"error": error})
+                return
+            mcp = _open_mcp_store()
+            try:
+                row = mcp.live_key_for_store(
+                    session["merchant_id"], store_url)
+            finally:
+                mcp.close()
+            _json(self, 200, {
+                "store_url": store_url,
+                "has_live_key": row is not None,
+                "created_at_utc": row["created_at_utc"] if row else None})
         elif path == "/api/wordpress-signin":
             session, error = _require_session(data, data.get("store_url"))
             if error:
@@ -317,6 +421,7 @@ INDEX_PAGE = """<!doctype html>
 <p>Sign in, review your store fixes, install the OvO plugins,
 and see your bill. The review screen is one page per run:
 ask the OvO agent for your review link.</p>
+<p>Agent key: <a href="/static/keys.html">get or take back your agent key</a>.</p>
 <p>Health: <a href="/health">/health</a></p>
 </div></body></html>
 """

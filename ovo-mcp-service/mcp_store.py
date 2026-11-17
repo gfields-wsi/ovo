@@ -107,6 +107,28 @@ class McpStore:
             "UPDATE scoped_keys SET revoked = 1 WHERE key_hash = ?", (key_hash,))
         self.conn.commit()
 
+    def revoke_store_keys(self, merchant_id, store_url):
+        """Take back every live key for one merchant and one store.
+        A store has at most one live key: issuing a new key takes
+        back the old one. Returns how many keys were revoked."""
+        cur = self.conn.execute(
+            "UPDATE scoped_keys SET revoked = 1 "
+            "WHERE merchant_id = ? AND store_url = ? AND revoked = 0",
+            (merchant_id, store_url))
+        self.conn.commit()
+        return cur.rowcount
+
+    def live_key_for_store(self, merchant_id, store_url):
+        """The live key for one merchant and one store, if any.
+        Returns the row, or None. The row carries the hash and
+        the time the key was made, never the key itself."""
+        row = self.conn.execute(
+            "SELECT * FROM scoped_keys WHERE merchant_id = ? "
+            "AND store_url = ? AND revoked = 0 "
+            "ORDER BY created_at_utc DESC LIMIT 1",
+            (merchant_id, store_url)).fetchone()
+        return dict(row) if row else None
+
     # -- domains --
 
     def record_domain(self, store_url, merchant_id, status, method, checked_at, detail=""):

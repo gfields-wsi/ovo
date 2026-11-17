@@ -25,7 +25,7 @@ class ManifestTest(unittest.TestCase):
     def test_manifest_file_matches_the_builder(self):
         stored = json.loads(MANIFEST_PATH.read_text())
         built = build_public_manifest(
-            "https://wsiventures.com/ovo/mcp",
+            "https://ovo-bpa7.onrender.com/mcp",
             "https://wsiventures.com/ovo", TOOLS)
         self.assertEqual(stored, built)
 
@@ -35,7 +35,7 @@ class ManifestTest(unittest.TestCase):
         self.assertEqual(manifest["scope"].split(" only")[0],
                          "WordPress + WooCommerce")
         self.assertEqual(manifest["mcp_endpoint"],
-                         "https://wsiventures.com/ovo/mcp")
+                         "https://ovo-bpa7.onrender.com/mcp")
         self.assertEqual([t["name"] for t in manifest["tools"]],
                          ["ovo_start_check", "ovo_run_status", "ovo_scorecard",
                           "ovo_approval_packet", "ovo_store_manifest"])
