@@ -32,6 +32,7 @@ import importlib.util
 import json
 import os
 import threading
+import traceback
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -375,6 +376,11 @@ class McpService:
             store.update_run(run_key, result.get("status", "failed"),
                              now_utc(), result)
         except Exception as exc:  # noqa: BLE001 - a failed run is recorded, not raised
+            # The failure is recorded in the store, and also printed,
+            # so the Render logs hold the traceback. A background
+            # thread that fails silently leaves no trace anywhere
+            # else, and the live run failure of 2026-11-19 proved it.
+            traceback.print_exc()
             try:
                 store.update_run(run_key, "failed", now_utc(),
                                  {"status": "failed", "failure": str(exc)})
@@ -403,6 +409,8 @@ class McpService:
                             if status == "paused_awaiting_merchant_decision"
                             else None),
             "stages": stages,
+            "failure": ((run.get("result") or {}).get("failure")
+                        or result.get("failure")),
             "started_at_utc": run["started_at_utc"],
             "finished_at_utc": run.get("finished_at_utc"),
         }

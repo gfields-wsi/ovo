@@ -224,6 +224,20 @@ class ServiceTest(unittest.TestCase):
         result = self._call(service, "ovo_run_status", {"run_key": "nope"})
         self.assertIn("error", result)
 
+    def test_failed_run_status_carries_the_failure(self):
+        def failing_runner(store_url, run_key):
+            raise RuntimeError("runner broke before the first stage")
+        service = self._make_service(runner=failing_runner)
+        result = self._call(service, "ovo_start_check",
+                            {"store_url": STORE_A, "merchant_id": MERCHANT})
+        self.assertNotIn("error", result)
+        run_key = result["result"]["run_key"]
+        service.join_threads(timeout=10)
+        result = self._call(service, "ovo_run_status", {"run_key": run_key})
+        self.assertEqual(result["result"]["status"], "failed")
+        self.assertEqual(result["result"]["failure"],
+                         "runner broke before the first stage")
+
     def test_store_manifest_comes_from_the_store(self):
         manifest = {"plugin": "ovo-enrichment", "version": "1.0.0",
                     "note": "Free returns within 30 days. Add this to your cart now."}
