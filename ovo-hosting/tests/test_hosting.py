@@ -693,7 +693,8 @@ class TestLivePostgres(unittest.TestCase):
         source.close()
         tables = ovo_migrate.migrate(cls.url)
         for table in ("runs", "stages", "sweep_runs", "scoped_keys",
-                      "domains", "merchants", "packets", "orders"):
+                      "domains", "merchants", "packets", "orders",
+                      "mcp_runs", "merchant_decisions"):
             assert table in tables, f"missing table {table}"
         cls.counts = ovo_migrate.copy_runner_sqlite(cls.sqlite_path, cls.url)
 
@@ -737,6 +738,26 @@ class TestLivePostgres(unittest.TestCase):
                 "file", "2026-11-13T12:00:00+00:00")
             self.assertEqual(
                 store.get_domain(store_url)["status"], "verified")
+            # A run round-trips too. This is the check that caught
+            # the live table clash: the runner store already has a
+            # runs table with a different shape, and on Postgres
+            # the two stores share one database, so the service
+            # keeps its runs in mcp_runs.
+            run_key = f"run-{self.suffix}"
+            store.record_run(
+                run_key, store_url, merchant_id, "running",
+                True, "2026-11-13T12:00:00+00:00")
+            run = store.get_run(run_key)
+            self.assertEqual(run["merchant_id"], merchant_id)
+            self.assertEqual(run["status"], "running")
+            self.assertEqual(run["test_only"], 1)
+            store.update_run(
+                run_key, "paused_awaiting_merchant_decision",
+                "2026-11-13T12:05:00+00:00",
+                {"status": "paused_awaiting_merchant_decision"})
+            self.assertEqual(
+                store.get_run(run_key)["status"],
+                "paused_awaiting_merchant_decision")
         finally:
             store.close()
 
@@ -754,6 +775,19 @@ class TestLivePostgres(unittest.TestCase):
                 {"run_key": "live-1"}, "2026-11-13T12:00:00+00:00")
             packet = store.get_packet("live-1")
             self.assertEqual(packet["run_key"], "live-1")
+            # A merchant decision round-trips too. This is the
+            # check for the second live table clash: the runner
+            # store already has a decisions table with a different
+            # shape, and on Postgres the two stores share one
+            # database, so the merchant site keeps its decisions
+            # in merchant_decisions.
+            store.save_decision(
+                "live-1", "fp-1", {"approve": True},
+                {"by": "merchant"}, "2026-11-13T12:00:00+00:00",
+                "merchant")
+            decision = store.latest_decision("live-1", "fp-1")
+            self.assertEqual(decision["decision"], {"approve": True})
+            self.assertEqual(decision["record"], {"by": "merchant"})
         finally:
             store.close()
 

@@ -180,7 +180,7 @@ class McpError(Exception):
 
 class McpService:
     """The service. One instance per process. The store holds keys,
-    domains, runs, and refusals. The runner store holds stage
+    domains, mcp_runs, and refusals. The runner store holds stage
     detail. The runner runs checks in a background thread."""
 
     def __init__(self, db_path, runner_db_path=None, repo_root=None,

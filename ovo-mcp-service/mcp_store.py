@@ -13,10 +13,13 @@ Tables:
   status. "verified" means the merchant proved they own the
   address. "unchecked" means no proof yet. Only verified stores
   appear in a listing.
-- runs: one row per run the service started, with the run key, the
+- mcp_runs: one row per run the service started, with the run key, the
   store, the merchant, and the status. The runner's own store
   holds the stage detail; this table is the service's index of
-  what it started.
+  what it started. It is named mcp_runs, not runs, because the
+  runner store already has a runs table with a different shape,
+  and the two stores share one Postgres database on Render.
+  SQLite kept them apart in separate files; Postgres does not.
 - refusals: every refused call, with the tool name, the reason,
   and the time. A blocked approve, publish, or pay lands here.
 """
@@ -41,7 +44,7 @@ CREATE TABLE IF NOT EXISTS domains (
   checked_at_utc TEXT,
   detail TEXT
 );
-CREATE TABLE IF NOT EXISTS runs (
+CREATE TABLE IF NOT EXISTS mcp_runs (
   run_key TEXT PRIMARY KEY,
   store_url TEXT NOT NULL,
   merchant_id TEXT NOT NULL,
@@ -155,14 +158,14 @@ class McpStore:
 
     def record_run(self, run_key, store_url, merchant_id, status, test_only, started_at):
         self.conn.execute(
-            "INSERT INTO runs (run_key, store_url, merchant_id, status, test_only, started_at_utc) "
+            "INSERT INTO mcp_runs (run_key, store_url, merchant_id, status, test_only, started_at_utc) "
             "VALUES (?, ?, ?, ?, ?, ?)",
             (run_key, store_url, merchant_id, status, 1 if test_only else 0, started_at))
         self.conn.commit()
 
     def get_run(self, run_key):
         row = self.conn.execute(
-            "SELECT * FROM runs WHERE run_key = ?", (run_key,)).fetchone()
+            "SELECT * FROM mcp_runs WHERE run_key = ?", (run_key,)).fetchone()
         if not row:
             return None
         out = dict(row)
@@ -172,7 +175,7 @@ class McpStore:
 
     def update_run(self, run_key, status, finished_at, result=None):
         self.conn.execute(
-            "UPDATE runs SET status = ?, finished_at_utc = ?, result_json = ? "
+            "UPDATE mcp_runs SET status = ?, finished_at_utc = ?, result_json = ? "
             "WHERE run_key = ?",
             (status, finished_at,
              json.dumps(result) if result is not None else None, run_key))

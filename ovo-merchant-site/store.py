@@ -2,7 +2,7 @@
 """State store for the OvO merchant site.
 
 Merchants, sign-in sessions, WordPress sign-ins, card
-authorizations, packets, decisions, installs, rate changes,
+authorizations, packets, merchant decisions, installs, rate changes,
 orders, and bills live here, not in loose files, so a host
 restart loses no merchant record. SQLite is the store now.
 The callers use only the MerchantStore methods below. Managed
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS packets (
   packet_json TEXT NOT NULL,
   created_at_utc TEXT NOT NULL
 );
-CREATE TABLE IF NOT EXISTS decisions (
+CREATE TABLE IF NOT EXISTS merchant_decisions (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   run_key TEXT NOT NULL,
   fingerprint TEXT NOT NULL,
@@ -263,7 +263,7 @@ class MerchantStore:
             (auth_id,))
         self.conn.commit()
 
-    # -- packets and decisions -------------------------------------
+    # -- packets and merchant decisions --------------------------
     def save_packet(self, run_key, store_id, merchant_id, packet,
                     created_at_utc):
         self.conn.execute(
@@ -286,7 +286,7 @@ class MerchantStore:
     def save_decision(self, run_key, fingerprint, decision, record,
                       recorded_at_utc, recorded_by):
         cur = self.conn.execute(
-            "INSERT INTO decisions (run_key, fingerprint, decision_json,"
+            "INSERT INTO merchant_decisions (run_key, fingerprint, decision_json,"
             " record_json, recorded_at_utc, recorded_by)"
             " VALUES (?, ?, ?, ?, ?, ?)",
             (run_key, fingerprint, json.dumps(decision),
@@ -296,7 +296,7 @@ class MerchantStore:
 
     def latest_decision(self, run_key, fingerprint):
         row = self.conn.execute(
-            "SELECT * FROM decisions WHERE run_key = ? AND fingerprint = ?"
+            "SELECT * FROM merchant_decisions WHERE run_key = ? AND fingerprint = ?"
             " ORDER BY id DESC LIMIT 1",
             (run_key, fingerprint)).fetchone()
         if not row:
