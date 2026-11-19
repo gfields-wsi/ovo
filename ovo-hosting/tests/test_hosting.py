@@ -172,6 +172,7 @@ class FakeCursor:
     def __init__(self):
         self.statements = []
         self.row = None
+        self.rowcount = 0
 
     def execute(self, sql, params=None):
         self.statements.append((sql, params))
@@ -209,6 +210,16 @@ class TestPostgresCursor(unittest.TestCase):
         sql, _params = fake.statements[0]
         self.assertTrue(sql.endswith(" RETURNING id"))
         self.assertEqual(cursor.lastrowid, 7)
+
+    def test_rowcount_passes_through(self):
+        fake = FakeCursor()
+        fake.rowcount = 1
+        cursor = ovo_db.PostgresCursor(fake)
+        cursor.execute(
+            "UPDATE scoped_keys SET revoked = 1 "
+            "WHERE merchant_id = ? AND store_url = ? AND revoked = 0",
+            ("m1", "https://example.com/shop"))
+        self.assertEqual(cursor.rowcount, 1)
 
     def test_fetchone_and_fetchall_pass_through(self):
         fake = FakeCursor()

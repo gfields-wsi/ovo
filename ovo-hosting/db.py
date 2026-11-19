@@ -196,6 +196,14 @@ class PostgresCursor:
     def lastrowid(self):
         return self._lastrowid
 
+    @property
+    def rowcount(self):
+        """Rows changed by the last statement, like a SQLite
+        cursor. revoke_store_keys reads it. Without this, any
+        issue-key call on Postgres crashed after the update ran,
+        so the key was never made and the service answered 502."""
+        return self._cursor.rowcount
+
     def execute(self, sql, params=()):
         pg_sql, is_serial_insert = translate_sql(sql)
         if is_serial_insert:
