@@ -224,6 +224,30 @@ class ServiceTest(unittest.TestCase):
         result = self._call(service, "ovo_run_status", {"run_key": "nope"})
         self.assertIn("error", result)
 
+    def test_runner_load_beats_merchant_store_with_same_name(self):
+        import types
+        from service import _load_runner_module
+        merchant_store = types.ModuleType("store")
+        merchant_store.__file__ = str(
+            self.repo_root / "ovo-merchant-site" / "store.py")
+        merchant_store.MerchantStore = object
+        previous = sys.modules.get("store")
+        sys.modules["store"] = merchant_store
+        try:
+            with self.assertRaises(ImportError):
+                from store import RunStore  # noqa: F401
+            module = _load_runner_module(
+                "ovo_runner", self.repo_root, "runner.py")
+            self.assertTrue(
+                module.RunStore.create_or_resume_run.__code__
+                .co_filename.endswith("ovo-runner/store.py"))
+            self.assertIs(sys.modules.get("store"), merchant_store)
+        finally:
+            if previous is None:
+                sys.modules.pop("store", None)
+            else:
+                sys.modules["store"] = previous
+
     def test_failed_run_status_carries_the_failure(self):
         def failing_runner(store_url, run_key):
             raise RuntimeError("runner broke before the first stage")

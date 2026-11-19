@@ -143,19 +143,40 @@ def _load_module(name, path):
     return module
 
 
+_RUNNER_LOAD_LOCK = threading.Lock()
+
+
 def _load_runner_module(name, repo_root, filename):
     """Load a module from ovo-runner/. runner.py does
     `from store import RunStore`, which only resolves when the
     runner folder is on the path. Put it first for the import,
-    then take it off again."""
+    then take it off again. The path alone is not enough: the
+    merchant app already loaded ovo-merchant-site/store.py as
+    `store`, and Python takes an already loaded module over
+    the path, so the runner would take the merchant store and
+    fail with ImportError. Swap in the runner store for the
+    import, then put the merchant one back. One lock covers
+    the swap, so two threads loading at once cannot mix the
+    two stores."""
     import sys
     runner_dir = str(Path(repo_root) / "ovo-runner")
-    sys.path.insert(0, runner_dir)
-    try:
-        return _load_module(name, Path(repo_root) / "ovo-runner" / filename)
-    finally:
-        if sys.path and sys.path[0] == runner_dir:
-            sys.path.pop(0)
+    store_path = Path(repo_root) / "ovo-runner" / "store.py"
+    with _RUNNER_LOAD_LOCK:
+        sys.path.insert(0, runner_dir)
+        previous_store = sys.modules.get("store")
+        swapped = _load_module("ovo_runner_store", store_path)
+        sys.modules["store"] = swapped
+        try:
+            if filename == "store.py":
+                return swapped
+            return _load_module(name, Path(repo_root) / "ovo-runner" / filename)
+        finally:
+            if previous_store is None:
+                sys.modules.pop("store", None)
+            else:
+                sys.modules["store"] = previous_store
+            if sys.path and sys.path[0] == runner_dir:
+                sys.path.pop(0)
 
 
 def _load_hosting(repo_root):
